@@ -74,9 +74,9 @@ namespace CodeAnalysis.TestTools.Diagnostics
                 var components = new[] { $"{issues} issues", $"{errors} errors" };
                 if (issues == 1) components[0] = components[0][..^1];
                 if (errors == 1) components[1] = components[1][..^1];
-                return force || issues > 0 || errors > 0
-                    ? $"* {prefix} {string.Join(", and ", components.Where(c => c[0] != '0'))}.{Environment.NewLine}"
-                    : string.Empty;
+                if (issues > 0 || errors > 0) return $"* {prefix} {string.Join(", and ", components.Where(c => c[0] != '0'))}.{Environment.NewLine}";
+                else if (force) return $"* {prefix} 0 issues, and 0 errors.{Environment.NewLine}";
+                else return string.Empty;
             }
         }
 

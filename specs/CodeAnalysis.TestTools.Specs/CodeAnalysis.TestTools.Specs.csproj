@@ -26,7 +26,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\CodeAnalysis.TestTools\CodeAnalysis.TestTools.csproj" />
-    <ProjectReference Include="..\..\src\Roslyn.CodeAnalysis.TestTools\CodeAnalysis.TestTools.csproj" />
   </ItemGroup>
 
   <ItemGroup>

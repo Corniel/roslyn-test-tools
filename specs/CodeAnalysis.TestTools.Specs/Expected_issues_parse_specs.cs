@@ -115,6 +115,37 @@ namespace Expected_issues_parse_specs
         }
 
         [Test]
+        public void secondary_on_same_line()
+        {
+            var parsed = ExpectedIssue.Parse(@"
+        public void Bar(ref object o1, ref object o2)
+//                  ^^^ Noncompliant {{Make this method generic and replace the 'object' parameter with a type parameter.}}
+//                                 ^^ Secondary@-1
+//                                                ^^ Secondary@-2".Lines());
+
+            parsed.Should().BeEquivalentTo(
+                new[] 
+                {
+                    new ExpectedIssue(
+                        diagnosticId: default,
+                        type: IssueType.Noncompliant,
+                        message: "Make this method generic and replace the 'object' parameter with a type parameter.",
+                        location: new IssueLocation(2, 20, 3)),
+                    new ExpectedIssue(
+                        diagnosticId: default,
+                        type: IssueType.Noncompliant,
+                        message: default,
+                        location: new IssueLocation(2, 35, 2)),
+                    new ExpectedIssue(
+                        diagnosticId: default,
+                        type: IssueType.Noncompliant,
+                        message: default,
+                        location: new IssueLocation(2, 50, 2)),
+                });
+
+        }
+
+        [Test]
         public void error_type()
         {
             var parsed = ExpectedIssue.Parse(@"

@@ -58,6 +58,25 @@ namespace Verify_specs
         }
     }
 
+    public class Supports
+    {
+        [Test]
+        public void Unsafe_CSharp_when_enabled()
+        {
+            Action verify = () => new CSharpOnly()
+                .ForCS()
+                .WithUnsafeCode(enable: true)
+                .AddSnippet(@"
+        public class MyClass 
+        {
+            unsafe int Risky() => 666;
+        }")
+                .Verify();
+
+            verify.Should().NotThrow();
+        }
+    }
+
     public class Fails_when
     {
         [Test]

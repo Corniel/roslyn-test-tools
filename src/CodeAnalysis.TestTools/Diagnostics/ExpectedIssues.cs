@@ -36,7 +36,7 @@ namespace CodeAnalysis.TestTools.Diagnostics
 
         public ExpectedIssues Merge(IEnumerable<ExpectedIssue> precises)
         {
-            foreach(var precise in precises)
+            foreach (var precise in precises)
             {
                 if (!Merge(precise))
                 {
@@ -52,30 +52,27 @@ namespace CodeAnalysis.TestTools.Diagnostics
             if (issue.IsLocationOnly())
             {
                 var candidates = issues.Where(existing => existing.Location.LineNumber == issue.Location.LineNumber);
-                var occurences = candidates.Count();
-                if (occurences > 1)
+                var nonprecise = candidates.Count(c => !c.Location.IsPrecise());
+                if (nonprecise > 1)
                 {
-                    throw ParseError.New(Messages.ParseError_MultiplePreciseLocations, occurences, issue.Location.LineNumber);
+                    throw ParseError.New(Messages.ParseError_MultiplePreciseLocations, nonprecise, issue.Location.LineNumber);
                 }
-                else if (candidates.FirstOrDefault() is { } candidate)
+                else if (candidates.Any(c => c.Location == issue.Location))
                 {
-                    if (candidate.Location.IsPrecise())
-                    {
-                        throw ParseError.New(Messages.ParseError_RedundentPreciseLocation, issue.Location.LineNumber);
-                    }
-                    else
-                    {
-                        issues.Remove(candidate);
-                        issues.Add(candidate.Update(issue.Location));
-                        return true;
-                    }
+                    throw ParseError.New(Messages.ParseError_RedundentPreciseLocation, issue.Location.LineNumber);
+                }
+                else if (candidates.FirstOrDefault(c =>! c.Location.IsPrecise()) is { } candidate)
+                {
+                    issues.Remove(candidate);
+                    issues.Add(candidate.Update(issue.Location));
+                    return true;
                 }
             }
             return false;
         }
 
         private IEnumerable<ExpectedIssue> PerDiagnosticId(ExpectedIssue issue)
-            =>  issue.DiagnosticId
+            => issue.DiagnosticId
                 .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
                 .OrderBy(id => id)
             .Select(id => new ExpectedIssue(id, issue.Type, issue.Message, issue.Location));
@@ -84,6 +81,6 @@ namespace CodeAnalysis.TestTools.Diagnostics
         public IEnumerator<ExpectedIssue> GetEnumerator() => issues.GetEnumerator();
 
         /// <inheritdoc />
-        IEnumerator IEnumerable.GetEnumerator() =>GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }
