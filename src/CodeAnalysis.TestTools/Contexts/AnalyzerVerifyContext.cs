@@ -19,6 +19,7 @@ namespace CodeAnalysis.TestTools.Contexts
         {
             Analyzers = new Analyzers(Language);
             Sources = new Sources(Language);
+            References.AddRange(Reference.Defaults);
         }
         
         /// <summary>Gets the language (of the options sources etc.).</summary>
@@ -37,7 +38,7 @@ namespace CodeAnalysis.TestTools.Contexts
         public DiagnosticIds IgnoredDiagnosics { get; } = new();
 
         /// <summary>Gets the (external) references to compile with.</summary>
-        public MetadataReferences References { get; } = new(Reference.FromType<object>());
+        public MetadataReferences References { get; } = new();
 
         /// <summary>Gets the output kind of the compilation.</summary>
         public OutputKind OutputKind { get; protected set; } = OutputKind.DynamicallyLinkedLibrary;
