@@ -47,6 +47,10 @@ namespace CodeAnalysis.TestTools.References
                 var all = await repo.GetAllVersionsAsync(packageId, new SourceCacheContext(), NullLogger.Instance, default);
                 var latest = all.OrderByDescending(v => v.Version).First(version => !version.IsPrerelease);
                 cache[packageId] = new NuGetLatestVersionCheck(latest.OriginalVersion, DateTime.UtcNow);
+                if (!LatestVersionsFile.Directory.Exists)
+                {
+                    LatestVersionsFile.Directory.Create();
+                }
                 await cache.SaveAsync(LatestVersionsFile);
                 return latest;
             }

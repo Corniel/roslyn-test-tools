@@ -283,21 +283,6 @@ namespace Expected_issues_parse_specs
     public class Not_allowed
     {
         [Test]
-        public void location_specified_twice_for_one_issue()
-        {
-            Action parse = () => ExpectedIssue.Parse(@"namespace MyNameSpace
-{
-    class MyClass { } // Noncompliant ^4#12 {{Visibility should be specified.}}
-//  ^^^^^^^^^^^^^".Lines());
-
-            parse.Should().Throw<ParseError>()
-                .WithMessage(
-                    "Unexpected redundant issue location on line 3. " +
-                    "Issue location can be set either with 'precise issue location' or " +
-                    "'exact column location' pattern but not both.");
-        }
-
-        [Test]
         public void location_specified_twice_on_line()
         {
             Action parse = () => ExpectedIssue.Parse(@"namespace MyNameSpace
