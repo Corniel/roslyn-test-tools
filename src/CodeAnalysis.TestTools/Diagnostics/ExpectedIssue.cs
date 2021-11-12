@@ -1,8 +1,4 @@
-﻿using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.Diagnostics;
-using CodeAnalysis.TestTools.Text;
-using System.Collections.Generic;
-
+﻿
 namespace CodeAnalysis.TestTools.Diagnostics
 {
     /// <summary>Represents an expected verification issue.</summary>

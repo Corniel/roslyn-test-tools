@@ -1,26 +1,22 @@
-﻿using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.Diagnostics;
-using System.Collections.Immutable;
+﻿using Microsoft.CodeAnalysis.CSharp;
 
-namespace Specs.Analyzers
+namespace Specs.Analyzers;
+
+[DiagnosticAnalyzer(LanguageNames.CSharp)]
+internal sealed class CSharpOnly : DiagnosticAnalyzer
 {
-    [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    internal sealed class CSharpOnly : DiagnosticAnalyzer
-    {
-        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics 
-            => new[] 
-            {
-                new DiagnosticDescriptor(nameof(CSharpOnly), "C# only", "Specs", string.Empty, DiagnosticSeverity.Warning, true),
-            }.ToImmutableArray();
-
-        public override void Initialize(AnalysisContext context)
+    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics
+        => new[]
         {
-            context.EnableConcurrentExecution();
-            context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.Analyze);
-            context.RegisterSyntaxNodeAction(
-                c => { },
-                SyntaxKind.ClassDeclaration);
-        }
+                new DiagnosticDescriptor(nameof(CSharpOnly), "C# only", "Specs", string.Empty, DiagnosticSeverity.Warning, true),
+        }.ToImmutableArray();
+
+    public override void Initialize(AnalysisContext context)
+    {
+        context.EnableConcurrentExecution();
+        context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.Analyze);
+        context.RegisterSyntaxNodeAction(
+            c => { },
+            SyntaxKind.ClassDeclaration);
     }
 }

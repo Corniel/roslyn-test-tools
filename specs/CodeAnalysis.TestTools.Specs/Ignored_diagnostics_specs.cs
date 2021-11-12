@@ -1,23 +1,19 @@
-﻿using CodeAnalysis.TestTools;
-using NUnit.Framework;
-using Specs.Analyzers;
+﻿namespace Ignored_diagnostics_specs;
 
-namespace Ignored_diagnostics_specs
+public class ForCS
 {
-    public class ForCS
-    {
-        [Test]
-        public void Unnecessary_using_directives()
-            => new CSharpOnly()
-            .ForCS()
-            .AddSnippet("using System;")
-            .Verify();
+    [Test]
+    public void Unnecessary_using_directives()
+        => new CSharpOnly()
+        .ForCS()
+        .AddSnippet("using System;")
+        .Verify();
 
-        [Test]
-        public void Obsolete_code()
-           => new CSharpOnly()
-           .ForCS()
-           .AddSnippet(@"
+    [Test]
+    public void Obsolete_code()
+       => new CSharpOnly()
+       .ForCS()
+       .AddSnippet(@"
            class UsingObsolete
            {
                public UsingObsolete()
@@ -28,16 +24,16 @@ namespace Ignored_diagnostics_specs
                void CallObsolete() { }
            }
            ")
-           .Verify();
-    }
+       .Verify();
+}
 
-    public class ForVB
-    {
-        [Test]
-        public void Comment_on_multi_line_statement()
-            => new VisualBasicOnly()
-            .ForVB()
-            .AddSnippet(@"
+public class ForVB
+{
+    [Test]
+    public void Comment_on_multi_line_statement()
+        => new VisualBasicOnly()
+        .ForVB()
+        .AddSnippet(@"
             Class MultiLine
            
                 Public Sub New(
@@ -45,14 +41,14 @@ namespace Ignored_diagnostics_specs
                 parameter1 as Object)
                 End Sub
             End Class")
-            .WithLanguageVersion(Microsoft.CodeAnalysis.VisualBasic.LanguageVersion.VisualBasic12)
-            .Verify();
+        .WithLanguageVersion(Microsoft.CodeAnalysis.VisualBasic.LanguageVersion.VisualBasic12)
+        .Verify();
 
-        [Test]
-        public void Obsolete_code()
-           => new VisualBasicOnly()
-           .ForVB()
-           .AddSnippet(@"
+    [Test]
+    public void Obsolete_code()
+       => new VisualBasicOnly()
+       .ForVB()
+       .AddSnippet(@"
            Class UsingObsolete
            
                Public Sub New()
@@ -62,6 +58,5 @@ namespace Ignored_diagnostics_specs
                Sub CallObsolete()
                End Sub
            End Class")
-           .Verify();
-    }
+       .Verify();
 }

@@ -1,28 +1,23 @@
-﻿using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.Diagnostics;
-using System.Collections.Immutable;
+﻿namespace Specs.Analyzers;
 
-namespace Specs.Analyzers
+[DiagnosticAnalyzer(LanguageNames.CSharp, LanguageNames.VisualBasic)]
+internal sealed class MultipleLanguages : DiagnosticAnalyzer
 {
-    [DiagnosticAnalyzer(LanguageNames.CSharp, LanguageNames.VisualBasic)]
-    internal sealed class MultipleLanguages : DiagnosticAnalyzer
-    {
-        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics 
-            => new[] 
-            {
-                new DiagnosticDescriptor(nameof(MultipleLanguages), "multple languages", "Specs", string.Empty, DiagnosticSeverity.Warning, true),
-            }.ToImmutableArray();
-
-        public override void Initialize(AnalysisContext context)
+    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics
+        => new[]
         {
-            context.EnableConcurrentExecution();
-            context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.Analyze);
-            context.RegisterSyntaxNodeAction(
-                c => { },
-                Microsoft.CodeAnalysis.VisualBasic.SyntaxKind.ClassBlock);
-            context.RegisterSyntaxNodeAction(
-                c => { },
-                Microsoft.CodeAnalysis.CSharp.SyntaxKind.ClassDeclaration);
-        }
+                new DiagnosticDescriptor(nameof(MultipleLanguages), "multple languages", "Specs", string.Empty, DiagnosticSeverity.Warning, true),
+        }.ToImmutableArray();
+
+    public override void Initialize(AnalysisContext context)
+    {
+        context.EnableConcurrentExecution();
+        context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.Analyze);
+        context.RegisterSyntaxNodeAction(
+            c => { },
+            Microsoft.CodeAnalysis.VisualBasic.SyntaxKind.ClassBlock);
+        context.RegisterSyntaxNodeAction(
+            c => { },
+            Microsoft.CodeAnalysis.CSharp.SyntaxKind.ClassDeclaration);
     }
 }

@@ -1,25 +1,21 @@
-﻿using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.Diagnostics;
+﻿namespace CodeAnalysis.TestTools.Diagnostics;
 
-namespace CodeAnalysis.TestTools.Diagnostics
+/// <summary>Represents an unexpected verification issue.</summary>
+public sealed record UnexpectedIssue : Issue
 {
-    /// <summary>Represents an unexpected verification issue.</summary>
-    public sealed record UnexpectedIssue : Issue
-    {
-        /// <summary>Creates a new instance of the <see cref="UnexpectedIssue"/> record.</summary>
-        public UnexpectedIssue(string diagnosticId, IssueType type, string message, IssueLocation location)
-            : base(diagnosticId, type, message, location) { }
+    /// <summary>Creates a new instance of the <see cref="UnexpectedIssue"/> record.</summary>
+    public UnexpectedIssue(string diagnosticId, IssueType type, string message, IssueLocation location)
+        : base(diagnosticId, type, message, location) { }
 
-        /// <inheritdoc />
-        public override string ReportInfo()
-            => $"[+] {base.ReportInfo()}";
+    /// <inheritdoc />
+    public override string ReportInfo()
+        => $"[+] {base.ReportInfo()}";
 
-        /// <summary>Creates an unexpected verification issue based on a diagnostic.</summary>
-        public static UnexpectedIssue FromDiagnostic(Diagnostic diagnostic)
-            => new(
-                diagnosticId: Guard.NotNull(diagnostic, nameof(diagnostic)).Id,
-                type: diagnostic.GetIssueType(),
-                message: diagnostic.GetMessage(),
-                location: IssueLocation.FromLocation(diagnostic.Location));
-}
+    /// <summary>Creates an unexpected verification issue based on a diagnostic.</summary>
+    public static UnexpectedIssue FromDiagnostic(Diagnostic diagnostic)
+        => new(
+            diagnosticId: Guard.NotNull(diagnostic, nameof(diagnostic)).Id,
+            type: diagnostic.GetIssueType(),
+            message: diagnostic.GetMessage(),
+            location: IssueLocation.FromLocation(diagnostic.Location));
 }

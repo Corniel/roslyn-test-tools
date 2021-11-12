@@ -1,26 +1,22 @@
-﻿using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.Diagnostics;
-using Microsoft.CodeAnalysis.VisualBasic;
-using System.Collections.Immutable;
+﻿using Microsoft.CodeAnalysis.VisualBasic;
 
-namespace Specs.Analyzers
+namespace Specs.Analyzers;
+
+[DiagnosticAnalyzer(LanguageNames.VisualBasic)]
+internal sealed class VisualBasicOnly : DiagnosticAnalyzer
 {
-    [DiagnosticAnalyzer(LanguageNames.VisualBasic)]
-    internal sealed class VisualBasicOnly : DiagnosticAnalyzer
-    {
-        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics 
-            => new[] 
-            {
-                new DiagnosticDescriptor(nameof(VisualBasicOnly), "VB.NET only", "Specs", string.Empty, DiagnosticSeverity.Warning, true),
-            }.ToImmutableArray();
-
-        public override void Initialize(AnalysisContext context)
+    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics
+        => new[]
         {
-            context.EnableConcurrentExecution();
-            context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.Analyze);
-            context.RegisterSyntaxNodeAction(
-                c => { },
-                SyntaxKind.ClassBlock);
-        }
+                new DiagnosticDescriptor(nameof(VisualBasicOnly), "VB.NET only", "Specs", string.Empty, DiagnosticSeverity.Warning, true),
+        }.ToImmutableArray();
+
+    public override void Initialize(AnalysisContext context)
+    {
+        context.EnableConcurrentExecution();
+        context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.Analyze);
+        context.RegisterSyntaxNodeAction(
+            c => { },
+            SyntaxKind.ClassBlock);
     }
 }
