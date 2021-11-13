@@ -11,7 +11,7 @@ public class VisualBasicAnalyzerVerifyContext : AnalyzerVerifyContext<VisualBasi
     public VisualBasicAnalyzerVerifyContext()
     {
         Options = new VisualBasicParseOptions(LanguageVersion.VisualBasic16_9);
-        References.AddRange(NuGetPackage.Microsoft_VisualBasic());
+        References.Add(Reference.FromType<Microsoft.VisualBasic.DateAndTime>());
         IgnoredDiagnosics.Add(DiagnosticId.BC36716);
     }
 
