@@ -14,8 +14,6 @@ public partial class NuGetPackage
     /// <summary>Gets the FluentAssertions package.</summary>
     public static NuGetPackage FluentAssertions(string version = Latest) => Resolve("FluentAssertions", version);
 
-
-
     /// <summary>Gets the Microsoft.VisualBasic.</summary>
     public static NuGetPackage Microsoft_VisualBasic(string version = Latest) => Resolve("Microsoft.VisualBasic", version);
 
