@@ -6,6 +6,9 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <LangVersion>10.0</LangVersion>
     <Version>0.0.1</Version>
+    <Authors>Corniel Nobel</Authors>
+    <Product>Roslyn static code analyzers test tools</Product>
+    <Description>Tooling to describe expected static code analyzer behavior in anoteded code files.</Description>
   </PropertyGroup>
 
   <ItemGroup>
