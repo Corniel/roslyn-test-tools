@@ -2,6 +2,7 @@
 
 /// <summary>Thrown when the expected issue verification fails.</summary>
 [Serializable]
+[ExcludeFromCodeCoverage]
 public class VerificationFailed : Exception
 {
     /// <summary>Creates a new instance of the <see cref="VerificationFailed"/> class.</summary>

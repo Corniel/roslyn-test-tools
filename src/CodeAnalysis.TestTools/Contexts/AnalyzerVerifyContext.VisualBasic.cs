@@ -10,7 +10,7 @@ public class VisualBasicAnalyzerVerifyContext : AnalyzerVerifyContext<VisualBasi
     /// <summary>Creates a new instance of the <see cref="VisualBasicAnalyzerVerifyContext"/> class.</summary>
     public VisualBasicAnalyzerVerifyContext()
     {
-        Options = new VisualBasicParseOptions(LanguageVersion.VisualBasic16_9);
+        _ = WithLanguageVersion(LanguageVersion.VisualBasic16_9);
         References.Add(Reference.FromType<Microsoft.VisualBasic.DateAndTime>());
         IgnoredDiagnosics.Add(DiagnosticId.BC36716);
     }

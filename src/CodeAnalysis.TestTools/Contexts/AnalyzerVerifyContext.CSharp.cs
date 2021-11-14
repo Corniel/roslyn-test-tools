@@ -11,7 +11,7 @@ public class CSharpAnalyzerVerifyContext
     /// <summary>Creates a new instance of the <see cref="CSharpAnalyzerVerifyContext"/> class.</summary>
     public CSharpAnalyzerVerifyContext()
     {
-        Options = new CSharpParseOptions(LanguageVersion.CSharp9);
+        _ = WithLanguageVersion(LanguageVersion.CSharp9);
     }
 
     /// <inheritdoc />

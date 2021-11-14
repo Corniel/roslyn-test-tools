@@ -2,6 +2,7 @@
 
 /// <summary>Thrown when a <see cref="DiagnosticAnalyzer"/> under test crashes.</summary>
 [Serializable]
+[ExcludeFromCodeCoverage]
 public class AnalyzerCrashed : InvalidOperationException
 {
     /// <summary>Creates a new instance of the <see cref="AnalyzerCrashed"/> class.</summary>
