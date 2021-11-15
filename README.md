@@ -13,13 +13,13 @@ The basic idea is that by adding comments (of a certain format) to a code file
 the verifier compare the actual raised issues and errors to the expected onces.
 If there are differences, the verification fails.
 
-The easiest way to this, is adding `// Noncompliant` to the end of a line
+The easiest way to do this, is by adding `// Noncompliant` to the end of a line
 that contains an issue:
 ``` C#
 class MyClass { } // Noncompliant
 ```
 
-By adding also `{{Some expected message}}` the message itself is also checked:
+By also adding `{{Some expected message}}` the message itself is also checked:
 
 ``` C#
 class MyClass { } // Noncompliant {{Visibility should be specified.}}
@@ -71,7 +71,7 @@ public class Missing { // Error [CS1513]
 ```
 
 ## Setup a verification test
-A test can be setup up justing a test framework of choice. The examples here
+A test can be setup using a test framework of choice. The examples here
 use NUnit.
 
 ``` C#
@@ -91,7 +91,7 @@ public void Verify_MyVBAnalyzer()
         .Verify();
 ```
 
-This will run your analyzer on the provide code, and throw a
+This will run your analyzer on the provided code, and throw a
 `VerificationFailed` exception if any expected issue did not raise or if any
 unexpected issue (or error) occurred.
 
@@ -111,7 +111,7 @@ that in to consideration. So extra analyzers/source files, etcetera, must be
 supported by that language.
 
 ### Additional analyzers
-Extra analyzers can be added using `.Add(iagnosticAnalyzer analyzer)`.
+Extra analyzers can be added using `.Add(DiagnosticAnalyzer analyzer)`.
 
 ### Adding extra source code
 Extra files can be added using `.AddSource(string path)`.
