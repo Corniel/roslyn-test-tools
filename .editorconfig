@@ -34,3 +34,6 @@ dotnet_diagnostic.S1144.severity = warning
 dotnet_diagnostic.S3376.severity = none
 # S4136: Method overloads should be grouped together
 dotnet_diagnostic.S4136.severity = none
+
+# S3903: Classes should have a namespace (does not support file-scoped namespaces)
+dotnet_diagnostic.S3903.severity = none
