@@ -1,0 +1,13 @@
+﻿global using CodeAnalysis.TestTools;
+global using CodeAnalysis.TestTools.Contexts;
+global using CodeAnalysis.TestTools.Diagnostics;
+global using CodeAnalysis.TestTools.References;
+global using CodeAnalysis.TestTools.Text;
+global using FluentAssertions;
+global using Microsoft.CodeAnalysis;
+global using Microsoft.CodeAnalysis.Diagnostics;
+global using NUnit.Framework;
+global using Specs.Analyzers;
+global using System;
+global using System.Collections.Immutable;
+global using System.Linq;

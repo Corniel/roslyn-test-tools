@@ -15,6 +15,8 @@ indent_size = 2
 
 # IDE warnings
 [*.cs]
+# IDE0005: Using directive is unnecessary.
+dotnet_diagnostic.IDE0005.severity = warning
 # IDE0018: Inline variable declaration
 csharp_style_inlined_variable_declaration = true:warning
 # IDE0034: Simplify 'default' expression
@@ -26,9 +28,12 @@ csharp_style_unused_value_assignment_preference = discard_variable:warning
 
 # S101: Types should be named in PascalCase
 dotnet_diagnostic.S101.severity = none
-
+# S1144: Unused type members should be removed
+dotnet_diagnostic.S1144.severity = warning
+# S3376: Attribute, EventArgs, and Exception type names should end with the type being extended
+dotnet_diagnostic.S3376.severity = none
 # S4136: Method overloads should be grouped together
 dotnet_diagnostic.S4136.severity = none
-dotnet_diagnostic.S2437.severity=warning
-dotnet_diagnostic.S4487.severity=warning
 
+# S3903: Classes should have a namespace (does not support file-scoped namespaces)
+dotnet_diagnostic.S3903.severity = none
