@@ -4,11 +4,10 @@
     <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <LangVersion>10.0</LangVersion>
     <Version>0.0.2</Version>
     <Authors>Corniel Nobel</Authors>
     <Product>Roslyn static code analyzers test tools</Product>
-    <Description>Tooling to describe expected static code analyzer behavior in anoteded code files.</Description>
+    <Description>Tooling to describe expected static code analyzer behavior in annotated code files.</Description>
   </PropertyGroup>
 
   <ItemGroup>
