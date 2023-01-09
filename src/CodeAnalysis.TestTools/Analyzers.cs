@@ -3,10 +3,13 @@
 /// <summary>Contains a collection of <see cref="DiagnosticAnalyzer"/>'s
 /// all supporting the required language.
 /// </summary>
-public sealed class Analyzers : GuardedCollection<DiagnosticAnalyzer>
+public sealed class Analyzers : GuardedCollection<DiagnosticAnalyzer, Analyzers>
 {
     /// <summary>Creates a new instance of the <see cref="Analyzers"/> class.</summary>
-    public Analyzers(Language language) => Language = language;
+    private Analyzers(Language language, DiagnosticAnalyzer[] analyzers) : base(analyzers) => Language = language;
+
+    /// <summary>Creates a new instance of the <see cref="Analyzers"/> class.</summary>
+    public Analyzers(Language language) : this(language, Array.Empty<DiagnosticAnalyzer>()) { }
 
     /// <summary>The language that the analyzers support.</summary>
     public Language Language { get; }
@@ -35,4 +38,8 @@ public sealed class Analyzers : GuardedCollection<DiagnosticAnalyzer>
             Messages.LanguageConflict_Analyzer,
             item.GetType().Name,
             Language));
+
+    /// <inheritdoc />
+    [Pure]
+    protected override Analyzers New(IEnumerable<DiagnosticAnalyzer> items) => new(Language, items.ToArray());
 }

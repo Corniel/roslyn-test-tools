@@ -5,14 +5,14 @@ namespace CodeAnalysis.TestTools.Contexts;
 /// <summary>
 /// Represents a VB.NET specific context to verify <see cref="DiagnosticAnalyzer"/> behavior.
 /// </summary>
-public class VisualBasicAnalyzerVerifyContext : AnalyzerVerifyContext<VisualBasicAnalyzerVerifyContext>
+public record VisualBasicAnalyzerVerifyContext : AnalyzerVerifyContext<VisualBasicAnalyzerVerifyContext>
 {
     /// <summary>Creates a new instance of the <see cref="VisualBasicAnalyzerVerifyContext"/> class.</summary>
     public VisualBasicAnalyzerVerifyContext()
     {
-        _ = WithLanguageVersion(LanguageVersion.VisualBasic16_9);
-        References.Add(Reference.FromType<Microsoft.VisualBasic.DateAndTime>());
-        IgnoredDiagnosics.Add(DiagnosticId.BC36716);
+        Options = new VisualBasicParseOptions(LanguageVersion.VisualBasic16_9);
+        References = Reference.Defaults.Add(Reference.FromType<Microsoft.VisualBasic.DateAndTime>());
+        IgnoredDiagnosics = DiagnosticIds.Empty.Add(DiagnosticId.BC36716);
     }
 
     /// <inheritdoc />
@@ -45,12 +45,10 @@ public class VisualBasicAnalyzerVerifyContext : AnalyzerVerifyContext<VisualBasi
     /// <summary>Sets the VB.NET options to parse with (default VB.NET 16.9).</summary>
     [Pure]
     public VisualBasicAnalyzerVerifyContext WithOptions(VisualBasicParseOptions options)
-    {
-        Options = Guard.NotNull(options, nameof(options));
-        return this;
-    }
+        => this with { Options = Guard.NotNull(options, nameof(options)) };
 
     /// <inheritdoc />
+    [Pure]
     protected override CompilationOptions Update(CompilationOptions options)
     {
         var vb = (options as VisualBasicCompilationOptions) ?? new VisualBasicCompilationOptions(OutputKind);

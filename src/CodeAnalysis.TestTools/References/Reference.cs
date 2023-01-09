@@ -25,7 +25,7 @@ public static class Reference
     public static readonly MetadataReference Netstandard = Core("netstandard.dll");
 
     /// <summary>The defaults to add.</summary>
-    public static MetadataReferences Defaults => new(
+    public static readonly MetadataReferences Defaults = new(
         Mscorlib,
         System,
         System_Core,

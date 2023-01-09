@@ -3,39 +3,39 @@
 /// <summary>
 /// Represents the context to verify <see cref="DiagnosticAnalyzer"/> behavior.
 /// </summary>
-public abstract class AnalyzerVerifyContext
+public abstract record AnalyzerVerifyContext
 {
     /// <summary>Creates a new instance of the <see cref="AnalyzerVerifyContext"/> class.</summary>
     protected AnalyzerVerifyContext()
     {
         Analyzers = new Analyzers(Language);
         Sources = new Sources(Language);
-        References.AddRange(Reference.Defaults);
+        References = Reference.Defaults;
     }
 
     /// <summary>Gets the language (of the options sources etc.).</summary>
     public abstract Language Language { get; }
 
     /// <summary>Gets the analyzer(s) to verify for.</summary>
-    public Analyzers Analyzers { get; }
+    public Analyzers Analyzers { get; init; }
 
     /// <summary>Gets the parse options to compile with.</summary>
-    public ParseOptions Options { get; protected set; }
+    public ParseOptions Options { get; init; }
 
     /// <summary>Gets the sources (snippets, files) to verify with.</summary>
-    public Sources Sources { get; }
+    public Sources Sources { get; init; }
 
     /// <summary>Gets the diagnostic ID's toe ignore.</summary>
-    public DiagnosticIds IgnoredDiagnosics { get; } = new();
+    public DiagnosticIds IgnoredDiagnosics { get; init; } = DiagnosticIds.Empty;
 
     /// <summary>Gets the (external) references to compile with.</summary>
-    public MetadataReferences References { get; } = new();
+    public MetadataReferences References { get; init; } = MetadataReferences.Empty;
 
     /// <summary>Gets the output kind of the compilation.</summary>
-    public OutputKind OutputKind { get; protected set; } = OutputKind.DynamicallyLinkedLibrary;
+    public OutputKind OutputKind { get; init; } = OutputKind.DynamicallyLinkedLibrary;
 
     /// <summary>Gets if the compiler warnings should be ignored.</summary>
-    public bool IgnoreCompilerWarnings { get; protected set; } = true;
+    public bool IgnoreCompilerWarnings { get; init; } = true;
 
     /// <summary>
     /// Gets the compilation based on the context's:
@@ -44,17 +44,20 @@ public abstract class AnalyzerVerifyContext
     /// * parse options
     /// * compiler options
     /// </summary>
+    [Pure]
     public Task<Compilation> GetCompilationAsync()
         => GetProject()
         .WithParseOptions(Options)
         .GetCompilationAsync();
 
     /// <summary>Reports (both expected, unexpected, and not reported) issues for the analyzer verify context.</summary>
+    [Pure]
     [DebuggerStepThrough]
     public IEnumerable<Issue> ReportIssues()
         => Run.Sync(() => ReportIssuesAsync());
 
     /// <summary>Reports (both expected, unexpected, and not reported) issues for the analyzer verify context.</summary>
+    [Pure]
     public async Task<IEnumerable<Issue>> ReportIssuesAsync()
     {
         var compilation = await GetCompilationAsync();
@@ -67,11 +70,13 @@ public abstract class AnalyzerVerifyContext
     }
 
     /// <summary>Updates the compilations options before applying the diagnostics.</summary>
+    [Pure]
     protected abstract CompilationOptions Update(CompilationOptions options);
 
     /// <summary>Gets the assembly name of the compilation.</summary>
     protected virtual string AssemblyName => $"{Analyzers.First().GetType().Name}.Verify";
 
+    [Pure]
     private Project GetProject()
     {
         if (!Sources.Any()) throw new IncompleteSetup(Messages.IncompleteSetup_NoSources);
