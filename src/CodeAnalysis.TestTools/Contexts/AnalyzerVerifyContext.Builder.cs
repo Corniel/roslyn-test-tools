@@ -9,35 +9,25 @@ public abstract record AnalyzerVerifyContext<TContext> : AnalyzerVerifyContext
     /// <summary>Adds an (optional) extra analyzer.</summary>
     [Pure]
     public TContext Add(DiagnosticAnalyzer analyzer)
-    {
-        Analyzers.Add(analyzer);
-        return self;
-    }
+        => self with { Analyzers = Analyzers.Add(analyzer) };
 
     /// <summary>Adds a (code) snippet.</summary>
     [Pure]
     public TContext AddSnippet(string code)
-    {
-        Sources.Add(Code.Snippet(code, Language));
-        return self;
-    }
-
+        => self with { Sources = Sources.Add(Code.Snippet(code, Language)) };
+    
     /// <summary>Adds a (code) source file.</summary>
     [Pure]
     public TContext AddSource(string path)
-    {
-        Sources.Add(Code.FromFile(new FileInfo(path)));
-        return self;
-    }
+        => self with { Sources = Sources.Add(Code.FromFile(new FileInfo(path))) };
 
     /// <summary>Adds a (code) source file.</summary>
     [Pure]
     public TContext AddSources(params string[] paths)
-    {
-        Guard.HasAny(paths, nameof(paths));
-        Sources.AddRange(paths.Select(path => Code.FromFile(new FileInfo(path))));
-        return self;
-    }
+        => self with
+        {
+            Sources = Sources.AddRange(Guard.HasAny(paths, nameof(paths)).Select(path => Code.FromFile(new FileInfo(path))))
+        };
 
     /// <summary>Adds a reference to the assembly of the <typeparamref name="TContainingType"/>.</summary>
     [Pure]
@@ -47,20 +37,19 @@ public abstract record AnalyzerVerifyContext<TContext> : AnalyzerVerifyContext
     /// <summary>Adds references.</summary>
     [Pure]
     public TContext AddReferences(params MetadataReference[] references)
-    {
-        Guard.HasAny(references, nameof(references));
-        References.AddRange(references);
-        return self;
-    }
+        => self with
+        {
+            References = References.AddRange(Guard.HasAny(references, nameof(references)))
+        };
 
     /// <summary>Adds NuGet packages.</summary>
     [Pure]
     public TContext AddPackages(params NuGetPackage[] packages)
-    {
-        Guard.HasAny(packages, nameof(packages));
-        References.AddRange(packages.SelectMany(package => package));
-        return self;
-    }
+        => self with
+        {
+            References = References.AddRange(Guard.HasAny(packages, nameof(packages)).Cast<MetadataReference>())
+        };
+   
 
     /// <summary>Defines the output kind. (Default <see cref="OutputKind.DynamicallyLinkedLibrary"/>)</summary>
     [Pure]
@@ -81,12 +70,10 @@ public abstract record AnalyzerVerifyContext<TContext> : AnalyzerVerifyContext
     /// <summary>Sets the diagnostic ID's to ignore.</summary>
     [Pure]
     public TContext WithIgnoredDiagnostics(params string[] diagnosticIds)
-    {
-        Guard.NotNull(diagnosticIds, nameof(diagnosticIds));
-        IgnoredDiagnosics.Clear();
-        IgnoredDiagnosics.AddRange(diagnosticIds);
-        return self;
-    }
+        => self with
+        {
+            IgnoredDiagnosics = DiagnosticIds.Empty.AddRange(diagnosticIds)
+        };
 
     /// <remarks>Syntactic sugar.</remarks>
     private TContext self => (TContext)this;

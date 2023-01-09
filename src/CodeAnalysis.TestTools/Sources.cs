@@ -1,10 +1,13 @@
 ﻿namespace CodeAnalysis.TestTools;
 
 /// <summary>Represents a collection of sources (code).</summary>
-public sealed class Sources : GuardedCollection<Code>
+public sealed class Sources : GuardedCollection<Code, Sources>
 {
     /// <summary>Creates a new instance of the <see cref="Sources"/> class.</summary>
-    public Sources(Language language) => Language = language;
+    public Sources(Language language) : this(language, Array.Empty<Code>()) { }
+
+    /// <summary>Creates a new instance of the <see cref="Sources"/> class.</summary>
+    private Sources(Language language, Code[] code) : base(code) => Language = language;
 
     /// <summary>Gets the language of the sources.</summary>
     public Language Language { get; }
@@ -18,4 +21,9 @@ public sealed class Sources : GuardedCollection<Code>
       => item.Language == Language
       ? item
       : throw new LanguageConflict();
+
+    /// <inheritdoc />
+    [Pure]
+    protected override Sources New(IEnumerable<Code> items) 
+        => new(Language, Guard.NotNull(items, nameof(items)).ToArray());
 }

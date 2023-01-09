@@ -3,64 +3,71 @@
 /// <summary>An implementation of an <see cref="ICollection{T}"/>,
 /// that has a built-in guard for adding elements.
 /// </summary>
-/// <typeparam name="T">
+/// <typeparam name="TElement">
 /// The type of elements.
+/// </typeparam>
+/// /// <typeparam name="TCollection">
+/// The type of the collection.
 /// </typeparam>
 [DebuggerDisplay("Count = {Count}")]
 [DebuggerTypeProxy(typeof(CollectionDebugView))]
-public abstract class GuardedCollection<T> : ICollection<T>
-    where T : class
+public abstract class GuardedCollection<TElement, TCollection> : IReadOnlyCollection<TElement>
+    where TElement : class
+    where TCollection : GuardedCollection<TElement, TCollection>
 {
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    private readonly List<T> items = new();
+    private readonly TElement[] Collection;
+
+    /// <summary>Creates a new instance of the <see cref="GuardedCollection{TElement, TCollection}"/> class.</summary>
+    protected GuardedCollection(TElement[] items) => Collection = items;
 
     /// <inheritdoc />
-    public int Count => items.Count;
+    public int Count => Collection.Length;
 
-    /// <inheritdoc />
-    public bool IsReadOnly => false;
+    /// <summary>Creates a new instance of the <see cref="GuardedCollection{TElement, TCollection}"/> class.</summary>
+    [Pure]
+    protected abstract TCollection New(IEnumerable<TElement> items);
 
     /// <summary>Adds an item to the collection.</summary>
-    public void Add(T item)
+    [Pure]
+    public TCollection Add(TElement item)
     {
         Guard.NotNull(item, nameof(item));
         Guards(item);
-        if (!Contains(item)) items.Add(item);
+        return Contains(item)
+            ? (TCollection)this
+            : New(Collection.Concat(new[] { item }));
     }
-    /// <summary>Adds items to the collection.</summary>
-    public void AddRange(params T[] items) => AddRange(items.AsEnumerable());
 
     /// <summary>Adds items to the collection.</summary>
-    public void AddRange(IEnumerable<T> items)
+    [Pure]
+    public TCollection AddRange(params TElement[] items) 
+        => AddRange(Guard.NotNull(items, nameof(items)).AsEnumerable());
+
+    /// <summary>Adds items to the collection.</summary>
+    [Pure]
+    public TCollection AddRange(IEnumerable<TElement> items)
     {
         Guard.NotNull(items, nameof(items));
-        foreach (var item in items)
-        {
-            Add(item);
-        }
+        return New(Collection.Select(item => Guards(item)));
     }
 
     /// <inheritdoc/>
-    public bool Contains(T item) => items.Any(existing => Equals(item, existing));
-
-    /// <inheritdoc/>
-    public void CopyTo(T[] array, int arrayIndex) => items.CopyTo(array, arrayIndex);
-
-    /// <inheritdoc/>
-    public void Clear() => items.Clear();
-
-    /// <inheritdoc/>
-    public bool Remove(T item) => items.Remove(item);
+    [Pure]
+    public bool Contains(TElement item) => Collection.Any(existing => Equals(item, existing));
 
     /// <summary>Returns true if the two items are equal.</summary>
-    abstract protected bool Equals(T item1, T item2);
+    [Pure]
+    abstract protected bool Equals(TElement item1, TElement item2);
 
     /// <summary>Guards items that can be added, throws otherwise.</summary>
-    abstract protected T Guards(T item);
+    abstract protected TElement Guards(TElement item);
 
     /// <inheritdoc />
-    public IEnumerator<T> GetEnumerator() => items.GetEnumerator();
+    [Pure]
+    public IEnumerator<TElement> GetEnumerator() => Collection.AsEnumerable().GetEnumerator();
 
     /// <inheritdoc />
+    [Pure]
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }

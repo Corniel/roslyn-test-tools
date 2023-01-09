@@ -10,26 +10,26 @@ public abstract record AnalyzerVerifyContext
     {
         Analyzers = new Analyzers(Language);
         Sources = new Sources(Language);
-        References.AddRange(Reference.Defaults);
+        References = Reference.Defaults;
     }
 
     /// <summary>Gets the language (of the options sources etc.).</summary>
     public abstract Language Language { get; }
 
     /// <summary>Gets the analyzer(s) to verify for.</summary>
-    public Analyzers Analyzers { get; }
+    public Analyzers Analyzers { get; init; }
 
     /// <summary>Gets the parse options to compile with.</summary>
     public ParseOptions Options { get; init; }
 
     /// <summary>Gets the sources (snippets, files) to verify with.</summary>
-    public Sources Sources { get; }
+    public Sources Sources { get; init; }
 
     /// <summary>Gets the diagnostic ID's toe ignore.</summary>
-    public DiagnosticIds IgnoredDiagnosics { get; } = new();
+    public DiagnosticIds IgnoredDiagnosics { get; init; } = DiagnosticIds.Empty;
 
     /// <summary>Gets the (external) references to compile with.</summary>
-    public MetadataReferences References { get; } = new();
+    public MetadataReferences References { get; init; } = MetadataReferences.Empty;
 
     /// <summary>Gets the output kind of the compilation.</summary>
     public OutputKind OutputKind { get; init; } = OutputKind.DynamicallyLinkedLibrary;
