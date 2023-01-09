@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents the context to verify <see cref="DiagnosticAnalyzer"/> behavior.
 /// </summary>
-public abstract class AnalyzerVerifyContext
+public abstract record AnalyzerVerifyContext
 {
     /// <summary>Creates a new instance of the <see cref="AnalyzerVerifyContext"/> class.</summary>
     protected AnalyzerVerifyContext()
@@ -20,7 +20,7 @@ public abstract class AnalyzerVerifyContext
     public Analyzers Analyzers { get; }
 
     /// <summary>Gets the parse options to compile with.</summary>
-    public ParseOptions Options { get; protected set; }
+    public ParseOptions Options { get; init; }
 
     /// <summary>Gets the sources (snippets, files) to verify with.</summary>
     public Sources Sources { get; }
@@ -32,10 +32,10 @@ public abstract class AnalyzerVerifyContext
     public MetadataReferences References { get; } = new();
 
     /// <summary>Gets the output kind of the compilation.</summary>
-    public OutputKind OutputKind { get; protected set; } = OutputKind.DynamicallyLinkedLibrary;
+    public OutputKind OutputKind { get; init; } = OutputKind.DynamicallyLinkedLibrary;
 
     /// <summary>Gets if the compiler warnings should be ignored.</summary>
-    public bool IgnoreCompilerWarnings { get; protected set; } = true;
+    public bool IgnoreCompilerWarnings { get; init; } = true;
 
     /// <summary>
     /// Gets the compilation based on the context's:

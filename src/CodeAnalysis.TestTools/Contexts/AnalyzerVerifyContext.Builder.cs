@@ -3,7 +3,7 @@
 /// <summary>The <see cref="AnalyzerVerifyContext{TContext}"/>
 /// contains builder methods that allow extend the context using a fluent syntax.
 /// </summary>
-public abstract class AnalyzerVerifyContext<TContext> : AnalyzerVerifyContext
+public abstract record AnalyzerVerifyContext<TContext> : AnalyzerVerifyContext
     where TContext : AnalyzerVerifyContext<TContext>
 {
     /// <summary>Adds an (optional) extra analyzer.</summary>
@@ -65,18 +65,18 @@ public abstract class AnalyzerVerifyContext<TContext> : AnalyzerVerifyContext
     /// <summary>Defines the output kind. (Default <see cref="OutputKind.DynamicallyLinkedLibrary"/>)</summary>
     [Pure]
     public TContext WithOutputKind(OutputKind outputKind)
-    {
-        OutputKind = Guard.DefinedEnum(outputKind, nameof(outputKind));
-        return self;
-    }
+        => self with 
+        {
+            OutputKind = Guard.DefinedEnum(outputKind, nameof(outputKind)) 
+        };
 
     /// <summary>Sets if compiler warnings should be enabled or not (disabled by default).</summary>
     [Pure]
     public TContext WithCompilerWarnings(bool enable)
-    {
-        IgnoreCompilerWarnings = !enable;
-        return self;
-    }
+        => self with 
+        {
+            IgnoreCompilerWarnings = !enable 
+        };
 
     /// <summary>Sets the diagnostic ID's to ignore.</summary>
     [Pure]

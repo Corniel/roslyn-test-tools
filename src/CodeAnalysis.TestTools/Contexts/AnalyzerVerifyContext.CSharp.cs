@@ -5,13 +5,13 @@ namespace CodeAnalysis.TestTools.Contexts;
 /// <summary>
 /// Represents a C# specific context to verify <see cref="DiagnosticAnalyzer"/> behavior.
 /// </summary>
-public class CSharpAnalyzerVerifyContext
+public record CSharpAnalyzerVerifyContext
     : AnalyzerVerifyContext<CSharpAnalyzerVerifyContext>
 {
     /// <summary>Creates a new instance of the <see cref="CSharpAnalyzerVerifyContext"/> class.</summary>
     public CSharpAnalyzerVerifyContext()
     {
-        _ = WithLanguageVersion(LanguageVersion.CSharp9);
+        Options = new CSharpParseOptions(LanguageVersion.CSharp11);
     }
 
     /// <inheritdoc />
@@ -28,10 +28,7 @@ public class CSharpAnalyzerVerifyContext
     /// <summary>Sets the C# parse options to parse with (default C# 9.0).</summary>
     [Pure]
     public CSharpAnalyzerVerifyContext WithOptions(CSharpParseOptions options)
-    {
-        Options = Guard.NotNull(options, nameof(options));
-        return this;
-    }
+        => this with { Options = Guard.NotNull(options, nameof(options)) };
 
     /// <summary>Allow unsafe code (false by default).</summary>
     [Pure]
