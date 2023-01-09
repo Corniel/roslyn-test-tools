@@ -48,6 +48,7 @@ public record VisualBasicAnalyzerVerifyContext : AnalyzerVerifyContext<VisualBas
         => this with { Options = Guard.NotNull(options, nameof(options)) };
 
     /// <inheritdoc />
+    [Pure]
     protected override CompilationOptions Update(CompilationOptions options)
     {
         var vb = (options as VisualBasicCompilationOptions) ?? new VisualBasicCompilationOptions(OutputKind);

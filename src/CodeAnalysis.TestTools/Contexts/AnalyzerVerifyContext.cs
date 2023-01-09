@@ -44,17 +44,20 @@ public abstract record AnalyzerVerifyContext
     /// * parse options
     /// * compiler options
     /// </summary>
+    [Pure]
     public Task<Compilation> GetCompilationAsync()
         => GetProject()
         .WithParseOptions(Options)
         .GetCompilationAsync();
 
     /// <summary>Reports (both expected, unexpected, and not reported) issues for the analyzer verify context.</summary>
+    [Pure]
     [DebuggerStepThrough]
     public IEnumerable<Issue> ReportIssues()
         => Run.Sync(() => ReportIssuesAsync());
 
     /// <summary>Reports (both expected, unexpected, and not reported) issues for the analyzer verify context.</summary>
+    [Pure]
     public async Task<IEnumerable<Issue>> ReportIssuesAsync()
     {
         var compilation = await GetCompilationAsync();
@@ -67,11 +70,13 @@ public abstract record AnalyzerVerifyContext
     }
 
     /// <summary>Updates the compilations options before applying the diagnostics.</summary>
+    [Pure]
     protected abstract CompilationOptions Update(CompilationOptions options);
 
     /// <summary>Gets the assembly name of the compilation.</summary>
     protected virtual string AssemblyName => $"{Analyzers.First().GetType().Name}.Verify";
 
+    [Pure]
     private Project GetProject()
     {
         if (!Sources.Any()) throw new IncompleteSetup(Messages.IncompleteSetup_NoSources);
