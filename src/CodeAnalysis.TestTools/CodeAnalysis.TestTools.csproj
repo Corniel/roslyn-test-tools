@@ -4,10 +4,14 @@
     <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.0.3</Version>
+    <Version>0.0.3.1</Version>
     <Authors>Corniel Nobel</Authors>
     <Product>Roslyn static code analyzers test tools</Product>
     <Description>Tooling to describe expected static code analyzer behavior in annotated code files.</Description>
+    <PackageReleaseNotes>
+v0.0.3.1
+- GuardedCollection AddRange failed to add items to the new collection. (#4)
+    </PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
