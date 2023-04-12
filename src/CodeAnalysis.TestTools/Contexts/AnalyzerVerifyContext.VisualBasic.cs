@@ -5,6 +5,7 @@ namespace CodeAnalysis.TestTools.Contexts;
 /// <summary>
 /// Represents a VB.NET specific context to verify <see cref="DiagnosticAnalyzer"/> behavior.
 /// </summary>
+[Inheritable]
 public record VisualBasicAnalyzerVerifyContext : AnalyzerVerifyContext<VisualBasicAnalyzerVerifyContext>
 {
     /// <summary>Creates a new instance of the <see cref="VisualBasicAnalyzerVerifyContext"/> class.</summary>

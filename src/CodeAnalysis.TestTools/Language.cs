@@ -49,15 +49,19 @@ public readonly struct Language : IEquatable<Language>
        };
 
     /// <inheritdoc />
+    [Pure]
     public override string ToString() => Name;
 
     /// <inheritdoc />
+    [Pure]
     public override bool Equals(object obj) => obj is Language other && Equals(other);
 
     /// <inheritdoc />
+    [Pure]
     public bool Equals(Language other) => code == other.code;
 
     /// <inheritdoc />
+    [Pure]
     public override int GetHashCode() => code;
 
     /// <summary>Returns true if the languages are the same.</summary>
@@ -67,6 +71,7 @@ public readonly struct Language : IEquatable<Language>
     public static bool operator !=(Language l, Language r) => !(l == r);
 
     /// <summary>parses the language.</summary>
+    [Pure]
     public static Language Parse(string str)
         => str?.ToUpperInvariant().Replace(" ", "") switch
         {

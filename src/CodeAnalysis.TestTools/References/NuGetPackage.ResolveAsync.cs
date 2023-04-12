@@ -4,6 +4,7 @@ namespace CodeAnalysis.TestTools.References;
 
 public partial class NuGetPackage
 {
+    [Pure]
     private static async Task<NuGetPackage> ResolveAsync(string packageId, string version, string runtime)
     {
         if (packageId == Microsoft_Build_NoTargets.Id) return Microsoft_Build_NoTargets;

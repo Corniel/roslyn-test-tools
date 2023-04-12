@@ -3,6 +3,7 @@
 namespace CodeAnalysis.TestTools;
 
 /// <summary>Represents a piece of code.</summary>
+[Inheritable]
 public class Code
 {
     /// <summary>Creates a new instance of the <see cref="Code"/> class.</summary>
@@ -22,9 +23,11 @@ public class Code
     public Language Language => Language.Parse(Path.GetExtension(FilePath));
 
     /// <inheritdoc />
+    [Pure]
     public override string ToString() => string.Join(LineEnd.Unix, Lines);
 
     /// <summary>Creates a code snippet.</summary>
+    [Pure]
     public static Code Snippet(string text, Language language)
     {
         Guard.NotNullOrEmpty(text, nameof(text));
@@ -34,6 +37,7 @@ public class Code
     }
 
     /// <summary>Reads the code from file.</summary>
+    [Pure]
     public static Code FromFile(FileInfo file)
     {
         Guard.NotNull(file, nameof(file));

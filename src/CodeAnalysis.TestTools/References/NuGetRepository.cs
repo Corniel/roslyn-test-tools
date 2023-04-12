@@ -55,7 +55,7 @@ internal static class NuGetRepository
     public static DirectoryInfo LocalDirectory
         => new(Environment.GetEnvironmentVariable("NUGET_PACKAGES") ?? @"..\..\..\..\..\packages");
 
-    private static FileInfo LatestVersionsFile =
+    private static FileInfo LatestVersionsFile =>
         new(Path.Combine(LocalDirectory.FullName, "latest-versions.json"));
 
     private static Task<FindPackageByIdResource> Repo()

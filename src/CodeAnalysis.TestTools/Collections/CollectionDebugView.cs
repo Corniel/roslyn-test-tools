@@ -10,7 +10,7 @@
 namespace CodeAnalysis.TestTools.Collections;
 
 /// <summary>Allows the debugger to display collections.</summary>
-internal class CollectionDebugView
+internal sealed class CollectionDebugView
 {
     /// <summary>A reference to the enumeration to display.</summary>
     private readonly IEnumerable enumeration;

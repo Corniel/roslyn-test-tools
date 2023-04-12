@@ -36,9 +36,11 @@ public sealed record IssueLocation : IComparable<IssueLocation>
     public int? SpanSize { get; }
 
     /// <summary>Gets an updated version with a set file path.</summary>
+    [Pure]
     public IssueLocation WithFilePath(string filePath) => new(filePath, LineNumber, Start, SpanSize);
 
     /// <summary>Returns true if the locations match.</summary>
+    [Pure]
     public bool Matches(Location location)
         => location is { }
         && location.SourceTree.FilePath == FilePath
@@ -47,17 +49,20 @@ public sealed record IssueLocation : IComparable<IssueLocation>
         && (!SpanSize.HasValue || SpanSize == location.SourceSpan.Length);
 
     /// <summary>gives the relevant info to report.</summary>
+    [Pure]
     public string ReportInfo()
         => IsPrecise()
         ? $"@{LineNumber:00}[{Start,2}, {Start + SpanSize,2}]"
         : $"@{LineNumber:00}[.., ..]";
 
     /// <summary>Return true if the location is defined precisely (with start and span size).</summary>
+    [Pure]
     public bool IsPrecise()
         => Start.HasValue
         && SpanSize.HasValue;
 
     /// <inheritdoc />
+    [Pure]
     public int CompareTo(IssueLocation other)
     {
         if (other is null) return 1;
@@ -68,10 +73,11 @@ public sealed record IssueLocation : IComparable<IssueLocation>
     }
 
     /// <inheritdoc />
-    public override string ToString()
-        => $"{FilePath}{ReportInfo()}";
+    [Pure]
+    public override string ToString() => $"{FilePath}{ReportInfo()}";
 
     /// <summary>Creates an <see cref="IssueLocation"/> from a <see cref="Location"/></summary>
+    [Pure]
     public static IssueLocation FromLocation(Location location)
         => location is null || location == Location.None
         ? None

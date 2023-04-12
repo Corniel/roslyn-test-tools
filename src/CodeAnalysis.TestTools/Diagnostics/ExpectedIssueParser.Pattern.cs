@@ -19,8 +19,8 @@ internal static class Pattern
     public static readonly Regex Unprecise = Rx(@"^\s*", comment, ".*", position_precise);
 
     public static int Offset(this Match match)
-       => match.Groups["offset"] is { Success: true } offset
-       ? int.Parse(offset.Value) : 0;
+       => match.Groups["offset"] is { Success: true } m
+       ? int.Parse(m.Value) : 0;
 
     public static string DiagnosticId(this Match match)
         => match.Groups["diagnosticId"] is { Success: true } ids

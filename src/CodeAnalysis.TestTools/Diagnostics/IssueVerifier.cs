@@ -7,6 +7,7 @@ public static class IssueVerifier
     /// Throws a <see cref="VerificationFailed"/> if there are any
     /// unexpected or not reported issues.
     /// </summary>
+    [Pure]
     public static IEnumerable<Issue> ShouldHaveExpectedIssuesOnly(this IEnumerable<Issue> issues)
     {
         Guard.NotNull(issues, nameof(issues)).Log();
@@ -22,6 +23,7 @@ public static class IssueVerifier
     }
 
     /// <summary>Logs all issues, both, expected, unexpected and not reported issues.</summary>
+    [FluentSyntax]
     public static IEnumerable<Issue> Log(this IEnumerable<Issue> issues, TextWriter writer = null)
     {
         Guard.NotNull(issues, nameof(issues));
@@ -45,6 +47,7 @@ public static class IssueVerifier
     }
 
     /// <summary>Represents the report info of the issues.</summary>
+    [Pure]
     public static string GetReportInfoHeader(this IEnumerable<Issue> issues)
     {
         Guard.NotNull(issues, nameof(issues));
@@ -74,18 +77,23 @@ public static class IssueVerifier
         }
     }
 
+    [Pure]
     private static IEnumerable<Issue> Reported(this IEnumerable<Issue> issues)
         => issues.Where(issue => issue is not NotReportedIssue);
 
+    [Pure]
     private static IEnumerable<Issue> Unexpected(this IEnumerable<Issue> issues)
        => issues.OfType<UnexpectedIssue>();
 
+    [Pure]
     private static IEnumerable<Issue> NotReported(this IEnumerable<Issue> issues)
          => issues.OfType<NotReportedIssue>();
 
+    [Pure]
     private static int ErrorCount(this IEnumerable<Issue> issues)
         => issues.Count(issue => issue.Type == IssueType.Error);
 
+    [Pure]
     private static int IssueCount(this IEnumerable<Issue> issues)
         => issues.Count(issue => issue.Type != IssueType.Error);
 }

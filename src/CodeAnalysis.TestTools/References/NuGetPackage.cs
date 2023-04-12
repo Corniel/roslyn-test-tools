@@ -37,17 +37,21 @@ public sealed partial class NuGetPackage : IReadOnlyCollection<MetadataReference
         => new(Path.Combine(PackagesDirectory.FullName, Id, $"cached.{Version}", Runtime == null ? string.Empty : $@"runtimes\{Runtime}\"));
 
     /// <inheritdoc />
+    [Pure]
     public override string ToString()
         => Runtime is null
         ? $"{Id} v{Version}, Assemblies: {Count}"
         : $"{Id} v{Version} ({Runtime}), Assemblies: {Count}";
 
     /// <inheritdoc />
+    [Pure]
     public IEnumerator<MetadataReference> GetEnumerator() => references.GetEnumerator();
 
     /// <inheritdoc />
+    [Pure]
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
+    [Pure]
     internal IncompleteSetup IncompletSetup()
         => Runtime is null
         ? IncompleteSetup.New(Messages.Nuget_NoDlls, Id, Version)

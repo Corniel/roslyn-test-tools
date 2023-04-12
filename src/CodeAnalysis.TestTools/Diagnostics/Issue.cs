@@ -25,6 +25,7 @@ public abstract record Issue : IComparable<Issue>
     public IssueLocation Location { get; }
 
     /// <inheritdoc />
+    [Pure]
     public int CompareTo(Issue other)
     {
         if (other is null) return 1;
@@ -32,6 +33,7 @@ public abstract record Issue : IComparable<Issue>
     }
 
     /// <summary>gives the relevant info to report.</summary>
+    [Pure]
     public virtual string ReportInfo()
         => $"{DiagnosticId}: {Location.ReportInfo()} {Message}{(Type == IssueType.Error ? " (ERROR)" : "")}";
 }

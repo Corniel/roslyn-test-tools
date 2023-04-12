@@ -21,6 +21,7 @@ public class IncompleteSetup : InvalidOperationException
         : base(info, context) { }
 
     /// <summary>Creates a new instance of the <see cref="IncompleteSetup"/> class.</summary>
+    [Pure]
     public static IncompleteSetup New(string message, params object[] args)
         => new(string.Format(message, args));
 }

@@ -64,7 +64,7 @@ internal sealed class ExpectedIssues : IReadOnlyCollection<ExpectedIssue>
         return false;
     }
 
-    private IEnumerable<ExpectedIssue> PerDiagnosticId(ExpectedIssue issue)
+    private static IEnumerable<ExpectedIssue> PerDiagnosticId(ExpectedIssue issue)
         => issue.DiagnosticId
             .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
             .OrderBy(id => id)

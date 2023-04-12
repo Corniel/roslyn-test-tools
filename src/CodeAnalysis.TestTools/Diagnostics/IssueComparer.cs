@@ -7,6 +7,7 @@ public static class IssueComparer
     /// <returns>
     /// A collection of expected, unexpected, and not reported issues.
     /// </returns>
+    [Pure]
     public static IEnumerable<Issue> Compare(
         IEnumerable<Diagnostic> actual,
         IEnumerable<ExpectedIssue> expected,
@@ -21,7 +22,7 @@ public static class IssueComparer
             if (lookup.FirstOrDefault(issue => issue.Matches(diagnostic)) is ExpectedIssue issue)
             {
                 lookup.Remove(issue);
-                updated.Add(issue.Update(diagnostic));
+                updated.Add(ExpectedIssue.New(diagnostic));
             }
             else
             {

@@ -35,11 +35,13 @@ public static class Reference
         Netstandard);
 
     /// <summary>Creates a <see cref="MetadataReference"/> based on containing type.</summary>
-    public static MetadataReference FromType<TContaining>()
-        => MetadataReference.CreateFromFile(typeof(TContaining).Assembly.Location);
+    [Pure]
+    public static MetadataReference FromType<TContaining>() => MetadataReference.CreateFromFile(typeof(TContaining).Assembly.Location);
 
     /// <summary>Creates a <see cref="MetadataReference"/> for a file.</summary>
+    [Pure]
     public static MetadataReference FromFile(params string[] paths) => MetadataReference.CreateFromFile(Path.Combine(paths));
 
+    [Pure]
     private static MetadataReference Core(string name) => FromFile(Path.GetDirectoryName(typeof(object).Assembly.Location), name);
 }

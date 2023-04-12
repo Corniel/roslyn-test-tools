@@ -19,6 +19,10 @@ v0.0.3.1
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.*" />
     <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic.Workspaces" Version="4.*" />
     <PackageReference Include="NuGet.Protocol" Version="6.*" />
+    <PackageReference Include="Qowaiv.Analyzers.CSharp" Version="0.*">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="SonarAnalyzer.CSharp" Version="8.*">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
