@@ -6,6 +6,7 @@ internal static partial class ExpectedIssueParser
 {
     private const int PreciseOffSet = -1;
 
+    [Pure]
     public static IReadOnlyCollection<ExpectedIssue> Parse(IEnumerable<Line> lines)
     {
         var regulars = new ExpectedIssues();
@@ -33,6 +34,7 @@ internal static partial class ExpectedIssueParser
         return regulars.Merge(precises);
     }
 
+    [Pure]
     private static ExpectedIssue IssueFromMatch(Match match, int lineNumber)
         => new(
             diagnosticId: match.DiagnosticId(),
@@ -43,6 +45,7 @@ internal static partial class ExpectedIssueParser
                 start: match.Start() ?? match.ColumnStart(),
                 spanSize: match.Length() ?? match.ColumnLength()));
 
+    [Pure]
     private static Match NoRemainingCurlyBrace(this Match match, Line line)
     {
         var offset = match.Index + match.Length;
@@ -54,6 +57,7 @@ internal static partial class ExpectedIssueParser
         else return match;
     }
 
+    [FluentSyntax]
     private static Match SinglePosition(this Match match, Line line)
     {
         if (match.Groups["invalid"] is { Success: true } invalid)

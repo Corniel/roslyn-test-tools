@@ -4,6 +4,7 @@
 public static class CompliationExtensions
 {
     /// <summary>Gets the diagnostics for the specified analyzers.</summary>
+    [Pure]
     public static async Task<IReadOnlyCollection<Diagnostic>> GetDiagnosticsAsync(
         this Compilation compilation,
         Analyzers analyzers,
@@ -23,8 +24,9 @@ public static class CompliationExtensions
             ? diagnostics
             : diagnostics.ThrowOnAnalyzerCrashed();
     }
-    
+
     /// <summary>Gets the expected issues.</summary>
+    [Pure]
     public static IReadOnlyCollection<ExpectedIssue> GetExpectedIssues(this Compilation compilation)
     {
         Guard.NotNull(compilation, nameof(compilation));
@@ -34,6 +36,7 @@ public static class CompliationExtensions
             .ToImmutableArray();
     }
 
+    [FluentSyntax]
     private static IReadOnlyCollection<Diagnostic> ThrowOnAnalyzerCrashed(this IReadOnlyCollection<Diagnostic> diagnostics)
         => diagnostics.FirstOrDefault(d => d.IsAnalyzerCrashed()) is { } diagnostic
             ? throw new AnalyzerCrashed(diagnostic.GetMessage())

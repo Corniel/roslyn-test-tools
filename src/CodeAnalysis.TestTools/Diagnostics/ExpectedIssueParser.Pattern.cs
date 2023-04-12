@@ -18,38 +18,47 @@ internal static class Pattern
     public static readonly Regex Iregular = Rx(comment, ".*", issue_type);
     public static readonly Regex Unprecise = Rx(@"^\s*", comment, ".*", position_precise);
 
+    [Pure]
     public static int Offset(this Match match)
        => match.Groups["offset"] is { Success: true } m
        ? int.Parse(m.Value) : 0;
 
+    [Pure]
     public static string DiagnosticId(this Match match)
         => match.Groups["diagnosticId"] is { Success: true } ids
         ? ids.Value : string.Empty;
 
+    [Pure]
     public static IssueType IssueType(this Match match)
         => match.Groups["issueType"] is { Success: true } issueType
         && Enum.TryParse<IssueType>(issueType.Value, ignoreCase: true, out var type)
         ? type : default;
 
+    [Pure]
     public static string Message(this Match match)
         => match.Groups["message"] is { Success: true } mes
         ? mes.Value : string.Empty;
 
+    [Pure]
     public static int? Start(this Match match)
         => match.Groups["position"] is { Success: true } position
         ? (int?)position.Index : null;
 
+    [Pure]
     public static int? Length(this Match match)
         => match.Groups["position"] is { Success: true } position
         ? (int?)position.Length : null;
 
+    [Pure]
     public static int? ColumnStart(this Match match)
         => match.Groups["start"] is { Success: true } columnStart
         ? (int?)int.Parse(columnStart.Value) : null;
 
+    [Pure]
     public static int? ColumnLength(this Match match)
         => match.Groups["length"] is { Success: true } length
         ? (int?)int.Parse(length.Value) : null;
 
+    [Pure]
     private static Regex Rx(params string[] components) => new(string.Concat(components), RegexOptions.Compiled);
 }

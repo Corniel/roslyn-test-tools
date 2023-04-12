@@ -6,6 +6,7 @@
 /// </remarks>
 internal static class Run
 {
+    [Pure]
     public static TResult Sync<TResult>(Func<Task<TResult>> task)
         => Factory
             .StartNew(task)

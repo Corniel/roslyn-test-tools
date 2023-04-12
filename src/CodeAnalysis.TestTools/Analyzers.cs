@@ -27,10 +27,12 @@ public sealed class Analyzers : GuardedCollection<DiagnosticAnalyzer, Analyzers>
         .ToHashSet();
 
     /// <inheritdoc />
+    [Pure]
     protected override bool Equals(DiagnosticAnalyzer item1, DiagnosticAnalyzer item2)
         => item1.GetType() == item2.GetType();
 
     /// <summary>Guards that the analyzer supports the language.</summary>
+    [FluentSyntax]
     protected override DiagnosticAnalyzer Guards(DiagnosticAnalyzer item)
         => item.SupportedLanguages().Any(supported => supported == Language)
         ? item

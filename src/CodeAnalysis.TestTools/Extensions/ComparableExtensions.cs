@@ -10,5 +10,6 @@ internal static class ComparableExtensions
     /// ?? etc..
     /// </code>
     /// </remarks>
+    [Pure]
     public static int? Compare(this int compare) => compare == 0 ? null : compare;
 }
