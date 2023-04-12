@@ -7,7 +7,7 @@ public sealed record IssueLocation : IComparable<IssueLocation>
     public static readonly IssueLocation None = new(default, default, default);
 
     /// <summary>Creates a new instance of the <see cref="IssueLocation"/> record.</summary>
-    public IssueLocation(string filePath, int lineNumber, int? start, int? spanSize)
+    public IssueLocation(string? filePath, int lineNumber, int? start, int? spanSize)
     {
         FilePath = filePath ?? string.Empty;
         LineNumber = lineNumber;
@@ -42,7 +42,7 @@ public sealed record IssueLocation : IComparable<IssueLocation>
     /// <summary>Returns true if the locations match.</summary>
     [Pure]
     public bool Matches(Location location)
-        => location is { }
+        => location is { SourceTree: { } }
         && location.SourceTree.FilePath == FilePath
         && location.LineNumber() == LineNumber
         && (!Start.HasValue || Start == location.GetLineSpan().StartLinePosition.Character)
@@ -63,7 +63,7 @@ public sealed record IssueLocation : IComparable<IssueLocation>
 
     /// <inheritdoc />
     [Pure]
-    public int CompareTo(IssueLocation other)
+    public int CompareTo(IssueLocation? other)
     {
         if (other is null) return 1;
         else return string.CompareOrdinal(FilePath, other.FilePath).Compare()
@@ -82,7 +82,7 @@ public sealed record IssueLocation : IComparable<IssueLocation>
         => location is null || location == Location.None
         ? None
         : new(
-            filePath: Guard.NotNull(location, nameof(location)).SourceTree.FilePath,
+            filePath: Guard.NotNull(location, nameof(location)).SourceTree?.FilePath,
             lineNumber: location.LineNumber(),
             start: location.GetLineSpan().StartLinePosition.Character,
             spanSize: location.SourceSpan.Length);

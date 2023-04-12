@@ -10,10 +10,12 @@ public sealed class MetadataReferences : GuardedCollection<MetadataReference, Me
     internal MetadataReferences(params MetadataReference[] references) : base(references) { }
 
     /// <inheritdoc />
+    [Pure]
     protected override bool Equals(MetadataReference item1, MetadataReference item2)
-        => item1.Display.ToUpperInvariant() == item2.Display.ToUpperInvariant();
+        => item1.Display?.ToUpperInvariant() == item2.Display?.ToUpperInvariant();
 
     /// <inheritdoc />
+    [FluentSyntax]
     protected override MetadataReference Guards(MetadataReference item) => item;
 
     /// <inheritdoc />

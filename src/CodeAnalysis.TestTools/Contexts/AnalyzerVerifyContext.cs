@@ -6,12 +6,15 @@
 public abstract record AnalyzerVerifyContext
 {
     /// <summary>Creates a new instance of the <see cref="AnalyzerVerifyContext"/> class.</summary>
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+    // handled by implementations.
     protected AnalyzerVerifyContext()
     {
         Analyzers = new Analyzers(Language);
         Sources = new Sources(Language);
         References = Reference.Defaults;
     }
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
     /// <summary>Gets the language (of the options sources etc.).</summary>
     public abstract Language Language { get; }
@@ -45,7 +48,7 @@ public abstract record AnalyzerVerifyContext
     /// * compiler options
     /// </summary>
     [Pure]
-    public Task<Compilation> GetCompilationAsync()
+    public Task<Compilation?> GetCompilationAsync()
         => GetProject()
         .WithParseOptions(Options)
         .GetCompilationAsync();
@@ -61,8 +64,8 @@ public abstract record AnalyzerVerifyContext
     public async Task<IEnumerable<Issue>> ReportIssuesAsync()
     {
         var compilation = await GetCompilationAsync();
-        var diagnostics = await compilation.GetDiagnosticsAsync(Analyzers);
-        var expected = compilation.GetExpectedIssues();
+        var diagnostics = await compilation!.GetDiagnosticsAsync(Analyzers);
+        var expected = compilation!.GetExpectedIssues();
 
         return IgnoreCompilerWarnings
             ? IssueComparer.Compare(diagnostics.Where(diagnostic => !diagnostic.IsCompilerWarning()), expected, IgnoredDiagnosics)
@@ -71,7 +74,7 @@ public abstract record AnalyzerVerifyContext
 
     /// <summary>Updates the compilations options before applying the diagnostics.</summary>
     [Pure]
-    protected abstract CompilationOptions Update(CompilationOptions options);
+    protected abstract CompilationOptions Update(CompilationOptions? options);
 
     /// <summary>Gets the assembly name of the compilation.</summary>
     protected virtual string AssemblyName => $"{Analyzers.First().GetType().Name}.Verify";

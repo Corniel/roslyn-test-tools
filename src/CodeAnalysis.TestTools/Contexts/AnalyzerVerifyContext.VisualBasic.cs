@@ -50,7 +50,7 @@ public record VisualBasicAnalyzerVerifyContext : AnalyzerVerifyContext<VisualBas
 
     /// <inheritdoc />
     [Pure]
-    protected override CompilationOptions Update(CompilationOptions options)
+    protected override CompilationOptions Update(CompilationOptions? options)
     {
         var vb = (options as VisualBasicCompilationOptions) ?? new VisualBasicCompilationOptions(OutputKind);
         return vb.WithOutputKind(OutputKind).WithGlobalImports(GlobalImports);

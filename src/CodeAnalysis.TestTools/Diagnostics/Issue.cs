@@ -26,11 +26,7 @@ public abstract record Issue : IComparable<Issue>
 
     /// <inheritdoc />
     [Pure]
-    public int CompareTo(Issue other)
-    {
-        if (other is null) return 1;
-        else return Location.CompareTo(other.Location);
-    }
+    public int CompareTo(Issue? other) => other is { } ? Location.CompareTo(other.Location) : 1;
 
     /// <summary>gives the relevant info to report.</summary>
     [Pure]

@@ -33,6 +33,7 @@ dotnet_diagnostic.QW0003.severity = warning # Decorate Pure functions
 dotnet_diagnostic.S100.severity  = none     # Properties should be named in PascalCase
 dotnet_diagnostic.S101.severity  = none     # Types should be named in PascalCase
 dotnet_diagnostic.S3376.severity = none     # Attribute, EventArgs, and Exception type names should end with the type being extended
+dotnet_diagnostic.S6354.severity = none     # Use a testable Time Provider
 
 dotnet_diagnostic.S107.severity  = warning  # Methods should not have too many parameters
 dotnet_diagnostic.S1144.severity = warning  # Unused private types or members should be removed
@@ -47,6 +48,5 @@ dotnet_diagnostic.S3218.severity = warning  # Rename this property to not shadow
 dotnet_diagnostic.S3257.severity = warning  # Declarations and initializations should be as concise as possible
 dotnet_diagnostic.S3776.severity = warning  # Cognitive Complexity of methods should not be too high
 dotnet_diagnostic.S3925.severity = warning  # "ISerializable" should be implemented correctly
-dotnet_diagnostic.S6354.severity = warning  # Use a testable Time Provider
 
 dotnet_diagnostic.SYSLIB1045.severity = warning # Use 'GeneratedRegexAttribute' to generate the regular expression implementation at compile-time

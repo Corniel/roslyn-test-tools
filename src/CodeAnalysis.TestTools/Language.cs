@@ -54,7 +54,7 @@ public readonly struct Language : IEquatable<Language>
 
     /// <inheritdoc />
     [Pure]
-    public override bool Equals(object obj) => obj is Language other && Equals(other);
+    public override bool Equals(object? obj) => obj is Language other && Equals(other);
 
     /// <inheritdoc />
     [Pure]

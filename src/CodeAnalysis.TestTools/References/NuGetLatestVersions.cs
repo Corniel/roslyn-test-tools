@@ -40,5 +40,5 @@ public class NuGetLatestVersions : Dictionary<string, NuGetLatestVersionCheck>
     /// <summary>Loads the latests versions from a stream.</summary>
     [Pure]
     public static Task<NuGetLatestVersions> LoadAsync(Stream stream)
-        => JsonSerializer.DeserializeAsync<NuGetLatestVersions>(stream).AsTask();
+        => JsonSerializer.DeserializeAsync<NuGetLatestVersions>(stream).AsTask()!;
 }

@@ -7,7 +7,7 @@ public static class IssueVerifier
     /// Throws a <see cref="VerificationFailed"/> if there are any
     /// unexpected or not reported issues.
     /// </summary>
-    [Pure]
+    [FluentSyntax]
     public static IEnumerable<Issue> ShouldHaveExpectedIssuesOnly(this IEnumerable<Issue> issues)
     {
         Guard.NotNull(issues, nameof(issues)).Log();
@@ -24,7 +24,7 @@ public static class IssueVerifier
 
     /// <summary>Logs all issues, both, expected, unexpected and not reported issues.</summary>
     [FluentSyntax]
-    public static IEnumerable<Issue> Log(this IEnumerable<Issue> issues, TextWriter writer = null)
+    public static IEnumerable<Issue> Log(this IEnumerable<Issue> issues, TextWriter? writer = null)
     {
         Guard.NotNull(issues, nameof(issues));
         writer ??= Console.Out;

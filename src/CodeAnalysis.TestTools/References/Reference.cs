@@ -43,5 +43,5 @@ public static class Reference
     public static MetadataReference FromFile(params string[] paths) => MetadataReference.CreateFromFile(Path.Combine(paths));
 
     [Pure]
-    private static MetadataReference Core(string name) => FromFile(Path.GetDirectoryName(typeof(object).Assembly.Location), name);
+    private static MetadataReference Core(string name) => FromFile(Path.GetDirectoryName(typeof(object).Assembly.Location)!, name);
 }

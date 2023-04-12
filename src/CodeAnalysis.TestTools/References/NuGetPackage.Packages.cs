@@ -6,7 +6,7 @@ public partial class NuGetPackage
 {
     /// <summary>Resolves a package of choice.</summary>
     [Pure]
-    public static NuGetPackage Resolve(string packageId, string version, string runtime = null)
+    public static NuGetPackage Resolve(string packageId, string? version, string? runtime = null)
         => Run.Sync(() => ResolveAsync(packageId, version, runtime));
 
     /// <summary>Gets the (empty) Microsoft.Build.NoTargets package.</summary>

@@ -13,9 +13,9 @@ public sealed partial class NuGetPackage : IReadOnlyCollection<MetadataReference
     private readonly List<MetadataReference> references = new();
 
     /// <summary>Creates a new instance of the <see cref="NuGetPackage"/> class.</summary>
-    private NuGetPackage(string packageId, NuGetVersion version, string runtime)
+    private NuGetPackage(string packageId, NuGetVersion version, string? runtime)
     {
-        Id = packageId;
+        Id = Guard.NotNullOrEmpty(packageId, nameof(packageId));
         Version = version;
         Runtime = runtime;
     }
@@ -27,7 +27,7 @@ public sealed partial class NuGetPackage : IReadOnlyCollection<MetadataReference
     public NuGetVersion Version { get; }
 
     /// <summary>Gets the runtime of the package.</summary>
-    public string Runtime { get; private set; }
+    public string? Runtime { get; private set; }
 
     /// <summary>Gets the amount of assemblies contained.</summary>
     public int Count => references.Count;
