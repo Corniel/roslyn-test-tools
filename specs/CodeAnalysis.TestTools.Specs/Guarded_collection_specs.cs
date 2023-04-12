@@ -14,11 +14,7 @@ public class Add
     {
         var init = DiagnosticIds.Empty.Add(DiagnosticId.AD0001);
         var extended = init.AddRange(DiagnosticId.BC36716);
-        extended.Should().BeEquivalentTo(new[]
-        {
-            DiagnosticId.AD0001,
-            DiagnosticId.BC36716
-        });
+        extended.Should().BeEquivalentTo(DiagnosticId.AD0001, DiagnosticId.BC36716);
 
         init.Should().BeEquivalentTo(new[] { DiagnosticId.AD0001 }, because: "Should not change.");
     }
@@ -37,13 +33,7 @@ public class Add_range
     public void contains_existing_and_new()
     {
         var init = DiagnosticIds.Empty.AddRange(DiagnosticId.AD0001);
-        var extended = init.AddRange(DiagnosticId.BC36716);
-        extended.Should().BeEquivalentTo(new[]
-        {
-            DiagnosticId.AD0001,
-            DiagnosticId.BC36716
-        });
-
+        _ = init.AddRange(DiagnosticId.AD0001, DiagnosticId.BC36716);
         init.Should().BeEquivalentTo(new[] { DiagnosticId.AD0001 }, because: "Should not change.");
     }
 }

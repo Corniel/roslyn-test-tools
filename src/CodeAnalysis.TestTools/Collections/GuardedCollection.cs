@@ -30,7 +30,7 @@ public abstract class GuardedCollection<TElement, TCollection> : IReadOnlyCollec
 
     /// <summary>Adds an item to the collection.</summary>
     [Pure]
-    public TCollection Add(TElement item) => AddRange(new[] { item });
+    public TCollection Add(TElement item) => AddRange(Enumerable.Repeat(item, 1));
 
     /// <summary>Adds items to the collection.</summary>
     [Pure]

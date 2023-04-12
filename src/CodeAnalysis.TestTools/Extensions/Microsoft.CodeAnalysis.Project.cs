@@ -4,6 +4,7 @@
 public static class ProjectExtensions
 {
     /// <summary>Add sources (as <see cref="Document"/>'s) to the project.</summary>
+    [Pure]
     public static Project AddSources(this Project project, IEnumerable<Code> sources)
     {
         Guard.NotNull(project, nameof(project));

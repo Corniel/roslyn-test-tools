@@ -13,6 +13,7 @@ public sealed class Sources : GuardedCollection<Code, Sources>
     public Language Language { get; }
 
     /// <inheritdoc />
+    [Pure]
     protected override bool Equals(Code item1, Code item2)
         => item1.FilePath == item2.FilePath;
 

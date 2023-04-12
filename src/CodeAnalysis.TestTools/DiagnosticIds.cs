@@ -10,10 +10,12 @@ public sealed class DiagnosticIds : GuardedCollection<string, DiagnosticIds>
     private DiagnosticIds(string[] items) : base(items) { }
 
     /// <inheritdoc />
+    [Pure]
     protected override bool Equals(string item1, string item2)
         => item1.ToUpperInvariant() == item2.ToUpperInvariant();
 
     /// <inheritdoc />
+    [Impure]
     protected override string Guards(string item)
         => Guard.NotNullOrEmpty(item, nameof(item));
 

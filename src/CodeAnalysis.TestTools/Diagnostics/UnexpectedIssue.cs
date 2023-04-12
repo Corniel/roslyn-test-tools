@@ -8,10 +8,11 @@ public sealed record UnexpectedIssue : Issue
         : base(diagnosticId, type, message, location) { }
 
     /// <inheritdoc />
-    public override string ReportInfo()
-        => $"[+] {base.ReportInfo()}";
+    [Pure]
+    public override string ReportInfo() => $"[+] {base.ReportInfo()}";
 
     /// <summary>Creates an unexpected verification issue based on a diagnostic.</summary>
+    [Pure]
     public static UnexpectedIssue FromDiagnostic(Diagnostic diagnostic)
         => new(
             diagnosticId: Guard.NotNull(diagnostic, nameof(diagnostic)).Id,

@@ -14,6 +14,7 @@ public enum IssueType
 public static class IssueTypeExtensions
 {
     /// <summary>Returns true if the issue type matches the diagnostic severity.</summary>
+    [Pure]
     public static bool Matches(this IssueType type, DiagnosticSeverity severity)
         => type switch
         {

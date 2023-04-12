@@ -18,5 +18,6 @@ public readonly struct Line
     public readonly string Text;
 
     /// <inheritdoc />
+    [Pure]
     public override string ToString() => Text;
 }

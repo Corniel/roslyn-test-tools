@@ -27,6 +27,7 @@ internal sealed class ExpectedIssues : IReadOnlyCollection<ExpectedIssue>
         }
     }
 
+    [FluentSyntax]
     public ExpectedIssues Merge(IEnumerable<ExpectedIssue> precises)
     {
         foreach (var precise in precises)
@@ -40,6 +41,7 @@ internal sealed class ExpectedIssues : IReadOnlyCollection<ExpectedIssue>
         return this;
     }
 
+    [Impure]
     private bool Merge(ExpectedIssue issue)
     {
         if (issue.IsLocationOnly())
@@ -64,15 +66,18 @@ internal sealed class ExpectedIssues : IReadOnlyCollection<ExpectedIssue>
         return false;
     }
 
-    private IEnumerable<ExpectedIssue> PerDiagnosticId(ExpectedIssue issue)
+    [Pure]
+    private static IEnumerable<ExpectedIssue> PerDiagnosticId(ExpectedIssue issue)
         => issue.DiagnosticId
             .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
             .OrderBy(id => id)
         .Select(id => new ExpectedIssue(id, issue.Type, issue.Message, issue.Location));
 
     /// <inheritdoc />
+    [Pure]
     public IEnumerator<ExpectedIssue> GetEnumerator() => issues.GetEnumerator();
 
     /// <inheritdoc />
+    [Pure]
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }

@@ -7,6 +7,7 @@ namespace Microsoft.CodeAnalysis.Diagnostics;
 public static class DiagnosticAnalyzerExtensions
 {
     /// <summary>Gets the supported languages of the analyzer.</summary>
+    [Pure]
     public static IReadOnlyCollection<Language> SupportedLanguages(this DiagnosticAnalyzer analyzer)
         => Guard.NotNull(analyzer, nameof(analyzer))
             .GetType()

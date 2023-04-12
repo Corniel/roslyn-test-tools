@@ -20,6 +20,7 @@ public class ParseError : FormatException
     protected ParseError(SerializationInfo info, StreamingContext context)
         : base(info, context) { }
 
+    [Pure]
     internal static ParseError New(string message, params object[] args)
         => new(string.Format(message, args));
 }

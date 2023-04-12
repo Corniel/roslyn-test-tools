@@ -5,6 +5,7 @@ namespace CodeAnalysis.TestTools.Contexts;
 /// <summary>
 /// Represents a C# specific context to verify <see cref="DiagnosticAnalyzer"/> behavior.
 /// </summary>
+[Inheritable]
 public record CSharpAnalyzerVerifyContext
     : AnalyzerVerifyContext<CSharpAnalyzerVerifyContext>
 {
@@ -37,7 +38,7 @@ public record CSharpAnalyzerVerifyContext
 
     /// <inheritdoc />
     [Pure]
-    protected override CompilationOptions Update(CompilationOptions options)
+    protected override CompilationOptions Update(CompilationOptions? options)
     {
         var cs = (options as CSharpCompilationOptions) ?? new CSharpCompilationOptions(OutputKind);
         return cs.WithOutputKind(OutputKind).WithAllowUnsafe(AllowUnsafe);

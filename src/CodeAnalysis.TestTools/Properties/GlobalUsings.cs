@@ -2,6 +2,7 @@
 global using CodeAnalysis.TestTools.Collections;
 global using CodeAnalysis.TestTools.Contexts;
 global using CodeAnalysis.TestTools.Diagnostics;
+global using CodeAnalysis.TestTools.Diagnostics.Contracts;
 global using CodeAnalysis.TestTools.References;
 global using CodeAnalysis.TestTools.Text;
 global using Microsoft.CodeAnalysis;

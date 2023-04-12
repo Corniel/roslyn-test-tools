@@ -5,6 +5,7 @@ namespace CodeAnalysis.TestTools.Contexts;
 /// <summary>
 /// Represents a VB.NET specific context to verify <see cref="DiagnosticAnalyzer"/> behavior.
 /// </summary>
+[Inheritable]
 public record VisualBasicAnalyzerVerifyContext : AnalyzerVerifyContext<VisualBasicAnalyzerVerifyContext>
 {
     /// <summary>Creates a new instance of the <see cref="VisualBasicAnalyzerVerifyContext"/> class.</summary>
@@ -49,7 +50,7 @@ public record VisualBasicAnalyzerVerifyContext : AnalyzerVerifyContext<VisualBas
 
     /// <inheritdoc />
     [Pure]
-    protected override CompilationOptions Update(CompilationOptions options)
+    protected override CompilationOptions Update(CompilationOptions? options)
     {
         var vb = (options as VisualBasicCompilationOptions) ?? new VisualBasicCompilationOptions(OutputKind);
         return vb.WithOutputKind(OutputKind).WithGlobalImports(GlobalImports);

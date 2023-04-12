@@ -4,7 +4,8 @@ namespace CodeAnalysis.TestTools.References;
 
 public partial class NuGetPackage
 {
-    private static async Task<NuGetPackage> ResolveAsync(string packageId, string version, string runtime)
+    [Pure]
+    private static async Task<NuGetPackage> ResolveAsync(string packageId, string? version, string? runtime)
     {
         if (packageId == Microsoft_Build_NoTargets.Id) return Microsoft_Build_NoTargets;
         else
@@ -18,7 +19,7 @@ public partial class NuGetPackage
 
             var dllsPerDirectory = package.CacheDirectory
                 .GetFiles("*.dll", SearchOption.AllDirectories)
-                .GroupBy(file => file.Directory.Name.Split('+').First())
+                .GroupBy(file => file.Directory?.Name.Split('+').First())
                 .Select(group => (dir: Path.GetFileName(group.Key), dlls: group.AsEnumerable()))
                 .ToArray();
 

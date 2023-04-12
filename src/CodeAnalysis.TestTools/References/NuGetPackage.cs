@@ -13,9 +13,9 @@ public sealed partial class NuGetPackage : IReadOnlyCollection<MetadataReference
     private readonly List<MetadataReference> references = new();
 
     /// <summary>Creates a new instance of the <see cref="NuGetPackage"/> class.</summary>
-    private NuGetPackage(string packageId, NuGetVersion version, string runtime)
+    private NuGetPackage(string packageId, NuGetVersion version, string? runtime)
     {
-        Id = packageId;
+        Id = Guard.NotNullOrEmpty(packageId, nameof(packageId));
         Version = version;
         Runtime = runtime;
     }
@@ -27,7 +27,7 @@ public sealed partial class NuGetPackage : IReadOnlyCollection<MetadataReference
     public NuGetVersion Version { get; }
 
     /// <summary>Gets the runtime of the package.</summary>
-    public string Runtime { get; private set; }
+    public string? Runtime { get; private set; }
 
     /// <summary>Gets the amount of assemblies contained.</summary>
     public int Count => references.Count;
@@ -37,17 +37,21 @@ public sealed partial class NuGetPackage : IReadOnlyCollection<MetadataReference
         => new(Path.Combine(PackagesDirectory.FullName, Id, $"cached.{Version}", Runtime == null ? string.Empty : $@"runtimes\{Runtime}\"));
 
     /// <inheritdoc />
+    [Pure]
     public override string ToString()
         => Runtime is null
         ? $"{Id} v{Version}, Assemblies: {Count}"
         : $"{Id} v{Version} ({Runtime}), Assemblies: {Count}";
 
     /// <inheritdoc />
+    [Pure]
     public IEnumerator<MetadataReference> GetEnumerator() => references.GetEnumerator();
 
     /// <inheritdoc />
+    [Pure]
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
+    [Pure]
     internal IncompleteSetup IncompletSetup()
         => Runtime is null
         ? IncompleteSetup.New(Messages.Nuget_NoDlls, Id, Version)

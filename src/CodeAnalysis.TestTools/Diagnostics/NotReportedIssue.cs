@@ -8,6 +8,6 @@ public sealed record NotReportedIssue : Issue
         : base(diagnosticId, type, message, location) { }
 
     /// <inheritdoc />
-    public override string ReportInfo()
-        => $"[-] {base.ReportInfo()}";
+    [Pure]
+    public override string ReportInfo() => $"[-] {base.ReportInfo()}";
 }
