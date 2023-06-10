@@ -47,7 +47,7 @@ public abstract class GuardedCollection<TElement, TCollection> : IReadOnlyCollec
 
     /// <inheritdoc/>
     [Pure]
-    public bool Contains(TElement item) => Collection.Any(existing => Equals(item, existing));
+    public bool Contains(TElement item) => Array.Exists(Collection, existing => Equals(item, existing));
 
     /// <summary>Returns true if the two items are equal.</summary>
     [Pure]

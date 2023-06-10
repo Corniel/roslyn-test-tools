@@ -1,4 +1,6 @@
-﻿namespace Specs.Analyzers;
+﻿#pragma warning disable RS1036 // Specify analyzer banned API enforcement setting
+
+namespace Specs.Analyzers;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp, LanguageNames.VisualBasic)]
 internal sealed class MultipleLanguages : DiagnosticAnalyzer

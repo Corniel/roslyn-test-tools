@@ -19,7 +19,7 @@ public partial class NuGetPackage
 
             var dllsPerDirectory = package.CacheDirectory
                 .GetFiles("*.dll", SearchOption.AllDirectories)
-                .GroupBy(file => file.Directory?.Name.Split('+').First())
+                .GroupBy(file => file.Directory?.Name.Split('+')[0])
                 .Select(group => (dir: Path.GetFileName(group.Key), dlls: group.AsEnumerable()))
                 .ToArray();
 
