@@ -80,14 +80,14 @@ public void Verify_MyCSharpAnalyzer()
     => new Verify_MyCSharpAnalyzer()
         .ForCS()
         // or use .AddSnippet() where you provide the code as string.
-        .AddSource("Path\to\testcode.cs")
+        .AddSource("Path/to/testcode.cs")
         .Verify();
 
 [Test]
 public void Verify_MyVBAnalyzer()
     => new Verify_MyVBAnalyzer()
         .ForVB()
-        .AddSource("Path\to\testcode.vb")
+        .AddSource("Path/to/testcode.vb")
         .Verify();
 ```
 
