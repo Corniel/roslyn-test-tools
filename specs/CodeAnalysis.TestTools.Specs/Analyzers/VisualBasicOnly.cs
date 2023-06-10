@@ -1,8 +1,11 @@
-﻿using Microsoft.CodeAnalysis.VisualBasic;
+﻿#pragma warning disable RS1036 // Specify analyzer banned API enforcement setting
+
+using Microsoft.CodeAnalysis.VisualBasic;
 
 namespace Specs.Analyzers;
 
 [DiagnosticAnalyzer(LanguageNames.VisualBasic)]
+
 internal sealed class VisualBasicOnly : DiagnosticAnalyzer
 {
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics

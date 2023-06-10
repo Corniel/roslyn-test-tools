@@ -47,7 +47,7 @@ public abstract record AnalyzerVerifyContext<TContext> : AnalyzerVerifyContext
     public TContext AddPackages(params NuGetPackage[] packages)
         => self with
         {
-            References = References.AddRange(Guard.HasAny(packages, nameof(packages)).Cast<MetadataReference>())
+            References = References.AddRange(Guard.HasAny(packages, nameof(packages)).SelectMany(p => p))
         };
    
 
