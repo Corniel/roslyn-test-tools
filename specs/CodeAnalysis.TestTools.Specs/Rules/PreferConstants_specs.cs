@@ -11,7 +11,7 @@ public class Verifies
     public void CSharp()
         => new PreferConstants()
         .ForCS()
-        .AddSource(@"Sources\PreferConstants.cs")
+        .AddSource("Sources/PreferConstants.cs")
         .Verify();
 }
 
@@ -21,9 +21,9 @@ public class Fixes
     public void CSharp()
         => new PreferConstants()
         .ForCS()
-        .AddSource(@"Sources\PreferConstants_tofix.cs")
+        .AddSource("Sources/PreferConstants_tofix.cs")
         .ForCodeFix<PreferConstantsFix>()
-        .AddSource(@"Sources\PreferConstants_fixed.cs")
+        .AddSource("Sources/PreferConstants_fixed.cs")
         .Verify();
 }
 
