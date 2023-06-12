@@ -79,11 +79,11 @@ namespace CodeAnalysis.TestTools {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The code fix profider does not support FixAll..
+        ///   Looks up a localized string similar to The setup is incomplete. No expected sources have been configured..
         /// </summary>
-        internal static string FixAllNotSupported {
+        internal static string IncompleteSetup_NoExpectedSources {
             get {
-                return ResourceManager.GetString("FixAllNotSupported", resourceCulture);
+                return ResourceManager.GetString("IncompleteSetup_NoExpectedSources", resourceCulture);
             }
         }
         
@@ -120,6 +120,24 @@ namespace CodeAnalysis.TestTools {
         internal static string LanguageConflict_Analyzer {
             get {
                 return ResourceManager.GetString("LanguageConflict_Analyzer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A code fix can only be verified against a single source..
+        /// </summary>
+        internal static string NotSupported_MultipleExpectedSources {
+            get {
+                return ResourceManager.GetString("NotSupported_MultipleExpectedSources", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A code fix can only be applied on a single source..
+        /// </summary>
+        internal static string NotSupported_MultipleSources {
+            get {
+                return ResourceManager.GetString("NotSupported_MultipleSources", resourceCulture);
             }
         }
         

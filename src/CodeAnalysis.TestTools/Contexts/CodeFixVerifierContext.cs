@@ -13,6 +13,10 @@ public partial record CodeFixVerifierContext
     public CodeFixVerifierContext(AnalyzerVerifyContext analyzerContext, CodeFixProvider codeFix)
     {
         AnalyzerContext = Guard.NotNull(analyzerContext, nameof(analyzerContext));
+        if (AnalyzerContext.Sources.Count > 1)
+        {
+            throw new NotSupportedException(Messages.NotSupported_MultipleSources);
+        }
         CodeFix = Guard.NotNull(codeFix, nameof(codeFix));
         Sources = new Sources(Language);
     }
@@ -45,15 +49,14 @@ public partial record CodeFixVerifierContext
         }
     }
 
-    /// <summary>Verifies the code fix provider (iterative).</summary>
-    public void Verify()
-    {
-        Run.Sync(()=> VerifyAsync());
-    }
+    /// <summary>Verifies the code fix provider iteratively.</summary>
+    public void Verify() => Run.Sync(() => VerifyAsync());
 
-    private async Task VerifyAsync()
+    /// <summary>Verifies the code fix provider iteratively.</summary>
+    public async Task VerifyAsync()
     {
-        if (Sources.Count != 1) throw new NotSupportedException("Single fix");
+        if (!Sources.Any()) throw new IncompleteSetup(Messages.IncompleteSetup_NoExpectedSources);
+        if (Sources.Count != 1) throw new NotSupportedException(Messages.NotSupported_MultipleExpectedSources);
 
         var current = AnalyzerContext;
 
@@ -63,7 +66,7 @@ public partial record CodeFixVerifierContext
             current = updated;
         }
 
-        if(!AreEqual(Sources, current.Sources))
+        if (!AreEqual(Sources, current.Sources))
         {
             throw new VerificationFailed(current.Sources.Single().ToString());
         }
@@ -77,45 +80,34 @@ public partial record CodeFixVerifierContext
         return ls == rs;
     }
 
+    [Pure]
     private async Task<AnalyzerVerifyContext> ApplyCodeAction(AnalyzerVerifyContext context)
     {
-        if((await context
-            .GetDiagnosticsAsync())
-            .FirstOrDefault(d => CodeFix.FixableDiagnosticIds.Contains(d.Id)) is not { } diagnostic)
-        {
-            return context;
-        }
-
         var document = context.GetDocument();
+        var diagnostics = await context.GetDiagnosticsAsync();
 
-        if (GetCodeActions(document, diagnostic) is not { Count: > 0 } actions)
+        if (diagnostics
+            .Where(IsFixable)
+            .SelectMany(d => GetCodeActions(document, d))
+            .FirstOrDefault() is not { } action)
         {
             return context;
         }
         else
         {
-            var operations = await actions.First().GetOperationsAsync(default);
+            var operations = await action.GetOperationsAsync(default);
             var solution = operations.OfType<ApplyChangesOperation>().Single().ChangedSolution;
             var changed = solution.GetDocument(document.Id)!;
+            var sources = new Sources(Language).Add(await Code.FromDocumentAsync(changed));
 
-            return context with
-            {
-                Sources = new Sources(Language).Add(await Code.FromDocumentAsync(changed))
-            };
+            return context with { Sources = sources };
         }
     }
 
-    /// <summary>Verifies the code fix provider (all fixes at once).</summary>
-    public void VerifyFixAll()
-    {
-        if (CodeFix.GetFixAllProvider() is not { } provider)
-        {
-            throw new FixAllNotSupported();
-        }
-        
-       
-    }
+    [Pure]
+    private bool IsFixable(Diagnostic diagnostic) => CodeFix.FixableDiagnosticIds.Contains(diagnostic.Id);
 
+    [Pure]
     private IReadOnlyCollection<CodeAction> GetCodeActions(Document document, Diagnostic diagnostic)
     {
         var actions = new List<CodeAction>();

@@ -14,14 +14,13 @@ public class Verifies
 
 public class Fixes
 {
-    [TestCase(CodeFixKind.Iterative)]
-    //[TestCase(CodeFixKind.FixAll)]
-    public void CSharp(CodeFixKind fix)
+    [Test]
+    public void CSharp()
         => new PreferConstants()
         .ForCS()
         .AddSource(@"Sources\PreferConstants.ToFix.cs")
         .ForCodeFix<PreferConstantsFix>()
         .AddSource(@"Sources\PreferConstants.Fixed.cs")
-        .Verify(fix);
+        .Verify();
 }
 

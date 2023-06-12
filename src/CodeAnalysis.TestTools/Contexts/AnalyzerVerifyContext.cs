@@ -105,8 +105,5 @@ public abstract record AnalyzerVerifyContext
     }
 
     [Pure]
-    internal Document GetDocument() 
-        => GetProject().Documents.ToArray() is { Length: 1 } documents
-            ? documents[0]
-            : throw new NotSupportedException("Single Source");
+    internal Document GetDocument() => GetProject().Documents.Single();;
 }
