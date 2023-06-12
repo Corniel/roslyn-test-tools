@@ -2,6 +2,9 @@
 
 namespace Specs.Rules.PreferConstants_specs;
 
+/// <remarks>
+/// This is how tests could look like.
+/// </remarks>
 public class Verifies
 {
     [Test]
