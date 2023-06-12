@@ -173,4 +173,5 @@ public void Verify_MyCSharpCodeFixer()
 ```
 
 It will iteratively fix all issues reported by the analyzer attached, until no
-new changes are reported.
+new changes are reported. Then it will verify if that has resulted in the
+expected code changes.
