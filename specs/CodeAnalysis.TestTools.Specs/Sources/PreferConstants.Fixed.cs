@@ -2,8 +2,7 @@
 {
     public static int Unchanged()
     {
-        var variable = 42; // Noncompliant {{'variable' can be a constant.}}
-//      ^^^^^^^^^^^^^^^^^^
+        const int variable = 42;
         return variable;
     }
 }

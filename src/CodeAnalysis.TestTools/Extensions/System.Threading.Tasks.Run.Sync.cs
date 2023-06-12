@@ -14,6 +14,13 @@ internal static class Run
             .GetAwaiter()
             .GetResult();
 
+    public static void Sync(Func<Task> task)
+        => Factory
+            .StartNew(task)
+            .Unwrap()
+            .GetAwaiter()
+            .GetResult();
+
     private static readonly TaskFactory Factory = new(
        CancellationToken.None,
        TaskCreationOptions.None,

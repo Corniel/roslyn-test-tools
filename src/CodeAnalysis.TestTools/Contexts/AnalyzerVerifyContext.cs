@@ -29,7 +29,7 @@ public abstract record AnalyzerVerifyContext
     public Sources Sources { get; init; }
 
     /// <summary>Gets the diagnostic ID's toe ignore.</summary>
-    public DiagnosticIds IgnoredDiagnosics { get; init; } = DiagnosticIds.Empty;
+    public DiagnosticIds IgnoredDiagnostics { get; init; } = DiagnosticIds.Empty;
 
     /// <summary>Gets the (external) references to compile with.</summary>
     public MetadataReferences References { get; init; } = MetadataReferences.Empty;
@@ -53,6 +53,13 @@ public abstract record AnalyzerVerifyContext
         .WithParseOptions(Options)
         .GetCompilationAsync();
 
+    /// <summary>Gets the diagnostics.</summary>
+    [Pure]
+    public async Task<IReadOnlyCollection<Diagnostic>> GetDiagnosticsAsync()
+        => (await GetCompilationAsync()) is { } compliation
+        ? await compliation.GetDiagnosticsAsync(Analyzers)
+        : Array.Empty<Diagnostic>();
+
     /// <summary>Reports (both expected, unexpected, and not reported) issues for the analyzer verify context.</summary>
     [Pure]
     [DebuggerStepThrough]
@@ -68,8 +75,8 @@ public abstract record AnalyzerVerifyContext
         var expected = compilation!.GetExpectedIssues();
 
         return IgnoreCompilerWarnings
-            ? IssueComparer.Compare(diagnostics.Where(diagnostic => !diagnostic.IsCompilerWarning()), expected, IgnoredDiagnosics)
-            : IssueComparer.Compare(diagnostics, expected, IgnoredDiagnosics);
+            ? IssueComparer.Compare(diagnostics.Where(diagnostic => !diagnostic.IsCompilerWarning()), expected, IgnoredDiagnostics)
+            : IssueComparer.Compare(diagnostics, expected, IgnoredDiagnostics);
     }
 
     /// <summary>Updates the compilations options before applying the diagnostics.</summary>
@@ -80,7 +87,7 @@ public abstract record AnalyzerVerifyContext
     protected virtual string AssemblyName => $"{Analyzers.First().GetType().Name}.Verify";
 
     [Pure]
-    private Project GetProject()
+    internal Project GetProject()
     {
         if (!Sources.Any()) throw new IncompleteSetup(Messages.IncompleteSetup_NoSources);
         else
@@ -96,4 +103,10 @@ public abstract record AnalyzerVerifyContext
             return project.WithCompilationOptions(Update(project.CompilationOptions));
         }
     }
+
+    [Pure]
+    internal Document GetDocument() 
+        => GetProject().Documents.ToArray() is { Length: 1 } documents
+            ? documents[0]
+            : throw new NotSupportedException("Single Source");
 }

@@ -123,6 +123,9 @@
   <data name="ArgumentException_FileDoesNotExist" xml:space="preserve">
     <value>File '{0}' does not exist.</value>
   </data>
+  <data name="FixAllNotSupported" xml:space="preserve">
+    <value>The code fix profider does not support FixAll.</value>
+  </data>
   <data name="IncompleteSetup_NoSources" xml:space="preserve">
     <value>The setup is incomplete. No sources have been configured.</value>
   </data>

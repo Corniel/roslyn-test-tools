@@ -79,6 +79,15 @@ namespace CodeAnalysis.TestTools {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The code fix profider does not support FixAll..
+        /// </summary>
+        internal static string FixAllNotSupported {
+            get {
+                return ResourceManager.GetString("FixAllNotSupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The setup is incomplete. No sources have been configured..
         /// </summary>
         internal static string IncompleteSetup_NoSources {

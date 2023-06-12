@@ -50,7 +50,6 @@ public abstract record AnalyzerVerifyContext<TContext> : AnalyzerVerifyContext
             References = References.AddRange(Guard.HasAny(packages, nameof(packages)).SelectMany(p => p))
         };
    
-
     /// <summary>Defines the output kind. (Default <see cref="OutputKind.DynamicallyLinkedLibrary"/>)</summary>
     [Pure]
     public TContext WithOutputKind(OutputKind outputKind)
@@ -72,7 +71,7 @@ public abstract record AnalyzerVerifyContext<TContext> : AnalyzerVerifyContext
     public TContext WithIgnoredDiagnostics(params string[] diagnosticIds)
         => self with
         {
-            IgnoredDiagnosics = DiagnosticIds.Empty.AddRange(diagnosticIds)
+            IgnoredDiagnostics = DiagnosticIds.Empty.AddRange(diagnosticIds)
         };
 
     /// <remarks>Syntactic sugar.</remarks>

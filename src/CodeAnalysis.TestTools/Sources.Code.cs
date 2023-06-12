@@ -36,13 +36,22 @@ public class Code
         return new(filePath, text);
     }
 
-    /// <summary>Reads the code from file.</summary>
+    /// <summary>Reads the code from a file.</summary>
     [Pure]
     public static Code FromFile(FileInfo file)
     {
         Guard.NotNull(file, nameof(file));
         using var reader = new StreamReader(file.OpenRead(), Encoding.UTF8);
         return new(file.ToString(), reader.ReadToEnd());
+    }
+
+    /// <summary>Converts a document to code.</summary>
+    [Pure]
+    public static async Task<Code> FromDocumentAsync(Document document)
+    {
+        Guard.NotNull(document, nameof(document));
+        var path = document.FilePath ?? document.Name;
+        return new(path, (await document.GetTextAsync()).ToString());
     }
 
     private static readonly HashAlgorithm Hash = SHA512.Create();
