@@ -21,9 +21,9 @@ public class Fixes
     public void CSharp()
         => new PreferConstants()
         .ForCS()
-        .AddSource(@"Sources\PreferConstants.ToFix.cs")
+        .AddSource(@"Sources\PreferConstants_tofix.cs")
         .ForCodeFix<PreferConstantsFix>()
-        .AddSource(@"Sources\PreferConstants.Fixed.cs")
+        .AddSource(@"Sources\PreferConstants_fixed.cs")
         .Verify();
 }
 
