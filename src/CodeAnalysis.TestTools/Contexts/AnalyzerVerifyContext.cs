@@ -105,5 +105,5 @@ public abstract record AnalyzerVerifyContext
     }
 
     [Pure]
-    internal Document GetDocument() => GetProject().Documents.Single();;
+    internal Document GetDocument() => GetProject().Documents.Single();
 }

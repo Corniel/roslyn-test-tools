@@ -4,7 +4,7 @@ namespace CodeAnalysis.TestTools;
 
 /// <summary>Represents a piece of code.</summary>
 [Inheritable]
-public class Code
+public sealed class Code
 {
     /// <summary>Creates a new instance of the <see cref="Code"/> class.</summary>
     private Code(string filePath, string text)
@@ -16,8 +16,8 @@ public class Code
     /// <summary>Gets the file name of the code.</summary>
     public string FilePath { get; }
 
-    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    private readonly Line[] Lines;
+    /// <summary>Gets all lines of the code.</summary>
+    public IReadOnlyList<Line> Lines { get; }
 
     /// <summary>Gets the language of the code.</summary>
     public Language Language => Language.Parse(Path.GetExtension(FilePath));
@@ -25,6 +25,11 @@ public class Code
     /// <inheritdoc />
     [Pure]
     public override string ToString() => string.Join(LineEnd.Unix, Lines);
+
+    /// <summary>Returns true if both pieces of code have the same lines.</summary>
+    [Pure]
+    public bool HaveSameLines(Code other)
+        => Enumerable.SequenceEqual(Lines, Guard.NotNull(other, nameof(other)).Lines);
 
     /// <summary>Creates a code snippet.</summary>
     [Pure]

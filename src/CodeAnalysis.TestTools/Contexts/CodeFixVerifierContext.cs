@@ -33,22 +33,6 @@ public partial record CodeFixVerifierContext
     /// <summary>Gets the sources (snippets, files) to verify with.</summary>
     public Sources Sources { get; init; }
 
-    /// <summary>Verifies the code fix provider.</summary>
-    /// <param name="kind">
-    /// The code fix kind to apply.
-    /// </param>
-    public void Verify(CodeFixKind kind)
-    {
-        if (Guard.DefinedEnum(kind, nameof(kind)) == CodeFixKind.Iterative)
-        {
-            Verify();
-        }
-        else
-        {
-            VerifyFixAll();
-        }
-    }
-
     /// <summary>Verifies the code fix provider iteratively.</summary>
     public void Verify() => Run.Sync(() => VerifyAsync());
 
@@ -68,17 +52,21 @@ public partial record CodeFixVerifierContext
 
         if (!AreEqual(Sources, current.Sources))
         {
-            throw new VerificationFailed(current.Sources.Single().ToString());
+            var sb = new StringBuilder()
+                .AppendLine("The code fix had a different outcome than expected.")
+                .AppendLine("Actual code after fix:")
+                .AppendLine(current.Sources.Single().ToString())
+                .AppendLine()
+                .AppendLine("Expected code:")
+                .AppendLine(Sources.Single().ToString());
+
+            throw new VerificationFailed(sb.ToString());
         }
     }
 
     [Pure]
     private static bool AreEqual(Sources l, Sources r)
-    {
-        var ls = l.Single().ToString();
-        var rs = r.Single().ToString();
-        return ls == rs;
-    }
+        => l.Single().HaveSameLines(r.Single());
 
     [Pure]
     private async Task<AnalyzerVerifyContext> ApplyCodeAction(AnalyzerVerifyContext context)
