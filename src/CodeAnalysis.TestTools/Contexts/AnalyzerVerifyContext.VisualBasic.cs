@@ -13,7 +13,7 @@ public record VisualBasicAnalyzerVerifyContext : AnalyzerVerifyContext<VisualBas
     {
         Options = new VisualBasicParseOptions(LanguageVersion.VisualBasic16_9);
         References = Reference.Defaults.Add(Reference.FromType<Microsoft.VisualBasic.DateAndTime>());
-        IgnoredDiagnosics = DiagnosticIds.Empty.Add(DiagnosticId.BC36716);
+        IgnoredDiagnostics = DiagnosticIds.Empty.Add(DiagnosticId.BC36716);
     }
 
     /// <inheritdoc />

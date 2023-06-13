@@ -1,14 +1,16 @@
 ﻿# Roslyn (Static) Code Analysis Test Tools
-The package provides tooling to verify the behavior of a [Diagnostic Analyzer](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.diagnostics.diagnosticanalyzer).
+The package provides tooling to verify the behavior of [Diagnostic Analyzers](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.diagnostics.diagnosticanalyzer),
+and [Code Fix Providers](https://learn.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.codefixes.codefixprovider).
 It does this by providing a (test) context builder, and a mechanism to define
 expected issues in code (files).
 
+## Verifying Diagnostic Analyzers
 THe idea of defining expected issues that way, has been inspired by
 [SonarSource](https://sonarsource.com). The same patterns are used, and their
 [implementation](https://github.com/SonarSource/sonar-dotnet) has been an
 inspiration for this one.
 
-## Defining expected issues
+### Defining expected issues
 The basic idea is that by adding comments (of a certain format) to a code file
 the verifier compare the actual raised issues and errors to the expected onces.
 If there are differences, the verification fails.
@@ -62,7 +64,7 @@ line of the issue. In that case, a (line) offset can be provided:
 class MyClass { }
 ```
 
-### Expected errors
+#### Expected errors
 Instead of a line of code being noncompliant, it is possible to mark a line as
 an error too. Just use `Error` instead of `Noncompliant`:
 
@@ -70,14 +72,14 @@ an error too. Just use `Error` instead of `Noncompliant`:
 public class Missing { // Error [CS1513]
 ```
 
-## Setup a verification test
+### Setup a verification test
 A test can be setup using a test framework of choice. The examples here
 use NUnit.
 
 ``` C#
 [Test]
 public void Verify_MyCSharpAnalyzer()
-    => new Verify_MyCSharpAnalyzer()
+    => new MyCSharpAnalyzer()
         .ForCS()
         // or use .AddSnippet() where you provide the code as string.
         .AddSource("Path/to/testcode.cs")
@@ -85,7 +87,7 @@ public void Verify_MyCSharpAnalyzer()
 
 [Test]
 public void Verify_MyVBAnalyzer()
-    => new Verify_MyVBAnalyzer()
+    => new MyVBAnalyzer()
         .ForVB()
         .AddSource("Path/to/testcode.vb")
         .Verify();
@@ -105,43 +107,43 @@ By default the following external references are included:
 The code base is compiled against the latest language version (currently C# 11,
 and Visual Basic 16.9).
 
-### Tweaking the Verify Analyzer Context
+#### Tweaking the Verify Analyzer Context
 The initialized context has been for one language. All changes/additions take
 that in to consideration. So extra analyzers/source files, etcetera, must be
 supported by that language.
 
-### Additional analyzers
+#### Additional analyzers
 Extra analyzers can be added using `.Add(DiagnosticAnalyzer analyzer)`.
 
-### Adding extra source code
+#### Adding extra source code
 Extra files can be added using `.AddSource(string path)`.
 Extra code snippets can be added using `.AddSnippet(string snippet)`.
 
-### Adding external references
+#### Adding external references
 Extra references can be added using `.AddReference<TContainingType>()`,
 where the assembly of `TContainingType` is added. Alternatively 
 `.AddReferences(params MetadataReference[] references)` and
 `.AddPackages(params NuGetPackage[] packages)` can be used.
 
-### Set Output kind
+#### Set Output kind
 The output kind of the assembly built (default `OutputKind.DynamicallyLinkedLibrary`)
 can be changed using `.WithOutputKind(OutputKind outputKind)`.
 
-### Set Language Version/Parse Options
+#### Set Language Version/Parse Options
 The easiest way to change the language version (and with that the parsings
 options) is by using `.WithLanguageVersion(LanguageVersion version)`.
 Alternatively `.WithOptions(ParseOptions options)` can be used.
 The arguments are based on the context of choice (C# or Visual Basic), so
 you can not change the language with these methods.
 
-### Ignore specific warnings/errors
+#### Ignore specific warnings/errors
 Some (build) errors and warnings should/could be ignored. This can be done by
 using `.WithIgnoredDiagnostics(params string[] diagnosticIds)`.
 
-### Allow unsafe code (C# only)
+#### Allow unsafe code (C# only)
 If desired, `AllowUnsafe` can be set to `true` by using `.WithUnsafeCode(true)`.
 
-### Set Global Imports (Visual Basic only)
+#### Set Global Imports (Visual Basic only)
 The global imports can be changed with `.WithGlobalImports(IEnumerable<GlobalImport> imports)`.
 By default these imports are done globally:
 ``` Visual Basic
@@ -155,3 +157,21 @@ Imports System.Linq
 Imports System.Threading.Tasks
 ```
 
+## Verifying Code Fix Providers
+Verifying code fix providers is an extension on the test context used for
+verifying diagnostics analyzers:
+
+``` C#
+[Test]
+public void Verify_MyCSharpCodeFixer()
+    => new MyCSharpCodeAnalyzer()
+        .ForCS()
+        .AddSource("Path/to/testcode.tofix.cs")
+        .ForFix<MyCSharpCodeFixer>()
+        .AddSource("Path/to/testcode.fixed.cs")
+        .Verify();
+```
+
+It will iteratively fix all issues reported by the analyzer attached, until no
+new changes are reported. Then it will verify if that has resulted in the
+expected code changes.

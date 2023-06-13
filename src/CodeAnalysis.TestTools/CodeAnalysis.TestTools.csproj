@@ -5,13 +5,14 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Nullable>enable</Nullable>
-    <Version>0.0.3.1</Version>
+    <Version>0.0.4</Version>
     <Authors>Corniel Nobel</Authors>
     <Product>Roslyn static code analyzers test tools</Product>
     <Description>Tooling to describe expected static code analyzer behavior in annotated code files.</Description>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <PackageReleaseNotes>
-ToBeReleased
+v0.0.4
+- Support for verifying code fix providers. (#7)
 - Fix invalid cast for adding NuGet packages.
 v0.0.3.1
 - GuardedCollection AddRange failed to add items to the new collection. (#4)
