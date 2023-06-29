@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <RootNamespace>VbProject</RootNamespace>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
