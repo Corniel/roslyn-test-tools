@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>VbProject</RootNamespace>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Qowaiv" Version="6.4.1" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <MyType>Empty</MyType>
+  </PropertyGroup>
+
+</Project>

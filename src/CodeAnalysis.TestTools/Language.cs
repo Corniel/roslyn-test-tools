@@ -72,7 +72,7 @@ public readonly struct Language : IEquatable<Language>
 
     /// <summary>parses the language.</summary>
     [Pure]
-    public static Language Parse(string str)
+    public static Language Parse(string? str)
         => str?.ToUpperInvariant().Replace(" ", "") switch
         {
             "" or null => None,

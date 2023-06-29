@@ -91,6 +91,12 @@ public void Verify_MyVBAnalyzer()
         .ForVB()
         .AddSource("Path/to/testcode.vb")
         .Verify();
+
+[Test]
+public void Verify_MyAnalyzer()
+    => new MyAnalyzer()
+        .ForProject(new FileInfo("myproject.csproj")
+        .Verify();
 ```
 
 This will run your analyzer on the provided code, and throw a

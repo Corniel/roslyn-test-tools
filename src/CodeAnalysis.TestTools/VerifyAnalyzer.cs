@@ -1,4 +1,7 @@
-﻿namespace CodeAnalysis.TestTools;
+﻿using Microsoft.Build.Locator;
+using Microsoft.CodeAnalysis.MSBuild;
+
+namespace CodeAnalysis.TestTools;
 
 /// <summary>Helper class to create <see cref="AnalyzerVerifyContext"/>'s.</summary>
 public static class VerifyAnalyzer
@@ -16,6 +19,15 @@ public static class VerifyAnalyzer
     public static VisualBasicAnalyzerVerifyContext ForVB(this DiagnosticAnalyzer analyzer, VisualBasicAnalyzerVerifyContext? defaults = null)
     {
         var context = defaults ?? new VisualBasicAnalyzerVerifyContext();
+        return context.Add(analyzer);
+    }
+
+    /// <summary>Creates a project file based analyzer verify context.</summary>
+    [Pure]
+    public static ProjectAnalyzerVerifyContext ForProject(this DiagnosticAnalyzer analyzer, FileInfo location)
+    {
+        Guard.Exists(location, nameof(location));
+        var context = new ProjectAnalyzerVerifyContext(ProjectLoader.Load(location));
         return context.Add(analyzer);
     }
 

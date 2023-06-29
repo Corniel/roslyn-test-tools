@@ -17,9 +17,9 @@ public sealed class DiagnosticIds : GuardedCollection<string, DiagnosticIds>
     /// <inheritdoc />
     [Impure]
     protected override string Guards(string item)
-        => Guard.NotNullOrEmpty(item, nameof(item));
+        => Guard.NotNullOrEmpty(item);
 
     /// <inheritdoc />
     [Pure]
-    protected override DiagnosticIds New(IEnumerable<string> items) => new(Guard.NotNull(items, nameof(items)).ToArray());
+    protected override DiagnosticIds New(IEnumerable<string> items) => new(Guard.NotNull(items).ToArray());
 }

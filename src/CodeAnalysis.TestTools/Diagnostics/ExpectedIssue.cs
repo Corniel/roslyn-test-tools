@@ -40,7 +40,7 @@ public sealed record ExpectedIssue : Issue
     [Pure]
     public ExpectedIssue Update(IssueLocation location)
     {
-        Guard.NotNull(location, nameof(location));
+        Guard.NotNull(location);
         return new(
             diagnosticId: DiagnosticId,
             type: Type,
@@ -57,7 +57,7 @@ public sealed record ExpectedIssue : Issue
     [Pure]
     public static ExpectedIssue New(Diagnostic diagnostic)
     {
-        Guard.NotNull(diagnostic, nameof(diagnostic));
+        Guard.NotNull(diagnostic);
         return new(
             diagnosticId: diagnostic.Descriptor.Id,
             type: diagnostic.GetIssueType(),

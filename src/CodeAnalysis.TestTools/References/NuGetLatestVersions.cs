@@ -28,7 +28,7 @@ public class NuGetLatestVersions : Dictionary<string, NuGetLatestVersionCheck>
     [Pure]
     public static async Task<NuGetLatestVersions> LoadAsync(FileInfo file)
     {
-        Guard.NotNull(file, nameof(file));
+        Guard.NotNull(file);
         if (file.Exists)
         {
             using var stream = new FileStream(file.FullName, FileMode.Open, FileAccess.Read);

@@ -7,17 +7,18 @@ namespace CodeAnalysis.TestTools.Contexts;
 /// Represents the context to verify <see cref="CodeFixProvider"/> behavior.
 /// </summary>
 [Inheritable]
-public partial record CodeFixVerifierContext
+public partial record CodeFixVerifierContext<TContext>
+    where TContext : AnalyzerVerifyContext<TContext>
 {
-    /// <summary>Creates a new instance of the <see cref="CodeFixVerifierContext"/> class.</summary>
-    public CodeFixVerifierContext(AnalyzerVerifyContext analyzerContext, CodeFixProvider codeFix)
+    /// <summary>Creates a new instance of the <see cref="CodeFixVerifierContext{TContext}"/> class.</summary>
+    public CodeFixVerifierContext(TContext analyzerContext, CodeFixProvider codeFix)
     {
-        AnalyzerContext = Guard.NotNull(analyzerContext, nameof(analyzerContext));
+        AnalyzerContext = Guard.NotNull(analyzerContext);
         if (AnalyzerContext.Sources.Count > 1)
         {
             throw new NotSupportedException(Messages.NotSupported_MultipleSources);
         }
-        CodeFix = Guard.NotNull(codeFix, nameof(codeFix));
+        CodeFix = Guard.NotNull(codeFix);
         Sources = new Sources(Language);
     }
 
@@ -25,7 +26,7 @@ public partial record CodeFixVerifierContext
     public Language Language => AnalyzerContext.Language;
 
     /// <summary>Gets the analyzer context.</summary>
-    public AnalyzerVerifyContext AnalyzerContext { get; }
+    public TContext AnalyzerContext { get; }
 
     /// <summary>Gets the code fix provider under test.</summary>
     public CodeFixProvider CodeFix { get; }
@@ -69,7 +70,7 @@ public partial record CodeFixVerifierContext
         => l.Single().HaveSameLines(r.Single());
 
     [Pure]
-    private async Task<AnalyzerVerifyContext> ApplyCodeAction(AnalyzerVerifyContext context)
+    private async Task<TContext> ApplyCodeAction(TContext context)
     {
         var document = context.GetDocument();
         var diagnostics = await context.GetDiagnosticsAsync();

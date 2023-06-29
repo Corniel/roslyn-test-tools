@@ -35,14 +35,14 @@ public abstract class GuardedCollection<TElement, TCollection> : IReadOnlyCollec
     /// <summary>Adds items to the collection.</summary>
     [Pure]
     public TCollection AddRange(params TElement[] items) 
-        => AddRange(Guard.NotNull(items, nameof(items)).AsEnumerable());
+        => AddRange(Guard.NotNull(items).AsEnumerable());
 
     /// <summary>Adds items to the collection.</summary>
     [Pure]
     public TCollection AddRange(IEnumerable<TElement> items)
     {
-        Guard.NotNull(items, nameof(items));
-        return New(Collection.Concat(items.Select(item => Guards(item))));
+        Guard.NotNull(items);
+        return New(Collection.Concat(items.Select(Guards)));
     }
 
     /// <inheritdoc/>

@@ -12,6 +12,8 @@ internal sealed class PreferConstantsFix : CodeFixProvider
 {
     public override ImmutableArray<string> FixableDiagnosticIds { get; } = new []{ PreferConstants.DiagnosticId }.ToImmutableArray();
 
+    public override FixAllProvider GetFixAllProvider() => null;
+
     public override async Task RegisterCodeFixesAsync(CodeFixContext context)
     {
         var diagnostic = context.Diagnostics.First();
