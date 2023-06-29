@@ -48,17 +48,15 @@ public abstract record AnalyzerVerifyContext
     /// * compiler options
     /// </summary>
     [Pure]
-    public Task<Compilation?> GetCompilationAsync()
+    public Task<Compilation> GetCompilationAsync()
         => GetProject()
         .WithParseOptions(Options)
-        .GetCompilationAsync();
+        .GetCompilationAsync()!;
 
     /// <summary>Gets the diagnostics.</summary>
     [Pure]
     public async Task<IReadOnlyCollection<Diagnostic>> GetDiagnosticsAsync()
-        => (await GetCompilationAsync()) is { } compliation
-        ? await compliation.GetDiagnosticsAsync(Analyzers)
-        : Array.Empty<Diagnostic>();
+        => await (await GetCompilationAsync()).GetDiagnosticsAsync(Analyzers);
 
     /// <summary>Reports (both expected, unexpected, and not reported) issues for the analyzer verify context.</summary>
     [Pure]
@@ -71,7 +69,7 @@ public abstract record AnalyzerVerifyContext
     public async Task<IEnumerable<Issue>> ReportIssuesAsync()
     {
         var compilation = await GetCompilationAsync();
-        var diagnostics = await compilation!.GetDiagnosticsAsync(Analyzers);
+        var diagnostics = await compilation.GetDiagnosticsAsync(Analyzers);
         var expected = compilation!.GetExpectedIssues();
 
         return IgnoreCompilerWarnings
