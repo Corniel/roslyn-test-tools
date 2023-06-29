@@ -82,7 +82,7 @@ public sealed record IssueLocation : IComparable<IssueLocation>
         => location is null || location == Location.None
         ? None
         : new(
-            filePath: Guard.NotNull(location, nameof(location)).SourceTree?.FilePath,
+            filePath: Guard.NotNull(location).SourceTree?.FilePath,
             lineNumber: location.LineNumber(),
             start: location.GetLineSpan().StartLinePosition.Character,
             spanSize: location.SourceSpan.Length);

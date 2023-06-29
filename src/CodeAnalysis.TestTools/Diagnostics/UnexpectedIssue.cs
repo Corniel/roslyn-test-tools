@@ -15,7 +15,7 @@ public sealed record UnexpectedIssue : Issue
     [Pure]
     public static UnexpectedIssue FromDiagnostic(Diagnostic diagnostic)
         => new(
-            diagnosticId: Guard.NotNull(diagnostic, nameof(diagnostic)).Id,
+            diagnosticId: Guard.NotNull(diagnostic).Id,
             type: diagnostic.GetIssueType(),
             message: diagnostic.GetMessage(),
             location: IssueLocation.FromLocation(diagnostic.Location));

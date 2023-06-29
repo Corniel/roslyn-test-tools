@@ -1,6 +1,9 @@
-﻿namespace Analyzer_verify_context_specs;
+﻿using Microsoft.CodeAnalysis;
+using System.IO;
 
-public class For_both
+namespace Analyzer_verify_context_specs;
+
+public class For_CS_and_VB
 {
     [Test]
     public void supports_adding_code_snippets()
@@ -21,38 +24,107 @@ public class For_both
     }
 }
 
-public class ForCS
+public class For_CS
 {
     [Test]
     public void supports_analyzer_for_multiple_languages()
     {
-        Action init = () => new MultipleLanguages().ForCS();
-        init.Should().NotThrow<LanguageConflict>();
+        Action init = () => _ = new MultipleLanguages().ForCS();
+        init.Should().NotThrow();
     }
 
     [Test]
     public void does_not_support_VB_Analyzer()
     {
-        Action init = () => new VisualBasicOnly().ForCS();
+        Action init = () => _ = new VisualBasicOnly().ForCS();
         init.Should()
             .Throw<LanguageConflict>()
             .WithMessage("The analyzer 'VisualBasicOnly' does not support C#.");
     }
 }
-public class ForVB
+public class For_VB
 {
     [Test]
     public void supports_analyzer_for_multiple_languages()
     {
-        Action init = () => new MultipleLanguages().ForVB();
-        init.Should().NotThrow<LanguageConflict>();
+        Action init = () => _ = new MultipleLanguages().ForVB();
+        init.Should().NotThrow();
     }
     [Test]
     public void does_not_support_CS_Analyzer()
     {
-        Action init = () => new CSharpOnly().ForVB();
+        Action init = () => _ = new CSharpOnly().ForVB();
         init.Should()
             .Throw<LanguageConflict>()
             .WithMessage("The analyzer 'CSharpOnly' does not support Visual Basic.");
     }
+}
+
+public class For_CS_Project
+{
+    private static readonly FileInfo CSProject = new("../../../../../project/CSharpProject/CSharpProject.csproj");
+
+    [Test]
+    public void supports_analyzer_for_multiple_languages()
+    {
+        Action init = () => _ = new MultipleLanguages().ForProject(CSProject);
+        init.Should().NotThrow();
+    }
+
+    [Test]
+    public void does_not_support_VB_Analyzer()
+    {
+        Action init = () => _ = new VisualBasicOnly().ForProject(CSProject);
+        init.Should()
+            .Throw<LanguageConflict>()
+            .WithMessage("The analyzer 'VisualBasicOnly' does not support C#.");
+    }
+
+    [Test]
+    public void supports_CS_Analyzer()
+    {
+        Action init = () => _ = new CSharpOnly().ForProject(CSProject);
+        init.Should().NotThrow();
+    }
+
+
+    [Test]
+    public void compiles_with_NuGet_dependency()
+        => new CSharpOnly().ForProject(CSProject)
+            .ReportIssues()
+            .Should().BeEmpty();
+}
+
+public class For_VB_Project
+{
+    private static readonly FileInfo VBProject = new("../../../../../project/VbProject/VbProject.vbproj");
+
+    [Test]
+    public void supports_analyzer_for_multiple_languages()
+    {
+        Action init = () => _ = new MultipleLanguages().ForProject(VBProject);
+        init.Should().NotThrow();
+    }
+
+    [Test]
+    public void does_not_support_CS_Analyzer()
+    {
+        Action init = () => _ = new CSharpOnly().ForProject(VBProject);
+        init.Should()
+            .Throw<LanguageConflict>()
+            .WithMessage("The analyzer 'CSharpOnly' does not support Visual Basic.");
+    }
+
+    [Test]
+    public void supports_VB_Analyzer()
+    {
+        Action init = () => _ = new VisualBasicOnly().ForProject(VBProject);
+        init.Should().NotThrow();
+    }
+
+    [Test]
+    public void compiles_with_NuGet_dependency()
+        => new VisualBasicOnly().ForProject(VBProject)
+            .ReportIssues()
+            .Should().BeEmpty();
 }

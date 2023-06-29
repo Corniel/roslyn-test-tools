@@ -15,7 +15,7 @@ public sealed partial class NuGetPackage : IReadOnlyCollection<MetadataReference
     /// <summary>Creates a new instance of the <see cref="NuGetPackage"/> class.</summary>
     private NuGetPackage(string packageId, NuGetVersion version, string? runtime)
     {
-        Id = Guard.NotNullOrEmpty(packageId, nameof(packageId));
+        Id = Guard.NotNullOrEmpty(packageId);
         Version = version;
         Runtime = runtime;
     }

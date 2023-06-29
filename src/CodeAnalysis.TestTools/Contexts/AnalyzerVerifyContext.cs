@@ -5,16 +5,11 @@
 /// </summary>
 public abstract record AnalyzerVerifyContext
 {
-    /// <summary>Creates a new instance of the <see cref="AnalyzerVerifyContext"/> class.</summary>
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-    // handled by implementations.
+    /// <summary>Initializes a new instance of the <see cref="AnalyzerVerifyContext"/> class.</summary>
     protected AnalyzerVerifyContext()
     {
         Analyzers = new Analyzers(Language);
-        Sources = new Sources(Language);
-        References = Reference.Defaults;
     }
-#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
     /// <summary>Gets the language (of the options sources etc.).</summary>
     public abstract Language Language { get; }
@@ -22,36 +17,15 @@ public abstract record AnalyzerVerifyContext
     /// <summary>Gets the analyzer(s) to verify for.</summary>
     public Analyzers Analyzers { get; init; }
 
-    /// <summary>Gets the parse options to compile with.</summary>
-    public ParseOptions Options { get; init; }
-
-    /// <summary>Gets the sources (snippets, files) to verify with.</summary>
-    public Sources Sources { get; init; }
-
     /// <summary>Gets the diagnostic ID's toe ignore.</summary>
     public DiagnosticIds IgnoredDiagnostics { get; init; } = DiagnosticIds.Empty;
-
-    /// <summary>Gets the (external) references to compile with.</summary>
-    public MetadataReferences References { get; init; } = MetadataReferences.Empty;
-
-    /// <summary>Gets the output kind of the compilation.</summary>
-    public OutputKind OutputKind { get; init; } = OutputKind.DynamicallyLinkedLibrary;
 
     /// <summary>Gets if the compiler warnings should be ignored.</summary>
     public bool IgnoreCompilerWarnings { get; init; } = true;
 
-    /// <summary>
-    /// Gets the compilation based on the context's:
-    /// * sources
-    /// * meta-data references
-    /// * parse options
-    /// * compiler options
-    /// </summary>
+    /// <summary>Gets the compilation.</summary>
     [Pure]
-    public Task<Compilation> GetCompilationAsync()
-        => GetProject()
-        .WithParseOptions(Options)
-        .GetCompilationAsync()!;
+    public abstract Task<Compilation> GetCompilationAsync();
 
     /// <summary>Gets the diagnostics.</summary>
     [Pure]
@@ -77,31 +51,6 @@ public abstract record AnalyzerVerifyContext
             : IssueComparer.Compare(diagnostics, expected, IgnoredDiagnostics);
     }
 
-    /// <summary>Updates the compilations options before applying the diagnostics.</summary>
-    [Pure]
-    protected abstract CompilationOptions Update(CompilationOptions? options);
-
     /// <summary>Gets the assembly name of the compilation.</summary>
     protected virtual string AssemblyName => $"{Analyzers.First().GetType().Name}.Verify";
-
-    [Pure]
-    internal Project GetProject()
-    {
-        if (!Sources.Any()) throw new IncompleteSetup(Messages.IncompleteSetup_NoSources);
-        else
-        {
-            using var workspace = new AdhocWorkspace();
-            var solution = workspace.CurrentSolution;
-
-            var project = solution
-                .AddProject(AssemblyName, AssemblyName, Language.Name)
-                .AddMetadataReferences(References)
-                .AddSources(Sources);
-
-            return project.WithCompilationOptions(Update(project.CompilationOptions));
-        }
-    }
-
-    [Pure]
-    internal Document GetDocument() => GetProject().Documents.Single();
 }
