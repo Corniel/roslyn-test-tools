@@ -9,8 +9,7 @@ public abstract partial record AnalyzerVerifyContext<TContext> : AnalyzerVerifyC
     /// <summary>Initializes a new instance of the <see cref="AnalyzerVerifyContext{TContext}"/> class.</summary>
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     // handled by implementations.
-    protected AnalyzerVerifyContext
-        ()
+    protected AnalyzerVerifyContext()
     {
         Sources = new Sources(Language);
         References = Reference.Defaults;
