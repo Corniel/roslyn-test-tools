@@ -70,7 +70,7 @@ public abstract record AnalyzerVerifyContext
     {
         var compilation = await GetCompilationAsync();
         var diagnostics = await compilation.GetDiagnosticsAsync(Analyzers);
-        var expected = compilation!.GetExpectedIssues();
+        var expected = compilation.GetExpectedIssues();
 
         return IgnoreCompilerWarnings
             ? IssueComparer.Compare(diagnostics.Where(diagnostic => !diagnostic.IsCompilerWarning()), expected, IgnoredDiagnostics)
