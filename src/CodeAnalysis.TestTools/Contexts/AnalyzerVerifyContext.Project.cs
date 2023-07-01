@@ -18,6 +18,11 @@ public record ProjectAnalyzerVerifyContext : AnalyzerVerifyContext
     /// <inheritdoc />
     public override Language Language => Language.Parse(Project?.Language);
 
+    /// <summary>Gets the compilation.</summary>
+    [Pure]
+    public override Task<Compilation> GetCompilationAsync()
+        => Project.GetCompilationAsync()!;
+
     /// <summary>Adds an (optional) extra analyzer.</summary>
     [Pure]
     public ProjectAnalyzerVerifyContext Add(DiagnosticAnalyzer analyzer)
@@ -26,8 +31,8 @@ public record ProjectAnalyzerVerifyContext : AnalyzerVerifyContext
     /// <inheritdoc cref="Project.AssemblyName" />
     protected override string AssemblyName => Project.AssemblyName;
 
-    /// <summary>Gets the compilation.</summary>
+    /// <inheritdoc />
     [Pure]
-    public override Task<Compilation> GetCompilationAsync()
-        => Project.GetCompilationAsync()!;
+    protected override IEnumerable<TextDocument> GetTextDocuments()
+        => Project.AdditionalDocuments;
 }

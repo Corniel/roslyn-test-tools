@@ -1,5 +1,6 @@
 ﻿using Microsoft.CodeAnalysis;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace Analyzer_verify_context_specs;
 
@@ -87,12 +88,24 @@ public class For_CS_Project
         init.Should().NotThrow();
     }
 
-
     [Test]
     public void compiles_with_NuGet_dependency()
         => new CSharpOnly().ForProject(CSProject)
             .ReportIssues()
             .Should().BeEmpty();
+
+    [Test]
+    public async Task passes_additional_files()
+    {
+        var diagnostics = await new CheckAdditionalFiles()
+            .ForProject(CSProject)
+            .GetDiagnosticsAsync();
+
+        diagnostics
+            .Where(d => d.Id == nameof(CheckAdditionalFiles))
+            .Select(d => d.GetMessage())
+            .Should().BeEquivalentTo("Contains data.txt");
+    }
 }
 
 public class For_VB_Project
@@ -127,4 +140,17 @@ public class For_VB_Project
         => new VisualBasicOnly().ForProject(VBProject)
             .ReportIssues()
             .Should().BeEmpty();
+
+    [Test]
+    public async Task passes_additional_files()
+    {
+        var diagnostics = await new CheckAdditionalFiles()
+            .ForProject(VBProject)
+            .GetDiagnosticsAsync();
+
+        diagnostics
+            .Where(d => d.Id == nameof(CheckAdditionalFiles))
+            .Select(d => d.GetMessage())
+            .Should().BeEquivalentTo("Contains data.txt");
+    }
 }
