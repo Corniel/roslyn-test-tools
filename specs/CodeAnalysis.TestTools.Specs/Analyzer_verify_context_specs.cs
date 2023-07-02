@@ -104,7 +104,7 @@ public class For_CS_Project
         diagnostics
             .Where(d => d.Id == nameof(CheckAdditionalFiles))
             .Select(d => d.GetMessage())
-            .Should().BeEquivalentTo("Contains data.txt");
+            .Should().BeEquivalentTo("Contains data.txt: 'Hello, world!'");
     }
 }
 
@@ -151,6 +151,6 @@ public class For_VB_Project
         diagnostics
             .Where(d => d.Id == nameof(CheckAdditionalFiles))
             .Select(d => d.GetMessage())
-            .Should().BeEquivalentTo("Contains data.txt");
+            .Should().BeEquivalentTo("Contains data.txt: 'Hello, world!'");
     }
 }

@@ -11,7 +11,7 @@ internal sealed class CheckAdditionalFiles : DiagnosticAnalyzer
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics
         => new[]
         {
-            new DiagnosticDescriptor(nameof(CheckAdditionalFiles), "Check additional files", "Contains {0}", string.Empty, DiagnosticSeverity.Warning, true),
+            new DiagnosticDescriptor(nameof(CheckAdditionalFiles), "Check additional files", "Contains {0}: '{1}'", string.Empty, DiagnosticSeverity.Warning, true),
         }
         .ToImmutableArray();
 
@@ -29,7 +29,7 @@ internal sealed class CheckAdditionalFiles : DiagnosticAnalyzer
             context.ReportDiagnostic(Diagnostic.Create(
                 SupportedDiagnostics[0],
                 Location.None,
-                Path.GetFileName(file.Path)));
+                Path.GetFileName(file.Path), file.ToString().Replace("\r\n", string.Empty)));
         }
     }
 }
