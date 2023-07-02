@@ -29,7 +29,7 @@ public record CSharpAnalyzerVerifyContext
     /// <summary>Sets the C# parse options to parse with (default C# 9.0).</summary>
     [Pure]
     public CSharpAnalyzerVerifyContext WithOptions(CSharpParseOptions options)
-        => this with { Options = Guard.NotNull(options, nameof(options)) };
+        => this with { Options = Guard.NotNull(options) };
 
     /// <summary>Allow unsafe code (false by default).</summary>
     [Pure]

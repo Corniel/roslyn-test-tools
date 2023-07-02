@@ -1,4 +1,6 @@
-﻿namespace CodeAnalysis.TestTools.Contexts;
+﻿using Microsoft.CodeAnalysis;
+
+namespace CodeAnalysis.TestTools.Contexts;
 
 /// <summary>
 /// Represents a project file based context to verify <see cref="DiagnosticAnalyzer"/> behavior.
@@ -33,6 +35,6 @@ public record ProjectAnalyzerVerifyContext : AnalyzerVerifyContext
 
     /// <inheritdoc />
     [Pure]
-    protected override IEnumerable<TextDocument> GetTextDocuments()
-        => Project.AdditionalDocuments;
+    internal override IEnumerable<AdditionalText> GetAdditionalText()
+        => Project.AdditionalDocuments.Select(d => d.ToAdditionalText());
 }

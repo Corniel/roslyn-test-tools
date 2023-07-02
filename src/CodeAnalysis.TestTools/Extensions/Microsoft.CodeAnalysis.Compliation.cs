@@ -11,24 +11,21 @@ public static class CompliationExtensions
         this Compilation compilation,
         Analyzers analyzers,
         CancellationToken cancellationToken = default)
-        => compilation.GetDiagnosticsAsync(analyzers, Array.Empty<TextDocument>(), cancellationToken);
+        => compilation.GetDiagnosticsAsync(analyzers, Array.Empty<AdditionalText>(), cancellationToken);
 
     /// <summary>Gets the diagnostics for the specified analyzers.</summary>
     [Pure]
     public static async Task<IReadOnlyCollection<Diagnostic>> GetDiagnosticsAsync(
         this Compilation compilation,
         Analyzers analyzers,
-        IEnumerable<TextDocument> documents,
+        IEnumerable<AdditionalText> texts,
         CancellationToken cancellationToken = default)
     {
         Guard.NotNull(compilation);
         Guard.HasAny(analyzers);
 
         var options = compilation.Options.WithSpecificDiagnosticOptions(analyzers.DiagnosticsToReport);
-
-        var texts = documents.Select(d => new AdditionalTextDocument(d)).Cast<AdditionalText>().ToImmutableArray();
-
-        var analyzerOptions = new AnalyzerOptions(texts, new EmptyAnalyzerConfigOptionsProvider());
+        var analyzerOptions = new AnalyzerOptions(texts.ToImmutableArray(), new EmptyAnalyzerConfigOptionsProvider());
 
         var diagnostics = (await compilation
             .WithOptions(options)
