@@ -1,5 +1,4 @@
 ﻿using Microsoft.CodeAnalysis.CodeFixes;
-using System.Threading.Tasks;
 
 namespace Specs.CodeFixers;
 

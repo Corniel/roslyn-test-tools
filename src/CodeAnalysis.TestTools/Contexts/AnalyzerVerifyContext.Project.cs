@@ -1,4 +1,6 @@
-﻿namespace CodeAnalysis.TestTools.Contexts;
+﻿using Microsoft.CodeAnalysis;
+
+namespace CodeAnalysis.TestTools.Contexts;
 
 /// <summary>
 /// Represents a project file based context to verify <see cref="DiagnosticAnalyzer"/> behavior.
@@ -18,6 +20,11 @@ public record ProjectAnalyzerVerifyContext : AnalyzerVerifyContext
     /// <inheritdoc />
     public override Language Language => Language.Parse(Project?.Language);
 
+    /// <summary>Gets the compilation.</summary>
+    [Pure]
+    public override Task<Compilation> GetCompilationAsync()
+        => Project.GetCompilationAsync()!;
+
     /// <summary>Adds an (optional) extra analyzer.</summary>
     [Pure]
     public ProjectAnalyzerVerifyContext Add(DiagnosticAnalyzer analyzer)
@@ -26,8 +33,8 @@ public record ProjectAnalyzerVerifyContext : AnalyzerVerifyContext
     /// <inheritdoc cref="Project.AssemblyName" />
     protected override string AssemblyName => Project.AssemblyName;
 
-    /// <summary>Gets the compilation.</summary>
+    /// <inheritdoc />
     [Pure]
-    public override Task<Compilation> GetCompilationAsync()
-        => Project.GetCompilationAsync()!;
+    internal override IEnumerable<AdditionalText> GetAdditionalText()
+        => Project.AdditionalDocuments.Select(d => d.ToAdditionalText());
 }

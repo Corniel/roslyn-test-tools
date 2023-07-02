@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <AdditionalFiles Include="data.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Qowaiv" Version="6.4.1" />
   </ItemGroup>
 

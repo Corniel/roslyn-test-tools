@@ -30,7 +30,7 @@ public abstract record AnalyzerVerifyContext
     /// <summary>Gets the diagnostics.</summary>
     [Pure]
     public async Task<IReadOnlyCollection<Diagnostic>> GetDiagnosticsAsync()
-        => await (await GetCompilationAsync()).GetDiagnosticsAsync(Analyzers);
+        => await (await GetCompilationAsync()).GetDiagnosticsAsync(Analyzers, GetAdditionalText());
 
     /// <summary>Reports (both expected, unexpected, and not reported) issues for the analyzer verify context.</summary>
     [Pure]
@@ -53,4 +53,8 @@ public abstract record AnalyzerVerifyContext
 
     /// <summary>Gets the assembly name of the compilation.</summary>
     protected virtual string AssemblyName => $"{Analyzers.First().GetType().Name}.Verify";
+
+    /// <summary>Gets the additional texts.</summary>
+    [Pure]
+    internal abstract IEnumerable<AdditionalText> GetAdditionalText();
 }

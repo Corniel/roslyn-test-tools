@@ -5,12 +5,14 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Nullable>enable</Nullable>
-    <Version>1.0.0</Version>
+    <Version>1.1.0</Version>
     <Authors>Corniel Nobel</Authors>
     <Product>Roslyn static code analyzers test tools</Product>
     <Description>Tooling to describe expected static code analyzer behavior in annotated code files.</Description>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <PackageReleaseNotes>
+v1.1.0
+- Support additional files for projects.
 v1.0.0
 - Support verifying against projects.
 v0.0.4

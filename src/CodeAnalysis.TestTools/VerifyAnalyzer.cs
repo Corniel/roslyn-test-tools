@@ -26,14 +26,14 @@ public static class VerifyAnalyzer
     [Pure]
     public static ProjectAnalyzerVerifyContext ForProject(this DiagnosticAnalyzer analyzer, FileInfo location)
     {
-        Guard.Exists(location, nameof(location));
+        Guard.Exists(location);
         var context = new ProjectAnalyzerVerifyContext(ProjectLoader.Load(location));
         return context.Add(analyzer);
     }
 
     /// <summary>Verifies that the reported issues only have expected issues.</summary>
     public static void Verify(this AnalyzerVerifyContext context)
-        => Guard.NotNull(context, nameof(context))
+        => Guard.NotNull(context)
         .ReportIssues()
         .ShouldHaveExpectedIssuesOnly();
 }

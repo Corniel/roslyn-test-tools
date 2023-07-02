@@ -112,10 +112,13 @@ public abstract partial record AnalyzerVerifyContext<TContext> : AnalyzerVerifyC
         .WithParseOptions(Options)
         .GetCompilationAsync()!;
 
-
     /// <summary>Updates the compilations options before applying the diagnostics.</summary>
     [Pure]
     protected abstract CompilationOptions Update(CompilationOptions? options);
+
+    /// <inheritdoc />
+    [Pure]
+    internal override IEnumerable<AdditionalText> GetAdditionalText() => Array.Empty<AdditionalText>();
 
     [Pure]
     internal virtual Project GetProject()
