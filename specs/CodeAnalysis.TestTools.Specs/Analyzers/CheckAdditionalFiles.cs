@@ -28,7 +28,13 @@ internal sealed class CheckAdditionalFiles : DiagnosticAnalyzer
             context.ReportDiagnostic(Diagnostic.Create(
                 SupportedDiagnostics[0],
                 Location.None,
-                Path.GetFileName(file.Path), file.ToString().Replace("\r\n", string.Empty)));
+                Path.GetFileName(file.Path), RemoveNewLines(file)));
         }
     }
+
+    private static string RemoveNewLines(AdditionalText file)
+        => file
+            .ToString()
+            .Replace("\r\n", string.Empty)
+            .Replace("\n", string.Empty);
 }
