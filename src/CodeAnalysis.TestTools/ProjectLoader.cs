@@ -15,7 +15,7 @@ public static class ProjectLoader
     /// </remarks>
     public static Project Load(FileInfo location)
     {
-        Guard.Exists(location, nameof(location));
+        Guard.Exists(location);
         RegisterDefaults();
         return Run.Sync(() => LoadAsync(location));
     }

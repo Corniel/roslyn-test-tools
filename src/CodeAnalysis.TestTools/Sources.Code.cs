@@ -29,13 +29,13 @@ public sealed class Code
     /// <summary>Returns true if both pieces of code have the same lines.</summary>
     [Pure]
     public bool HaveSameLines(Code other)
-        => Enumerable.SequenceEqual(Lines, Guard.NotNull(other, nameof(other)).Lines);
+        => Enumerable.SequenceEqual(Lines, Guard.NotNull(other).Lines);
 
     /// <summary>Creates a code snippet.</summary>
     [Pure]
     public static Code Snippet(string text, Language language)
     {
-        Guard.NotNullOrEmpty(text, nameof(text));
+        Guard.NotNullOrEmpty(text);
         var hash = Convert.ToBase64String(Hash.ComputeHash(Encoding.UTF8.GetBytes(text)))[0..8];
         var filePath = $"Snippet_{hash}{language.FileExtension}";
         return new(filePath, text);
@@ -45,7 +45,7 @@ public sealed class Code
     [Pure]
     public static Code FromFile(FileInfo file)
     {
-        Guard.NotNull(file, nameof(file));
+        Guard.NotNull(file);
         using var reader = new StreamReader(file.OpenRead(), Encoding.UTF8);
         return new(file.ToString(), reader.ReadToEnd());
     }
@@ -54,7 +54,7 @@ public sealed class Code
     [Pure]
     public static async Task<Code> FromDocumentAsync(Document document)
     {
-        Guard.NotNull(document, nameof(document));
+        Guard.NotNull(document);
         var path = document.FilePath ?? document.Name;
         return new(path, (await document.GetTextAsync()).ToString());
     }

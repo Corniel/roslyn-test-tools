@@ -3,7 +3,7 @@
 namespace Microsoft.CodeAnalysis;
 
 /// <summary>Extensions on <see cref="Compilation"/>.</summary>
-public static class CompliationExtensions
+public static class CompilationExtensions
 {
     /// <summary>Gets the diagnostics for the specified analyzers.</summary>
     [Pure]

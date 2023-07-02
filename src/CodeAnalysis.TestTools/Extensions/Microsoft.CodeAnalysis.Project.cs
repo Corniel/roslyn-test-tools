@@ -7,8 +7,8 @@ public static class ProjectExtensions
     [Pure]
     public static Project AddSources(this Project project, IEnumerable<Code> sources)
     {
-        Guard.NotNull(project, nameof(project));
-        Guard.NotNull(sources, nameof(sources));
+        Guard.NotNull(project);
+        Guard.NotNull(sources);
 
         foreach (var code in sources)
         {

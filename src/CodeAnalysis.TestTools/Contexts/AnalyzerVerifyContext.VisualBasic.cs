@@ -46,7 +46,7 @@ public record VisualBasicAnalyzerVerifyContext : AnalyzerVerifyContext<VisualBas
     /// <summary>Sets the VB.NET options to parse with (default VB.NET 16.9).</summary>
     [Pure]
     public VisualBasicAnalyzerVerifyContext WithOptions(VisualBasicParseOptions options)
-        => this with { Options = Guard.NotNull(options, nameof(options)) };
+        => this with { Options = Guard.NotNull(options) };
 
     /// <inheritdoc />
     [Pure]

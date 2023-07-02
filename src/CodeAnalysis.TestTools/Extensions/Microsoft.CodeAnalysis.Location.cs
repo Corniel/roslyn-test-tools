@@ -6,5 +6,5 @@ public static class LocationExtensions
     /// <summary>Gets the line number of the location.</summary>
     [Pure]
     public static int LineNumber(this Location location)
-         => Guard.NotNull(location, nameof(location)).GetLineSpan().StartLinePosition.Line + 1;
+         => Guard.NotNull(location).GetLineSpan().StartLinePosition.Line + 1;
 }

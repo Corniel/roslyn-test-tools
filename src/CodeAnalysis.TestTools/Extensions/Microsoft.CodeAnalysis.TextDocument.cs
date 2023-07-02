@@ -3,6 +3,7 @@
 /// <summary>Extensions on <see cref="TextDocument"/>.</summary>
 public static class TextDocumentExtensions
 {
+    /// <summary>Represents the <see cref="TextDocument"/> as <see cref="AdditionalText"/>.</summary>
     public static AdditionalText ToAdditionalText(this TextDocument document)
         => new AdditionalTextDocument(document);
 

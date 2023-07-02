@@ -10,7 +10,7 @@ public static class IssueVerifier
     [FluentSyntax]
     public static IEnumerable<Issue> ShouldHaveExpectedIssuesOnly(this IEnumerable<Issue> issues)
     {
-        Guard.NotNull(issues, nameof(issues)).Log();
+        Guard.NotNull(issues).Log();
 
         if (issues.Unexpected().Any() || issues.NotReported().Any())
         {
@@ -26,7 +26,7 @@ public static class IssueVerifier
     [FluentSyntax]
     public static IEnumerable<Issue> Log(this IEnumerable<Issue> issues, TextWriter? writer = null)
     {
-        Guard.NotNull(issues, nameof(issues));
+        Guard.NotNull(issues);
         writer ??= Console.Out;
 
         writer.WriteLine(issues.GetReportInfoHeader());
@@ -50,7 +50,7 @@ public static class IssueVerifier
     [Pure]
     public static string GetReportInfoHeader(this IEnumerable<Issue> issues)
     {
-        Guard.NotNull(issues, nameof(issues));
+        Guard.NotNull(issues);
         var actual_issues = issues.Reported().IssueCount();
         var actual_errors = issues.Reported().ErrorCount();
         var unexpected_issues = issues.Unexpected().IssueCount();

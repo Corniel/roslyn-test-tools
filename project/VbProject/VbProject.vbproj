@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <PropertyGroup>
+    <OptionStrict>On</OptionStrict>
     <MyType>Empty</MyType>
   </PropertyGroup>
 
