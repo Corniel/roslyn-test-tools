@@ -1,6 +1,4 @@
-﻿using Microsoft.CodeAnalysis;
-using System.IO;
-using System.Threading.Tasks;
+﻿using System.IO;
 
 namespace Analyzer_verify_context_specs;
 
