@@ -9,6 +9,8 @@ namespace CodeAnalysis.TestTools.References;
 
 internal static class NuGetRepository
 {
+    private static readonly Uri NuGetV3 = new("https://api.nuget.org/v3/index.json");
+
     public static async Task DownloadAsync(NuGetPackage package)
     {
         var resource = await Repo();
@@ -62,14 +64,7 @@ internal static class NuGetRepository
 
     [Pure]
     private static Task<FindPackageByIdResource> Repo()
-        => Repository.Factory.GetCoreV3(NuGetOrgUrl()).GetResourceAsync<FindPackageByIdResource>();
-
-    [Pure]
-    private static string NuGetOrgUrl()
-        => Settings
-        .LoadSpecificSettings(new DirectoryInfo(@"..\..\..").FullName, "nuget.config")
-        .GetSection("packageSources").Items.OfType<AddItem>()
-        .Single(x => x.Key == "nuget.org").Value;
+        => Repository.Factory.GetCoreV3(NuGetV3.AbsoluteUri).GetResourceAsync<FindPackageByIdResource>();
 
     [Pure]
     private static async Task<NuGetLatestVersions> GetLatestVersionsCacheAsync()
