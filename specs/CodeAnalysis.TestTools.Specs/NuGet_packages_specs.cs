@@ -2,10 +2,7 @@
 
 namespace NuGet_packages_specs;
 
-#if RELEASE
-    [TestFixture(Ignore = "Not on build")]
-#endif
-    public class Latest_versions
+public class Latest_versions
 {
     [Test]
     public void Newtonsoft_Json()
