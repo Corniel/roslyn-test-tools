@@ -61,7 +61,7 @@ public class For_VB
 
 public class For_CS_Project
 {
-    private static readonly FileInfo CSProject = new("../../../../../project/CSharpProject/CSharpProject.csproj");
+    private static readonly FileInfo CSProject = new("../../../../../projects/CSharpProject/CSharpProject.csproj");
 
     [Test]
     public void supports_analyzer_for_multiple_languages()
@@ -88,9 +88,9 @@ public class For_CS_Project
 
     [Test]
     public void compiles_with_NuGet_dependency()
-        => new CSharpOnly().ForProject(CSProject)
-            .ReportIssues()
-            .Should().BeEmpty();
+        => new CSharpOnly()
+        .ForProject(CSProject)
+        .Verify();
 
     [Test]
     public async Task passes_additional_files()
@@ -108,7 +108,7 @@ public class For_CS_Project
 
 public class For_VB_Project
 {
-    private static readonly FileInfo VBProject = new("../../../../../project/VbProject/VbProject.vbproj");
+    private static readonly FileInfo VBProject = new("../../../../../projects/VbProject/VbProject.vbproj");
 
     [Test]
     public void supports_analyzer_for_multiple_languages()
@@ -135,9 +135,9 @@ public class For_VB_Project
 
     [Test]
     public void compiles_with_NuGet_dependency()
-        => new VisualBasicOnly().ForProject(VBProject)
-            .ReportIssues()
-            .Should().BeEmpty();
+        => new VisualBasicOnly()
+        .ForProject(VBProject)
+        .Verify();
 
     [Test]
     public async Task passes_additional_files()
