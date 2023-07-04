@@ -3,6 +3,8 @@
   <PropertyGroup>
     <RootNamespace>VbProject</RootNamespace>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <OptionStrict>On</OptionStrict>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,12 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="MathNet.Numerics" Version="5.0.0" />
     <PackageReference Include="Qowaiv" Version="6.4.1" />
   </ItemGroup>
-
-  <PropertyGroup>
-    <OptionStrict>On</OptionStrict>
-    <MyType>Empty</MyType>
-  </PropertyGroup>
 
 </Project>
