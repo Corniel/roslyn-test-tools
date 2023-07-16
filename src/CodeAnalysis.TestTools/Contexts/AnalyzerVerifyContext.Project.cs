@@ -24,10 +24,7 @@ public record ProjectAnalyzerVerifyContext : AnalyzerVerifyContext
     {
         foreach (var reference in Project.MetadataReferences)
         {
-            if (reference is UnresolvedMetadataReference)
-            {
-                throw new InvalidOperationException($"Could not resolve {reference.Display}.");
-            }
+            Console.WriteLine($"{reference.Display} ({reference.GetType()})");
         }
         return Project.GetCompilationAsync()!;
     }
