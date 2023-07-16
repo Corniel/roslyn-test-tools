@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Qowaiv" Version="6.4.1" />
+    <PackageReference Update="Qowaiv" Version="6.4.1" />
   </ItemGroup>
 
   <PropertyGroup>
