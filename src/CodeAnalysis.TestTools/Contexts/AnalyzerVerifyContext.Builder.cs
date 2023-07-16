@@ -24,9 +24,6 @@ public abstract partial record AnalyzerVerifyContext<TContext> : AnalyzerVerifyC
     /// <summary>Gets the sources (snippets, files) to verify with.</summary>
     public Sources Sources { get; init; }
 
-    /// <summary>Gets the (external) references to compile with.</summary>
-    public MetadataReferences References { get; init; } = MetadataReferences.Empty;
-
     /// <summary>Adds an (optional) extra analyzer.</summary>
     [Pure]
     public TContext Add(DiagnosticAnalyzer analyzer)

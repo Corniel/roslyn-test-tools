@@ -10,7 +10,7 @@ public record ProjectAnalyzerVerifyContext : AnalyzerVerifyContext
     {
         Project = Guard.NotNull(project);
         Analyzers = new Analyzers(Language);
-        References = References.AddRange(references ?? MetadataReferences.Empty);
+        References = references ?? MetadataReferences.Empty;
     }
 
     /// <summary>Gets the project.</summary>
@@ -21,8 +21,10 @@ public record ProjectAnalyzerVerifyContext : AnalyzerVerifyContext
 
     /// <summary>Gets the compilation.</summary>
     [Pure]
-    public override Task<Compilation> GetCompilationAsync() 
-        => Project.AddMetadataReferences(References).GetCompilationAsync()!;
+    public override Task<Compilation> GetCompilationAsync()
+    {
+        return Project.AddMetadataReferences(References).GetCompilationAsync()!;
+    }
 
     /// <summary>Adds an (optional) extra analyzer.</summary>
     [Pure]
