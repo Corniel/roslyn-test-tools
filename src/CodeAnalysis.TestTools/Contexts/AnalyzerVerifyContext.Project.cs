@@ -23,7 +23,16 @@ public record ProjectAnalyzerVerifyContext : AnalyzerVerifyContext
     [Pure]
     public override Task<Compilation> GetCompilationAsync()
     {
-        return Project.AddMetadataReferences(References).GetCompilationAsync()!;
+        var project = Project.AddMetadataReferences(References);
+
+        if(Language == Language.VisualBasic)
+        {
+            foreach(var reference in project.MetadataReferences)
+            {
+                Console.WriteLine($"- {reference.Display} ({reference.GetType().Name})");
+            }
+        }
+        return project.GetCompilationAsync()!;
     }
 
     /// <summary>Adds an (optional) extra analyzer.</summary>
