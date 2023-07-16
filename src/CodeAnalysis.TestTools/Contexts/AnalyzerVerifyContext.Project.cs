@@ -25,9 +25,10 @@ public record ProjectAnalyzerVerifyContext : AnalyzerVerifyContext
     {
         var project = Project.AddMetadataReferences(References);
 
-        if(Language == Language.VisualBasic)
+        Console.Write(project.Language);
+        if (Language == Language.VisualBasic)
         {
-            foreach(var reference in project.MetadataReferences)
+            foreach (var reference in project.MetadataReferences)
             {
                 Console.WriteLine($"- {reference.Display} ({reference.GetType().Name})");
             }
