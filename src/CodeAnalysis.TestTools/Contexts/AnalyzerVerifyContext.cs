@@ -9,6 +9,7 @@ public abstract record AnalyzerVerifyContext
     protected AnalyzerVerifyContext()
     {
         Analyzers = new Analyzers(Language);
+        References = Reference.Defaults;
     }
 
     /// <summary>Gets the language (of the options sources etc.).</summary>
@@ -16,6 +17,9 @@ public abstract record AnalyzerVerifyContext
 
     /// <summary>Gets the analyzer(s) to verify for.</summary>
     public Analyzers Analyzers { get; init; }
+
+    /// <summary>Gets the (external) references to compile with.</summary>
+    public MetadataReferences References { get; init; } = MetadataReferences.Empty;
 
     /// <summary>Gets the diagnostic ID's toe ignore.</summary>
     public DiagnosticIds IgnoredDiagnostics { get; init; } = DiagnosticIds.Empty;

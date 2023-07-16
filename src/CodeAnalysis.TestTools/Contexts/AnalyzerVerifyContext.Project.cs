@@ -6,10 +6,11 @@
 public record ProjectAnalyzerVerifyContext : AnalyzerVerifyContext
 {
     /// <summary>Initializes a new instance of the <see cref="VisualBasicAnalyzerVerifyContext"/> class.</summary>
-    public ProjectAnalyzerVerifyContext(Project project)
+    public ProjectAnalyzerVerifyContext(Project project, MetadataReferences? references)
     {
         Project = Guard.NotNull(project);
         Analyzers = new Analyzers(Language);
+        References = References.AddRange(references ?? MetadataReferences.Empty);
     }
 
     /// <summary>Gets the project.</summary>
@@ -20,14 +21,8 @@ public record ProjectAnalyzerVerifyContext : AnalyzerVerifyContext
 
     /// <summary>Gets the compilation.</summary>
     [Pure]
-    public override Task<Compilation> GetCompilationAsync()
-    {
-        foreach (var reference in Project.MetadataReferences)
-        {
-            Console.WriteLine($"{reference.Display} ({reference.GetType()})");
-        }
-        return Project.GetCompilationAsync()!;
-    }
+    public override Task<Compilation> GetCompilationAsync() 
+        => Project.AddMetadataReferences(References).GetCompilationAsync()!;
 
     /// <summary>Adds an (optional) extra analyzer.</summary>
     [Pure]

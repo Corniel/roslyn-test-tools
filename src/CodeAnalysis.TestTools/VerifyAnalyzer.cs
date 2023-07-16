@@ -27,7 +27,8 @@ public static class VerifyAnalyzer
     public static ProjectAnalyzerVerifyContext ForProject(this DiagnosticAnalyzer analyzer, FileInfo location)
     {
         Guard.Exists(location);
-        var context = new ProjectAnalyzerVerifyContext(ProjectLoader.Load(location));
+        var project = MsBuild.MsBuildProject.Load(location);
+        var context = new ProjectAnalyzerVerifyContext(ProjectLoader.Load(location), project.MetadataReferences());
         return context.Add(analyzer);
     }
 
