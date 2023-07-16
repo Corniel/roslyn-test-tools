@@ -25,9 +25,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projects", "Projects", "{00B4E265-2A4D-4204-B879-E593ED212EED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpProject", "projects\CSharpProject\CSharpProject.csproj", "{42EF7669-4A0D-432E-8789-C61A72EBC517}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSharpProject", "projects\CSharpProject\CSharpProject.csproj", "{42EF7669-4A0D-432E-8789-C61A72EBC517}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "VbProject", "projects\VbProject\VbProject.vbproj", "{9D73C6DF-C324-4A45-A37C-396F786B401D}"
+Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "VbProject", "projects\VbProject\VbProject.vbproj", "{9D73C6DF-C324-4A45-A37C-396F786B401D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "props", "props", "{6D1DD7FB-7224-4693-B0F1-0FA95D7747CE}"
+	ProjectSection(SolutionItems) = preProject
+		projects\props\common.props = projects\props\common.props
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -60,6 +65,7 @@ Global
 		{7C583E7B-BCA6-47E9-B89E-A546C94010A1} = {5811F55D-6885-4288-8C7D-862CC2B43D7F}
 		{42EF7669-4A0D-432E-8789-C61A72EBC517} = {00B4E265-2A4D-4204-B879-E593ED212EED}
 		{9D73C6DF-C324-4A45-A37C-396F786B401D} = {00B4E265-2A4D-4204-B879-E593ED212EED}
+		{6D1DD7FB-7224-4693-B0F1-0FA95D7747CE} = {00B4E265-2A4D-4204-B879-E593ED212EED}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {59DFE69B-0C3B-4ADA-AB6A-4C72A52D5C08}

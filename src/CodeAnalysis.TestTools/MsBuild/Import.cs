@@ -14,4 +14,9 @@ internal sealed class Import
     }
 
     public MsBuildProject? Project { get; }
+
+    public override string ToString()
+        => Project is { }
+        ? $@"<Import Project=""{Project.Path.FullName}"" />"
+        : "<Import />";
 }
