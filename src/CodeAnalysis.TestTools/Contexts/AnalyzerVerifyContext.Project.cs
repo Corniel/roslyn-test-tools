@@ -23,7 +23,9 @@ public record ProjectAnalyzerVerifyContext : AnalyzerVerifyContext
     [Pure]
     public override Task<Compilation> GetCompilationAsync()
     {
-        var project = Project;//.AddMetadataReferences(References);
+        var project = Project
+            .AddMetadataReference(Reference.Netstandard) 
+            .AddMetadataReferences(References);
 
         Console.Write($"Language = {project.Language}");
         if (Language == Language.VisualBasic)
