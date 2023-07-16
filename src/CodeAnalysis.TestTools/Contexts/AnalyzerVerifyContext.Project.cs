@@ -1,6 +1,4 @@
-﻿using Microsoft.CodeAnalysis;
-
-namespace CodeAnalysis.TestTools.Contexts;
+﻿namespace CodeAnalysis.TestTools.Contexts;
 
 /// <summary>
 /// Represents a project file based context to verify <see cref="DiagnosticAnalyzer"/> behavior.
@@ -23,7 +21,16 @@ public record ProjectAnalyzerVerifyContext : AnalyzerVerifyContext
     /// <summary>Gets the compilation.</summary>
     [Pure]
     public override Task<Compilation> GetCompilationAsync()
-        => Project.GetCompilationAsync()!;
+    {
+        foreach (var reference in Project.MetadataReferences)
+        {
+            if (reference is UnresolvedMetadataReference)
+            {
+                throw new InvalidOperationException($"Could not resolve {reference.Display}.");
+            }
+        }
+        return Project.GetCompilationAsync()!;
+    }
 
     /// <summary>Adds an (optional) extra analyzer.</summary>
     [Pure]
