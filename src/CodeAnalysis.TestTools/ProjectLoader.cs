@@ -9,8 +9,8 @@ public static class ProjectLoader
     /// <summary>Loads the project.</summary>
     public static Project Load(FileInfo location)
     {
-        var analyzer = new AnalyzerManager();
-        analyzer.GetProject(Guard.Exists(location).FullName);
+        var manager = new AnalyzerManager();
+        var analyzer = manager.GetProject(Guard.Exists(location).FullName);
         var workspace = analyzer.GetWorkspace();
         return workspace.CurrentSolution.Projects.Single();
     }
