@@ -26,8 +26,8 @@ v0.0.3.1
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Buildalyzer" Version="5.0.0" />
-    <PackageReference Include="Buildalyzer.Workspaces" Version="5.0.0" />
+    <PackageReference Include="Buildalyzer" Version="5.0.1" />
+    <PackageReference Include="Buildalyzer.Workspaces" Version="5.0.1" />
     <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.6.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.6.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic.Workspaces" Version="4.6.0" />
