@@ -5,13 +5,14 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Nullable>enable</Nullable>
-    <Version>1.1.0</Version>
+    <Version>1.2.0</Version>
     <Authors>Corniel Nobel</Authors>
     <Product>Roslyn static code analyzers test tools</Product>
     <Description>Tooling to describe expected static code analyzer behavior in annotated code files.</Description>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <PackageReleaseNotes>
-ToBeReleased
+v1.2.0
+- Build with Buildalyzer.
 - Don't try to read the NuGet V3 url from a config file.
 v1.1.0
 - Support additional files for projects.
@@ -26,30 +27,22 @@ v0.0.3.1
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Build.Locator" Version="1.5.5" />
-    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.6.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.6.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic.Workspaces" Version="4.6.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" Version="4.6.0" />
-    <PackageReference Include="NuGet.Common" Version="6.6.1" />
-    <PackageReference Include="NuGet.Frameworks" Version="6.6.1" />
-    <PackageReference Include="NuGet.Packaging" Version="6.6.1" />
-    <PackageReference Include="NuGet.Protocol" Version="6.6.1" />
+    <PackageReference Include="Buildalyzer" Version="5.0.1" />
+    <PackageReference Include="Buildalyzer.Workspaces" Version="5.0.1" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.7.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.7.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic.Workspaces" Version="4.7.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" Version="4.7.0" />
+    <PackageReference Include="NuGet.Common" Version="6.7.0" />
+    <PackageReference Include="NuGet.Frameworks" Version="6.7.0" />
+    <PackageReference Include="NuGet.Packaging" Version="6.7.0" />
+    <PackageReference Include="NuGet.Protocol" Version="6.7.0" />
   </ItemGroup>
 
   <ItemGroup Label="Analyzers">
-    <PackageReference Include="AsyncFixer" Version="1.*">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="*-*">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="*">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+    <PackageReference Include="AsyncFixer" Version="*" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="*-*" PrivateAssets="all" />
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="*" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>
