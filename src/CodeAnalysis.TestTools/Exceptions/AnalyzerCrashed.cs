@@ -17,7 +17,10 @@ public class AnalyzerCrashed : InvalidOperationException
     public AnalyzerCrashed(string message, Exception innerException)
         : base(message, innerException) { }
 
+#if NET8_0_OR_GREATER
+#else
     /// <summary>Creates a new instance of the <see cref="AnalyzerCrashed"/> class.</summary>
     protected AnalyzerCrashed(SerializationInfo info, StreamingContext context)
         : base(info, context) { }
+#endif
 }

@@ -9,9 +9,12 @@ public class NuGetLatestVersions : Dictionary<string, NuGetLatestVersionCheck>
     /// <summary>Creates a new instance of the <see cref="NuGetLatestVersions"/> class.</summary>
     public NuGetLatestVersions() { }
 
+#if NET8_0_OR_GREATER
+#else
     /// <summary>Creates a new instance of the <see cref="NuGetLatestVersions"/> class.</summary>
     protected NuGetLatestVersions(SerializationInfo info, StreamingContext context)
         : base(info, context) { }
+#endif
 
     /// <summary>Saves the latests versions to a file.</summary>
     public Task SaveAsync(FileInfo file)

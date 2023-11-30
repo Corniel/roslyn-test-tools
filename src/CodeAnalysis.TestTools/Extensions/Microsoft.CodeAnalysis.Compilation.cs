@@ -27,10 +27,10 @@ public static class CompilationExtensions
         var options = compilation.Options.WithSpecificDiagnosticOptions(analyzers.DiagnosticsToReport);
         var analyzerOptions = new AnalyzerOptions(texts.ToImmutableArray(), new EmptyAnalyzerConfigOptionsProvider());
 
-        var diagnostics = (await compilation
+        var diagnostics = await compilation
             .WithOptions(options)
-            .WithAnalyzers(analyzers.ToImmutableArray(), analyzerOptions, cancellationToken: cancellationToken)
-            .GetAllDiagnosticsAsync(cancellationToken));
+            .WithAnalyzers(analyzers.ToImmutableArray(), analyzerOptions)
+            .GetAllDiagnosticsAsync(cancellationToken);
 
         return cancellationToken.IsCancellationRequested
             ? diagnostics

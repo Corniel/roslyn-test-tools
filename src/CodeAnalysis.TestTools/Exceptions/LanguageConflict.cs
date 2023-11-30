@@ -17,7 +17,10 @@ public class LanguageConflict : InvalidOperationException
     public LanguageConflict(string message, Exception innerException)
         : base(message, innerException) { }
 
+#if NET8_0_OR_GREATER
+#else
     /// <summary>Creates a new instance of the <see cref="LanguageConflict"/> class.</summary>
     protected LanguageConflict(SerializationInfo info, StreamingContext context)
         : base(info, context) { }
+#endif
 }

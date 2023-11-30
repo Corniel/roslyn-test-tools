@@ -1,16 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+    <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Nullable>enable</Nullable>
-    <Version>1.2.0</Version>
+    <Version>1.3.0</Version>
     <Authors>Corniel Nobel</Authors>
     <Product>Roslyn static code analyzers test tools</Product>
     <Description>Tooling to describe expected static code analyzer behavior in annotated code files.</Description>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <PackageReleaseNotes>
+v1.3.0
+- Target .NET 8.0
 v1.2.0
 - Build with Buildalyzer.
 - Don't try to read the NuGet V3 url from a config file.
@@ -29,14 +31,14 @@ v0.0.3.1
   <ItemGroup>
     <PackageReference Include="Buildalyzer" Version="5.0.1" />
     <PackageReference Include="Buildalyzer.Workspaces" Version="5.0.1" />
-    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.7.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.7.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic.Workspaces" Version="4.7.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" Version="4.7.0" />
-    <PackageReference Include="NuGet.Common" Version="6.7.0" />
-    <PackageReference Include="NuGet.Frameworks" Version="6.7.0" />
-    <PackageReference Include="NuGet.Packaging" Version="6.7.0" />
-    <PackageReference Include="NuGet.Protocol" Version="6.7.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.8.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.8.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic.Workspaces" Version="4.8.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" Version="4.8.0" />
+    <PackageReference Include="NuGet.Common" Version="6.8.0" />
+    <PackageReference Include="NuGet.Frameworks" Version="6.8.0" />
+    <PackageReference Include="NuGet.Packaging" Version="6.8.0" />
+    <PackageReference Include="NuGet.Protocol" Version="6.8.0" />
   </ItemGroup>
 
   <ItemGroup Label="Analyzers">
