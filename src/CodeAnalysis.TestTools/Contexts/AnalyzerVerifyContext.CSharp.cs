@@ -12,7 +12,7 @@ public record CSharpAnalyzerVerifyContext
     /// <summary>Creates a new instance of the <see cref="CSharpAnalyzerVerifyContext"/> class.</summary>
     public CSharpAnalyzerVerifyContext()
     {
-        Options = new CSharpParseOptions(LanguageVersion.CSharp11);
+        Options = new CSharpParseOptions(LanguageVersion.CSharp12);
     }
 
     /// <inheritdoc />
@@ -21,12 +21,12 @@ public record CSharpAnalyzerVerifyContext
     /// <summary>Gets if unsafe code is allowed. (default: false)</summary>
     public bool AllowUnsafe { get; init; }
 
-    /// <summary>Sets the C# language version to parse with (default C# 9.0).</summary>
+    /// <summary>Sets the C# language version to parse with (default C# 12.0).</summary>
     [Pure]
     public CSharpAnalyzerVerifyContext WithLanguageVersion(LanguageVersion version)
         => WithOptions(new(version));
 
-    /// <summary>Sets the C# parse options to parse with (default C# 9.0).</summary>
+    /// <summary>Sets the C# parse options to parse with (default C# 12.0).</summary>
     [Pure]
     public CSharpAnalyzerVerifyContext WithOptions(CSharpParseOptions options)
         => this with { Options = Guard.NotNull(options) };
