@@ -110,7 +110,7 @@ By default the following external references are included:
  * `System.Globalization`
  * `Microsoft.VisualBasic` (Visual Basic only)
  
-The code base is compiled against the latest language version (currently C# 11,
+The code base is compiled against the latest language version (currently C# 12,
 and Visual Basic 16.9).
 
 #### Tweaking the Verify Analyzer Context

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using Microsoft.CodeAnalysis.CSharp;
+using System.IO;
 
 namespace Analyzer_verify_context_specs;
 
@@ -39,6 +40,14 @@ public class For_CS
         init.Should()
             .Throw<LanguageConflict>()
             .WithMessage("The analyzer 'VisualBasicOnly' does not support C#.");
+    }
+
+    [Test]
+    public void compiles_with_CSharp_12_by_default()
+    {
+        var context = new CSharpAnalyzerVerifyContext();
+        context.Options.Should().BeOfType<CSharpParseOptions>()
+            .Subject.LanguageVersion.Should().Be(LanguageVersion.CSharp12);
     }
 }
 public class For_VB
