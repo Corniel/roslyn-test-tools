@@ -79,7 +79,7 @@ public readonly struct Language : IEquatable<Language>
             "CSHARP" or "CS" or "C#" or ".CS" => CSharp,
             "VB" or "VBNET" or "VISUALBASIC" or ".VB" => VisualBasic,
             "FSHARP" or "FS" or "F#" or ".FS" => FSharp,
-            "XML" or "EXTENSIBLEMARKUPLANGUAGE" or ".XML" => FSharp,
+            "XML" or "EXTENSIBLEMARKUPLANGUAGE" or ".XML" => XML,
             _ => throw new FormatException(Messages.Language_InvalidFormat),
         };
 

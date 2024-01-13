@@ -15,7 +15,7 @@ internal static class Pattern
 
     public static readonly Regex Regular = Rx(comment, position_regular, issue_type, offset, start_length, diagnostic_id, message);
     public static readonly Regex Precise = Rx(@"^\s*", comment, position_precise, issue_type, "?", offset, diagnostic_id, message, @"\s*(-->|\*/)?$");
-    public static readonly Regex Iregular = Rx(comment, ".*", issue_type);
+    public static readonly Regex Irregular = Rx(comment, ".*", issue_type);
     public static readonly Regex Unprecise = Rx(@"^\s*", comment, ".*", position_precise);
 
     [Pure]
