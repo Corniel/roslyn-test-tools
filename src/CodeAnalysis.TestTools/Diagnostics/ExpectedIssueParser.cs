@@ -26,7 +26,7 @@ internal static partial class ExpectedIssueParser
             {
                 regulars.Add(IssueFromMatch(regular.NoRemainingCurlyBrace(line), line.LineNumber));
             }
-            else if (Pattern.Unprecise.IsMatch(line.Text) || Pattern.Iregular.IsMatch(line.Text))
+            else if (Pattern.Unprecise.IsMatch(line.Text) || Pattern.Irregular.IsMatch(line.Text))
             {
                 throw ParseError.New(Messages.ParseError_InvalidPattern, line.LineNumber);
             }
