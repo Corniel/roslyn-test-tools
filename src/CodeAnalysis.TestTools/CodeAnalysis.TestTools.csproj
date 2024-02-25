@@ -11,6 +11,8 @@
     <Description>Tooling to describe expected static code analyzer behavior in annotated code files.</Description>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <PackageReleaseNotes>
+To Be released
+- Logging expected issues to the console only in DEBUG mode.
 v2.0.0
 - Drop .NET 7.0 support. (breaking)
 - Update dependency Buildalyzer 6.*. (breaking)

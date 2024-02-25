@@ -27,24 +27,32 @@ public static class IssueVerifier
     public static IEnumerable<Issue> Log(this IEnumerable<Issue> issues, TextWriter? writer = null)
     {
         Guard.NotNull(issues);
-        writer ??= Console.Out;
 
-        writer.WriteLine(issues.GetReportInfoHeader());
+        AttachConsole(ref writer);
 
-        var filePath = string.Empty;
-
-        foreach (var issue in issues)
+        if (writer is { })
         {
-            if (issue.Location.FilePath != filePath)
-            {
-                filePath = issue.Location.FilePath;
-                writer.WriteLine($"File: {filePath}");
-            }
-            writer.WriteLine(issue.ReportInfo());
-        }
+            writer.WriteLine(issues.GetReportInfoHeader());
 
+            var filePath = string.Empty;
+
+            foreach (var issue in issues)
+            {
+                if (issue.Location.FilePath != filePath)
+                {
+                    filePath = issue.Location.FilePath;
+                    writer.WriteLine($"File: {filePath}");
+                }
+                writer.WriteLine(issue.ReportInfo());
+            }
+        }
         return issues;
     }
+
+    /// <summary>Attaches the console in DEBUG mode.</summary>
+    [Conditional("DEBUG")]
+    private static void AttachConsole(ref TextWriter? writer)
+        => writer ??= Console.Out;
 
     /// <summary>Represents the report info of the issues.</summary>
     [Pure]
