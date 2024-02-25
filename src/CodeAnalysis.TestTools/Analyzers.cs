@@ -21,7 +21,7 @@ public sealed class Analyzers : GuardedCollection<DiagnosticAnalyzer, Analyzers>
         .Concat(new[] { KeyValuePair.Create(DiagnosticId.AD0001, ReportDiagnostic.Error) });
 
     /// <summary>Gets all (supported) diagnostic ID's.</summary>
-    public ISet<string> DiagnosticIds
+    public IReadOnlySet<string> DiagnosticIds
         => this.SelectMany(analyzer => analyzer.SupportedDiagnostics)
         .Select(diagnostic => diagnostic.Id)
         .ToHashSet();
