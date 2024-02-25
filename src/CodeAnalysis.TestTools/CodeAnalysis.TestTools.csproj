@@ -40,16 +40,21 @@ v0.0.3.1
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.8.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic.Workspaces" Version="4.8.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" Version="4.8.0" />
-    <PackageReference Include="NuGet.Common" Version="6.8.0" />
-    <PackageReference Include="NuGet.Frameworks" Version="6.8.0" />
-    <PackageReference Include="NuGet.Packaging" Version="6.8.0" />
-    <PackageReference Include="NuGet.Protocol" Version="6.8.0" />
+    <PackageReference Include="NuGet.Common" Version="6.9.1" />
+    <PackageReference Include="NuGet.Frameworks" Version="6.9.1" />
+    <PackageReference Include="NuGet.Packaging" Version="6.9.1" />
+    <PackageReference Include="NuGet.Protocol" Version="6.9.1" />
   </ItemGroup>
 
   <ItemGroup Label="Analyzers">
     <PackageReference Include="AsyncFixer" Version="*" PrivateAssets="all" />
+    <PackageReference Include="DotNetProjectFile.Analyzers" Version="*" PrivateAssets="all" />
     <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="*-*" PrivateAssets="all" />
     <PackageReference Include="SonarAnalyzer.CSharp" Version="*" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="*.csproj" Visible="false" />
   </ItemGroup>
 
   <ItemGroup>
