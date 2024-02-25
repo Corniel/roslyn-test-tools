@@ -18,7 +18,7 @@ public readonly struct Language : IEquatable<Language>
     /// <summary>XML.</summary>
     public static readonly Language XML = new(XM);
 
-    /// <summary>Creates a new instance of the <see cref="Language"/> struct.</summary>
+    /// <summary>Initializes a new instance of the <see cref="Language"/> struct.</summary>
     private Language(int lang) => code = lang;
 
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -73,7 +73,7 @@ public readonly struct Language : IEquatable<Language>
     /// <summary>parses the language.</summary>
     [Pure]
     public static Language Parse(string? str)
-        => str?.ToUpperInvariant().Replace(" ", "") switch
+        => str?.ToUpperInvariant().Replace(" ", string.Empty) switch
         {
             "" or null => None,
             "CSHARP" or "CS" or "C#" or ".CS" => CSharp,
@@ -82,7 +82,6 @@ public readonly struct Language : IEquatable<Language>
             "XML" or "EXTENSIBLEMARKUPLANGUAGE" or ".XML" => XML,
             _ => throw new FormatException(Messages.Language_InvalidFormat),
         };
-
 
     private const int CS = 1;
     private const int VB = 2;

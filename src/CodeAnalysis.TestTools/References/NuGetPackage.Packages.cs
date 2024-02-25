@@ -29,11 +29,11 @@ public partial class NuGetPackage
     public static NuGetPackage Newtonsoft_Json(string version = Latest) => Resolve("Newtonsoft.Json", version);
 
     /// <summary>Gets the NUnit package.</summary>
-    [Pure] 
+    [Pure]
     public static NuGetPackage NUnit(string version = Latest) => Resolve("NUnit", version);
 
     /// <summary>Gets the XUnit.Assert package.</summary>
-    [Pure] 
+    [Pure]
     public static NuGetPackage XUnit_Assert(string version = Latest) => Resolve("xunit.assert", version);
 
     /// <summary>Gets the Xunit.Extensibility.Core package.</summary>

@@ -8,7 +8,7 @@ namespace CodeAnalysis.TestTools.Contexts;
 [Inheritable]
 public record VisualBasicAnalyzerVerifyContext : AnalyzerVerifyContext<VisualBasicAnalyzerVerifyContext>
 {
-    /// <summary>Creates a new instance of the <see cref="VisualBasicAnalyzerVerifyContext"/> class.</summary>
+    /// <summary>Initializes a new instance of the <see cref="VisualBasicAnalyzerVerifyContext"/> class.</summary>
     public VisualBasicAnalyzerVerifyContext()
     {
         Options = new VisualBasicParseOptions(LanguageVersion.VisualBasic16_9);

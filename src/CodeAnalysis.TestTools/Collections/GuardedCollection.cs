@@ -18,13 +18,13 @@ public abstract class GuardedCollection<TElement, TCollection> : IReadOnlyCollec
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     private readonly TElement[] Collection;
 
-    /// <summary>Creates a new instance of the <see cref="GuardedCollection{TElement, TCollection}"/> class.</summary>
+    /// <summary>Initializes a new instance of the <see cref="GuardedCollection{TElement, TCollection}"/> class.</summary>
     protected GuardedCollection(TElement[] items) => Collection = items;
 
     /// <inheritdoc />
     public int Count => Collection.Length;
 
-    /// <summary>Creates a new instance of the <see cref="GuardedCollection{TElement, TCollection}"/> class.</summary>
+    /// <summary>Initializes a new instance of the <see cref="GuardedCollection{TElement, TCollection}"/> class.</summary>
     [Pure]
     protected abstract TCollection New(IEnumerable<TElement> items);
 
@@ -34,7 +34,7 @@ public abstract class GuardedCollection<TElement, TCollection> : IReadOnlyCollec
 
     /// <summary>Adds items to the collection.</summary>
     [Pure]
-    public TCollection AddRange(params TElement[] items) 
+    public TCollection AddRange(params TElement[] items)
         => AddRange(Guard.NotNull(items).AsEnumerable());
 
     /// <summary>Adds items to the collection.</summary>
@@ -45,16 +45,18 @@ public abstract class GuardedCollection<TElement, TCollection> : IReadOnlyCollec
         return New(Collection.Concat(items.Select(Guards)));
     }
 
-    /// <inheritdoc/>
+    /// <summary>
+    /// Determines if the collection contains the requested item or not.
+    /// </summary>
     [Pure]
     public bool Contains(TElement item) => Array.Exists(Collection, existing => Equals(item, existing));
 
     /// <summary>Returns true if the two items are equal.</summary>
     [Pure]
-    abstract protected bool Equals(TElement item1, TElement item2);
+    protected abstract bool Equals(TElement item1, TElement item2);
 
     /// <summary>Guards items that can be added, throws otherwise.</summary>
-    abstract protected TElement Guards(TElement item);
+    protected abstract TElement Guards(TElement item);
 
     /// <inheritdoc />
     [Pure]

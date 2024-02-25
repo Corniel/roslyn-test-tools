@@ -9,7 +9,7 @@ namespace CodeAnalysis.TestTools.Contexts;
 public record CSharpAnalyzerVerifyContext
     : AnalyzerVerifyContext<CSharpAnalyzerVerifyContext>
 {
-    /// <summary>Creates a new instance of the <see cref="CSharpAnalyzerVerifyContext"/> class.</summary>
+    /// <summary>Initializes a new instance of the <see cref="CSharpAnalyzerVerifyContext"/> class.</summary>
     public CSharpAnalyzerVerifyContext()
     {
         Options = new CSharpParseOptions(LanguageVersion.CSharp12);
@@ -18,7 +18,7 @@ public record CSharpAnalyzerVerifyContext
     /// <inheritdoc />
     public override Language Language => Language.CSharp;
 
-    /// <summary>Gets if unsafe code is allowed. (default: false)</summary>
+    /// <summary>Gets if unsafe code is allowed. (default: false).</summary>
     public bool AllowUnsafe { get; init; }
 
     /// <summary>Sets the C# language version to parse with (default C# 12.0).</summary>

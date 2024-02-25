@@ -6,7 +6,7 @@ namespace CodeAnalysis.TestTools;
 [Inheritable]
 public sealed class Code
 {
-    /// <summary>Creates a new instance of the <see cref="Code"/> class.</summary>
+    /// <summary>Initializes a new instance of the <see cref="Code"/> class.</summary>
     private Code(string filePath, string text)
     {
         FilePath = filePath;

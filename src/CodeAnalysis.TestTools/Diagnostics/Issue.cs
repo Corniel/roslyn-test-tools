@@ -3,7 +3,7 @@
 /// <summary>Represents a verification issue.</summary>
 public abstract record Issue : IComparable<Issue>
 {
-    /// <summary>Creates a new instance of the <see cref="Issue"/> record.</summary>
+    /// <summary>Initializes a new instance of the <see cref="Issue"/> record.</summary>
     protected Issue(string diagnosticId, IssueType type, string message, IssueLocation location)
     {
         DiagnosticId = diagnosticId ?? string.Empty;

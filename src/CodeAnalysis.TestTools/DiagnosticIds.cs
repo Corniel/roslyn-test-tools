@@ -6,7 +6,7 @@ public sealed class DiagnosticIds : GuardedCollection<string, DiagnosticIds>
     /// <summary>Gets an empty set of diagnostic ID's.</summary>
     public static readonly DiagnosticIds Empty = new(Array.Empty<string>());
 
-    /// <summary>Creates a new instance of the <see cref="DiagnosticIds"/> class.</summary>
+    /// <summary>Initializes a new instance of the <see cref="DiagnosticIds"/> class.</summary>
     private DiagnosticIds(string[] items) : base(items) { }
 
     /// <inheritdoc />

@@ -12,7 +12,7 @@ public sealed partial class NuGetPackage : IReadOnlyCollection<MetadataReference
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     private readonly List<MetadataReference> references = new();
 
-    /// <summary>Creates a new instance of the <see cref="NuGetPackage"/> class.</summary>
+    /// <summary>Initializes a new instance of the <see cref="NuGetPackage"/> class.</summary>
     private NuGetPackage(string packageId, NuGetVersion version, string? runtime)
     {
         Id = Guard.NotNullOrEmpty(packageId);

@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 
-
 namespace Microsoft.CodeAnalysis.Diagnostics;
 
 /// <summary>Extensions on <see cref="DiagnosticAnalyzer"/>.</summary>

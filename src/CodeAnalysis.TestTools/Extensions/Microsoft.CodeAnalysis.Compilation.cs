@@ -54,15 +54,16 @@ public static class CompilationExtensions
             ? throw new AnalyzerCrashed(diagnostic.GetMessage())
             : diagnostics;
 
-
     private sealed class EmptyAnalyzerConfigOptionsProvider : AnalyzerConfigOptionsProvider
     {
         private static readonly NoAnalyzerConfigOptions None = new();
 
         public override AnalyzerConfigOptions GlobalOptions => None;
 
+        [Pure]
         public override AnalyzerConfigOptions GetOptions(SyntaxTree tree) => None;
 
+        [Pure]
         public override AnalyzerConfigOptions GetOptions(AdditionalText textFile) => None;
     }
 

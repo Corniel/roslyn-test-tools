@@ -10,7 +10,7 @@ namespace CodeAnalysis.TestTools.Contexts;
 public partial record CodeFixVerifierContext<TContext>
     where TContext : AnalyzerVerifyContext<TContext>
 {
-    /// <summary>Creates a new instance of the <see cref="CodeFixVerifierContext{TContext}"/> class.</summary>
+    /// <summary>Initializes a new instance of the <see cref="CodeFixVerifierContext{TContext}"/> class.</summary>
     public CodeFixVerifierContext(TContext analyzerContext, CodeFixProvider codeFix)
     {
         AnalyzerContext = Guard.NotNull(analyzerContext);

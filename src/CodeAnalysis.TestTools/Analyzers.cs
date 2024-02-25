@@ -5,10 +5,10 @@
 /// </summary>
 public sealed class Analyzers : GuardedCollection<DiagnosticAnalyzer, Analyzers>
 {
-    /// <summary>Creates a new instance of the <see cref="Analyzers"/> class.</summary>
+    /// <summary>Initializes a new instance of the <see cref="Analyzers"/> class.</summary>
     private Analyzers(Language language, DiagnosticAnalyzer[] analyzers) : base(analyzers) => Language = language;
 
-    /// <summary>Creates a new instance of the <see cref="Analyzers"/> class.</summary>
+    /// <summary>Initializes a new instance of the <see cref="Analyzers"/> class.</summary>
     public Analyzers(Language language) : this(language, Array.Empty<DiagnosticAnalyzer>()) { }
 
     /// <summary>The language that the analyzers support.</summary>
