@@ -34,7 +34,7 @@ v0.0.3.1
     <IsPackable>true</IsPackable>
     <PackageIcon>package-icon.png</PackageIcon>
     <PackageIconUrl>https://github.com/Corniel/roslyn-test-tools/blob/master/design/package-icon.png</PackageIconUrl>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageLicenseExpression>LGPL-3.0</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/Corniel/roslyn-test-tools</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryType>git</RepositoryType>
