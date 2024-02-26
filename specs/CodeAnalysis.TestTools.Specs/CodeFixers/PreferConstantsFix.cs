@@ -20,7 +20,7 @@ internal sealed class PreferConstantsFix : CodeFixProvider
         var diagnosticSpan = diagnostic.Location.SourceSpan;
 
         var root = (await context.Document.GetSyntaxRootAsync(context.CancellationToken))!;
-        var declaration = root.FindToken(diagnosticSpan.Start).Parent.AncestorsAndSelf().OfType<LocalDeclarationStatementSyntax>().First();
+        var declaration = root.FindToken(diagnosticSpan.Start).Parent!.AncestorsAndSelf().OfType<LocalDeclarationStatementSyntax>().First();
 
         context.RegisterCodeFix(
             CodeAction.Create(

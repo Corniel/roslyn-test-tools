@@ -34,7 +34,7 @@ internal sealed class CheckAdditionalFiles : DiagnosticAnalyzer
 
     private static string RemoveNewLines(AdditionalText file)
         => file
-            .ToString()
+            .ToString()!
             .Replace("\r\n", string.Empty)
             .Replace("\n", string.Empty);
 }
