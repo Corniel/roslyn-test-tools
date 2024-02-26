@@ -16,13 +16,6 @@ public class ParseError : FormatException
     public ParseError(string message, Exception innerException)
         : base(message, innerException) { }
 
-#if NET8_0_OR_GREATER
-#else
-    /// <summary>Initializes a new instance of the <see cref="ParseError"/> class.</summary>
-    protected ParseError(SerializationInfo info, StreamingContext context)
-        : base(info, context) { }
-#endif
-
     [Pure]
     internal static ParseError New(string message, params object[] args)
         => new(string.Format(message, args));

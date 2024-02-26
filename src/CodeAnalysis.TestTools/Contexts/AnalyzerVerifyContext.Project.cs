@@ -1,13 +1,12 @@
-﻿using Microsoft.CodeAnalysis;
-
-namespace CodeAnalysis.TestTools.Contexts;
+﻿namespace CodeAnalysis.TestTools.Contexts;
 
 /// <summary>
 /// Represents a project file based context to verify <see cref="DiagnosticAnalyzer"/> behavior.
 /// </summary>
+[Inheritable]
 public record ProjectAnalyzerVerifyContext : AnalyzerVerifyContext
 {
-    /// <summary>Initializes a new instance of the <see cref="VisualBasicAnalyzerVerifyContext"/> class.</summary>
+    /// <summary>Initializes a new instance of the <see cref="ProjectAnalyzerVerifyContext"/> class.</summary>
     public ProjectAnalyzerVerifyContext(Project project)
     {
         Project = Guard.NotNull(project);

@@ -1,15 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+  <Import Project="..\..\props\common.props" />
+  
   <PropertyGroup>
     <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Nullable>enable</Nullable>
     <Version>2.0.0</Version>
-    <Authors>Corniel Nobel</Authors>
-    <Product>Roslyn static code analyzers test tools</Product>
-    <Description>Tooling to describe expected static code analyzer behavior in annotated code files.</Description>
-    <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <PackageReleaseNotes>
 To Be released
 - Logging expected issues to the console only in DEBUG mode.
@@ -33,12 +29,29 @@ v0.0.3.1
     </PackageReleaseNotes>
   </PropertyGroup>
 
+  <PropertyGroup Label="Package info">
+    <PackageId>CodeAnalysis.TestTools</PackageId>
+    <IsPackable>true</IsPackable>
+    <PackageIcon>package-icon.png</PackageIcon>
+    <PackageIconUrl>https://github.com/Corniel/roslyn-test-tools/blob/master/design/package-icon.png</PackageIconUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/Corniel/roslyn-test-tools</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/Corniel/roslyn-test-tools</RepositoryUrl>
+    <DefineConstants>CONTRACTS_FULL</DefineConstants>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(CompileConfig)' == 'RELEASE'">
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Buildalyzer" Version="6.0.4" />
     <PackageReference Include="Buildalyzer.Workspaces" Version="6.0.4" />
-    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.8.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.8.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic.Workspaces" Version="4.8.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.8.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" Version="4.8.0" />
     <PackageReference Include="NuGet.Common" Version="6.9.1" />
     <PackageReference Include="NuGet.Frameworks" Version="6.9.1" />
@@ -47,14 +60,8 @@ v0.0.3.1
   </ItemGroup>
 
   <ItemGroup Label="Analyzers">
-    <PackageReference Include="AsyncFixer" Version="*" PrivateAssets="all" />
-    <PackageReference Include="DotNetProjectFile.Analyzers" Version="*" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="*-*" PrivateAssets="all" />
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="*" PrivateAssets="all" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <AdditionalFiles Include="*.csproj" Visible="false" />
+    <PackageReference Include="Qowaiv.Analyzers.CSharp" Version="*" PrivateAssets="all" />
+    <PackageReference Include="StyleCop.Analyzers" Version="*-*" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>

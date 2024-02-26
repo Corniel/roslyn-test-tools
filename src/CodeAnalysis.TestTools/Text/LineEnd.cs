@@ -9,4 +9,3 @@ public static class LineEnd
     /// <summary>The Unix line end (\n).</summary>
     public static readonly string Unix = "\n";
 }
-

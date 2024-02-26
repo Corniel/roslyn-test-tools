@@ -3,7 +3,6 @@
 namespace CodeAnalysis.TestTools;
 
 /// <summary>Represents a piece of code.</summary>
-[Inheritable]
 public sealed class Code
 {
     /// <summary>Initializes a new instance of the <see cref="Code"/> class.</summary>

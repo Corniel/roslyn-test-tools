@@ -4,17 +4,10 @@ namespace CodeAnalysis.TestTools.References;
 
 /// <summary>Contains NuGet packages and their latest versions.</summary>
 [Serializable]
-public class NuGetLatestVersions : Dictionary<string, NuGetLatestVersionCheck>
+public sealed class NuGetLatestVersions : Dictionary<string, NuGetLatestVersionCheck>
 {
     /// <summary>Initializes a new instance of the <see cref="NuGetLatestVersions"/> class.</summary>
     public NuGetLatestVersions() { }
-
-#if NET8_0_OR_GREATER
-#else
-    /// <summary>Initializes a new instance of the <see cref="NuGetLatestVersions"/> class.</summary>
-    protected NuGetLatestVersions(SerializationInfo info, StreamingContext context)
-        : base(info, context) { }
-#endif
 
     /// <summary>Saves the latests versions to a file.</summary>
     public Task SaveAsync(FileInfo file)

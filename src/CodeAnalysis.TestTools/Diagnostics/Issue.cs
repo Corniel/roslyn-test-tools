@@ -3,7 +3,7 @@
 /// <summary>Represents a verification issue.</summary>
 public abstract record Issue : IComparable<Issue>
 {
-    /// <summary>Initializes a new instance of the <see cref="Issue"/> record.</summary>
+    /// <summary>Initializes a new instance of the <see cref="Issue"/> class.</summary>
     protected Issue(string diagnosticId, IssueType type, string message, IssueLocation location)
     {
         DiagnosticId = diagnosticId ?? string.Empty;
@@ -31,5 +31,5 @@ public abstract record Issue : IComparable<Issue>
     /// <summary>gives the relevant info to report.</summary>
     [Pure]
     public virtual string ReportInfo()
-        => $"{DiagnosticId}: {Location.ReportInfo()} {Message}{(Type == IssueType.Error ? " (ERROR)" : "")}";
+        => $"{DiagnosticId}: {Location.ReportInfo()} {Message}{(Type == IssueType.Error ? " (ERROR)" : string.Empty)}";
 }

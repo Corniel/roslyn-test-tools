@@ -15,11 +15,4 @@ public class VerificationFailed : Exception
     /// <summary>Initializes a new instance of the <see cref="VerificationFailed"/> class.</summary>
     public VerificationFailed(string message, Exception innerException)
         : base(message, innerException) { }
-
-#if NET8_0_OR_GREATER
-#else
-    /// <summary>Initializes a new instance of the <see cref="VerificationFailed"/> class.</summary>
-    protected VerificationFailed(SerializationInfo info, StreamingContext context)
-        : base(info, context) { }
-#endif
 }

@@ -20,7 +20,7 @@ public record VisualBasicAnalyzerVerifyContext : AnalyzerVerifyContext<VisualBas
     public override Language Language => Language.VisualBasic;
 
     /// <summary>Gets the global defined imports.</summary>
-    public IReadOnlyCollection<GlobalImport> GlobalImports { get; private set; } = GlobalImport.Parse(
+    public IReadOnlyCollection<GlobalImport> GlobalImports { get; init; } = GlobalImport.Parse(
         "Microsoft.VisualBasic",
         "System",
         "System.Collections",
@@ -32,11 +32,10 @@ public record VisualBasicAnalyzerVerifyContext : AnalyzerVerifyContext<VisualBas
 
     /// <summary>Sets the global defined imports.</summary>
     [Pure]
-    public VisualBasicAnalyzerVerifyContext WithGlobalImports(IEnumerable<GlobalImport> imports)
+    public VisualBasicAnalyzerVerifyContext WithGlobalImports(IEnumerable<GlobalImport> imports) => this with
     {
-        GlobalImports = imports?.ToImmutableArray() ?? GlobalImports;
-        return this;
-    }
+        GlobalImports = imports?.ToImmutableArray() ?? GlobalImports,
+    };
 
     /// <summary>Sets the VB.NET language version to parse with (default VB.NET).</summary>
     [Pure]
@@ -45,8 +44,10 @@ public record VisualBasicAnalyzerVerifyContext : AnalyzerVerifyContext<VisualBas
 
     /// <summary>Sets the VB.NET options to parse with (default VB.NET 16.9).</summary>
     [Pure]
-    public VisualBasicAnalyzerVerifyContext WithOptions(VisualBasicParseOptions options)
-        => this with { Options = Guard.NotNull(options) };
+    public VisualBasicAnalyzerVerifyContext WithOptions(VisualBasicParseOptions options) => this with
+    {
+        Options = Guard.NotNull(options),
+    };
 
     /// <inheritdoc />
     [Pure]

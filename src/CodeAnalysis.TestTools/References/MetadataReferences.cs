@@ -6,7 +6,7 @@ public sealed class MetadataReferences : GuardedCollection<MetadataReference, Me
     /// <summary>Gets an empty set of medata references.</summary>
     public static readonly MetadataReferences Empty = new(Array.Empty<MetadataReference>());
 
-    /// <summary>Initializes a new instance of the <see cref="DiagnosticIds"/> class.</summary>
+    /// <summary>Initializes a new instance of the <see cref="MetadataReferences"/> class.</summary>
     internal MetadataReferences(params MetadataReference[] references) : base(references) { }
 
     /// <inheritdoc />

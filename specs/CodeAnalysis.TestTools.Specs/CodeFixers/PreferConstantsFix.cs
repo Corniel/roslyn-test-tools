@@ -3,6 +3,7 @@ using Microsoft.CodeAnalysis.CodeFixes;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Formatting;
+using System.Diagnostics.Contracts;
 
 namespace Specs.CodeFixers;
 
@@ -10,14 +11,15 @@ internal sealed class PreferConstantsFix : CodeFixProvider
 {
     public override ImmutableArray<string> FixableDiagnosticIds { get; } = new []{ PreferConstants.DiagnosticId }.ToImmutableArray();
 
-    public override FixAllProvider GetFixAllProvider() => null;
+    [Pure]
+    public override FixAllProvider? GetFixAllProvider() => null;
 
     public override async Task RegisterCodeFixesAsync(CodeFixContext context)
     {
         var diagnostic = context.Diagnostics.First();
         var diagnosticSpan = diagnostic.Location.SourceSpan;
 
-        var root = await context.Document.GetSyntaxRootAsync(context.CancellationToken);
+        var root = (await context.Document.GetSyntaxRootAsync(context.CancellationToken))!;
         var declaration = root.FindToken(diagnosticSpan.Start).Parent.AncestorsAndSelf().OfType<LocalDeclarationStatementSyntax>().First();
 
         context.RegisterCodeFix(
@@ -50,7 +52,7 @@ internal sealed class PreferConstantsFix : CodeFixProvider
         var formattedLocal = newLocal.WithAdditionalAnnotations(Formatter.Annotation);
 
         // Replace the old local declaration with the new local declaration.
-        var oldRoot = await document.GetSyntaxRootAsync(cancellationToken).ConfigureAwait(false);
+        var oldRoot = (await document.GetSyntaxRootAsync(cancellationToken).ConfigureAwait(false))!;
         var newRoot = oldRoot.ReplaceNode(localDeclaration, formattedLocal);
 
         // Return document with transformed tree.

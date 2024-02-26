@@ -1,4 +1,5 @@
 ﻿using Microsoft.CodeAnalysis.CodeFixes;
+using System.Diagnostics.Contracts;
 
 namespace Specs.CodeFixers;
 
@@ -8,5 +9,6 @@ internal sealed class EmptyFix : CodeFixProvider
 
     public override Task RegisterCodeFixesAsync(CodeFixContext context) => Task.CompletedTask;
 
-    public override FixAllProvider GetFixAllProvider() => null;
+    [Pure]
+    public override FixAllProvider? GetFixAllProvider() => null;
 }
