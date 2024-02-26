@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+
+  <PropertyGroup>
+    <Nullable>enable</Nullable>
+    <LangVersion>12</LangVersion>
+    <IsPackable>false</IsPackable>
+    <IsPublishable>false</IsPublishable>
+    <NuGetAudit>true</NuGetAudit>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <OutputType>library</OutputType>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Title>Roslyn Test Tools</Title>
+    <Product>Roslyn static code analyzers test tools</Product>
+    <Description>
+      Tooling to describe expected static code analyzer behavior in annotated code files.
+    </Description>
+    <Authors>Corniel Nobel</Authors>
+    <Owners>Corniel Nobel</Owners>
+    <PackageTags>
+      Roslyn;
+      Test Tools;
+      Static Code;
+      Analyzers
+    </PackageTags>
+    <Company>Corniel Nobel</Company>
+    <Copyright>Copyright © Corniel Nobel 2013-current</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup Label="Analyzers">
+    <PackageReference Include="AsyncFixer" Version="*" PrivateAssets="all" />
+    <PackageReference Include="DotNetProjectFile.Analyzers" Version="*" PrivateAssets="all" Condition="'$(TargetFramework)'=='net8.0'" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="*" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="*-*" PrivateAssets="all" />
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="*" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup Label="Additional files">
+    <AdditionalFiles Include="*.csproj" Visible="false" />
+    <AdditionalFiles Include="../../props/common.props" Link="Properties/common.props" />
+  </ItemGroup>
+
+</Project>

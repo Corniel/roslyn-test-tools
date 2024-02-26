@@ -1,10 +1,9 @@
-﻿
-namespace CodeAnalysis.TestTools.Diagnostics;
+﻿namespace CodeAnalysis.TestTools.Diagnostics;
 
 /// <summary>Represents an expected verification issue.</summary>
 public sealed record ExpectedIssue : Issue
 {
-    /// <summary>Creates a new instance of the <see cref="ExpectedIssue"/> record.</summary>
+    /// <summary>Initializes a new instance of the <see cref="ExpectedIssue"/> class.</summary>
     public ExpectedIssue(string diagnosticId, IssueType type, string message, IssueLocation location)
         : base(diagnosticId, type, message, location) { }
 
@@ -29,12 +28,9 @@ public sealed record ExpectedIssue : Issue
        && Type.Matches(diagnostic.Severity)
        && (string.IsNullOrEmpty(Message) || Message == diagnostic.GetMessage());
 
-
     /// <summary>Creates a not reported issue based on the expected issue.</summary>
     [Pure]
     public NotReportedIssue NotReported() => new(DiagnosticId, Type, Message, Location);
-
-
 
     /// <summary>Updates the location.</summary>
     [Pure]

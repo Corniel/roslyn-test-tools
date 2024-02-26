@@ -3,7 +3,7 @@
 /// <summary>Represents an unexpected verification issue.</summary>
 public sealed record UnexpectedIssue : Issue
 {
-    /// <summary>Creates a new instance of the <see cref="UnexpectedIssue"/> record.</summary>
+    /// <summary>Initializes a new instance of the <see cref="UnexpectedIssue"/> class.</summary>
     public UnexpectedIssue(string diagnosticId, IssueType type, string message, IssueLocation location)
         : base(diagnosticId, type, message, location) { }
 

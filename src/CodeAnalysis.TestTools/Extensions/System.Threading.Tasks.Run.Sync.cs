@@ -1,5 +1,6 @@
 ﻿namespace System.Threading.Tasks;
 
+/// <summary>Runs aysnc code synchronously.</summary>
 /// <remarks>
 /// Microsoft built an AsyncHelper (internal) class to run Async as Sync.
 /// This implementation is equal to that one, besides some naming.

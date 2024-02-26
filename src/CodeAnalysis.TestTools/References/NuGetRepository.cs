@@ -36,7 +36,9 @@ internal static class NuGetRepository
     public static async Task<NuGetVersion> GetLatestVersionAsync(string packageId)
     {
         var cache = await GetLatestVersionsCacheAsync();
-        if (cache.TryGetValue(packageId, out var cached) && cached.Checked.AddDays(5) >= DateTime.UtcNow)
+        if (cache.TryGetValue(packageId, out var cached)
+            && cached.Version is { Length: > 0 }
+            && cached.Checked.AddDays(5) >= DateTime.UtcNow)
         {
             return new NuGetVersion(cached.Version);
         }
@@ -46,7 +48,7 @@ internal static class NuGetRepository
             var all = await repo.GetAllVersionsAsync(packageId, new SourceCacheContext(), NullLogger.Instance, default);
             var latest = all.OrderByDescending(v => v.Version).First(version => !version.IsPrerelease);
             cache[packageId] = new NuGetLatestVersionCheck(latest.OriginalVersion, DateTime.UtcNow);
-            
+
             if (LatestVersionsFile.Directory is { Exists: false } directory)
             {
                 directory.Create();

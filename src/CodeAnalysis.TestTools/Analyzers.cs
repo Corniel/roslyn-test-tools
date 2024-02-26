@@ -5,10 +5,10 @@
 /// </summary>
 public sealed class Analyzers : GuardedCollection<DiagnosticAnalyzer, Analyzers>
 {
-    /// <summary>Creates a new instance of the <see cref="Analyzers"/> class.</summary>
+    /// <summary>Initializes a new instance of the <see cref="Analyzers"/> class.</summary>
     private Analyzers(Language language, DiagnosticAnalyzer[] analyzers) : base(analyzers) => Language = language;
 
-    /// <summary>Creates a new instance of the <see cref="Analyzers"/> class.</summary>
+    /// <summary>Initializes a new instance of the <see cref="Analyzers"/> class.</summary>
     public Analyzers(Language language) : this(language, Array.Empty<DiagnosticAnalyzer>()) { }
 
     /// <summary>The language that the analyzers support.</summary>
@@ -21,7 +21,7 @@ public sealed class Analyzers : GuardedCollection<DiagnosticAnalyzer, Analyzers>
         .Concat(new[] { KeyValuePair.Create(DiagnosticId.AD0001, ReportDiagnostic.Error) });
 
     /// <summary>Gets all (supported) diagnostic ID's.</summary>
-    public ISet<string> DiagnosticIds
+    public IReadOnlySet<string> DiagnosticIds
         => this.SelectMany(analyzer => analyzer.SupportedDiagnostics)
         .Select(diagnostic => diagnostic.Id)
         .ToHashSet();

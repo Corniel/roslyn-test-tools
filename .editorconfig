@@ -97,3 +97,5 @@ dotnet_diagnostic.SA1515.severity = suggestion # Single-line comment should be p
 dotnet_diagnostic.SA1649.severity = suggestion # File name should match first type name.
 
 dotnet_diagnostic.SYSLIB1045.severity = warning # Use 'GeneratedRegexAttribute' to generate the regular expression implementation at compile-time
+
+dotnet_diagnostic.VSSpell001.severity = silent # Correct spelling

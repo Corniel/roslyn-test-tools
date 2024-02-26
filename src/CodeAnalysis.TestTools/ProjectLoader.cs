@@ -7,6 +7,7 @@ namespace CodeAnalysis.TestTools;
 public static class ProjectLoader
 {
     /// <summary>Loads the project.</summary>
+    [Pure]
     public static Project Load(FileInfo location)
     {
         var manager = new AnalyzerManager();

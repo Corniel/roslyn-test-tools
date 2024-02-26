@@ -42,22 +42,22 @@ public partial class NuGetPackage
         => new(Environment.GetEnvironmentVariable("NUGET_PACKAGES") ?? @"..\..\..\..\..\packages");
 
     private static readonly string[] SortedAllowedDirectories =
-   {
-            "net",
-            "net5.0",
-            "netstandard2.1",
-            "netstandard2.0",
-            "net47",
-            "net461",
-            "netstandard1.6",
-            "netstandard1.3",
-            "netstandard1.1",
-            "netstandard1.0",
-            "net451",
-            "net45",
-            "net40",
-            "net20",
-            "portable-net45",
-            "lib", // This has to be last, some packages have DLLs directly in "lib" directory
-        };
+    [
+        "net",
+        "net5.0",
+        "netstandard2.1",
+        "netstandard2.0",
+        "net47",
+        "net461",
+        "netstandard1.6",
+        "netstandard1.3",
+        "netstandard1.1",
+        "netstandard1.0",
+        "net451",
+        "net45",
+        "net40",
+        "net20",
+        "portable-net45",
+        "lib", // This has to be last, some packages have DLLs directly in "lib" directory
+    ];
 }

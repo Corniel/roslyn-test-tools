@@ -4,7 +4,7 @@
 [DebuggerDisplay("{LineNumber}: {Text}")]
 public readonly struct Line
 {
-    /// <summary>Creates a new instance of the <see cref="Line"/> struct.</summary>
+    /// <summary>Initializes a new instance of the <see cref="Line"/> struct.</summary>
     internal Line(int number, string text)
     {
         LineNumber = number;

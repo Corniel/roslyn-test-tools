@@ -3,10 +3,10 @@
 /// <summary>Represents a collection of sources (code).</summary>
 public sealed class Sources : GuardedCollection<Code, Sources>
 {
-    /// <summary>Creates a new instance of the <see cref="Sources"/> class.</summary>
+    /// <summary>Initializes a new instance of the <see cref="Sources"/> class.</summary>
     public Sources(Language language) : this(language, Array.Empty<Code>()) { }
 
-    /// <summary>Creates a new instance of the <see cref="Sources"/> class.</summary>
+    /// <summary>Initializes a new instance of the <see cref="Sources"/> class.</summary>
     private Sources(Language language, Code[] code) : base(code) => Language = language;
 
     /// <summary>Gets the language of the sources.</summary>
@@ -25,6 +25,6 @@ public sealed class Sources : GuardedCollection<Code, Sources>
 
     /// <inheritdoc />
     [Pure]
-    protected override Sources New(IEnumerable<Code> items) 
+    protected override Sources New(IEnumerable<Code> items)
         => new(Language, Guard.NotNull(items).ToArray());
 }

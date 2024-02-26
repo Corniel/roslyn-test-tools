@@ -6,7 +6,7 @@ public sealed record IssueLocation : IComparable<IssueLocation>
     /// <summary>A unknown/none-existing issue location (raised on assembly level).</summary>
     public static readonly IssueLocation None = new(default, default, default);
 
-    /// <summary>Creates a new instance of the <see cref="IssueLocation"/> record.</summary>
+    /// <summary>Initializes a new instance of the <see cref="IssueLocation"/> class.</summary>
     public IssueLocation(string? filePath, int lineNumber, int? start, int? spanSize)
     {
         FilePath = filePath ?? string.Empty;
@@ -15,11 +15,11 @@ public sealed record IssueLocation : IComparable<IssueLocation>
         SpanSize = spanSize;
     }
 
-    /// <summary>Creates a new instance of the <see cref="IssueLocation"/> record.</summary>
+    /// <summary>Initializes a new instance of the <see cref="IssueLocation"/> class.</summary>
     public IssueLocation(int lineNumber, int? start, int? spanSize)
         : this(default, lineNumber, start, spanSize) { }
 
-    /// <summary>Creates a new instance of the <see cref="IssueLocation"/> record.</summary>
+    /// <summary>Initializes a new instance of the <see cref="IssueLocation"/> class.</summary>
     public IssueLocation(int lineNumber)
         : this(default, lineNumber, default, default) { }
 
@@ -76,7 +76,7 @@ public sealed record IssueLocation : IComparable<IssueLocation>
     [Pure]
     public override string ToString() => $"{FilePath}{ReportInfo()}";
 
-    /// <summary>Creates an <see cref="IssueLocation"/> from a <see cref="Location"/></summary>
+    /// <summary>Creates an <see cref="IssueLocation"/> from a <see cref="Location"/>.</summary>
     [Pure]
     public static IssueLocation FromLocation(Location location)
         => location is null || location == Location.None

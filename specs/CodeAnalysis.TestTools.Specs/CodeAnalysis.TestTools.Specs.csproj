@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+  <Import Project="..\..\props\common.props" />
+  
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <IsPackable>false</IsPackable>
     <RootNamespace>Specs</RootNamespace>
-    <EnableNETAnalyzers>true</EnableNETAnalyzers>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,6 +12,19 @@
     <None Include="Sources\*.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup Label="Newest versions of package dependecies">
+    <PackageReference Include="Buildalyzer" Version="6.*" />
+    <PackageReference Include="Buildalyzer.Workspaces" Version="6.*" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.*" />
+    <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic.Workspaces" Version="4.*" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.*" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" Version="4.*" />
+    <PackageReference Include="NuGet.Common" Version="6.*" />
+    <PackageReference Include="NuGet.Frameworks" Version="6.*" />
+    <PackageReference Include="NuGet.Packaging" Version="6.*" />
+    <PackageReference Include="NuGet.Protocol" Version="6.*" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,7 +39,6 @@
   <ItemGroup Label="Analyzers">
     <PackageReference Include="FluentAssertions.Analyzers" Version="*" PrivateAssets="all" />
     <PackageReference Include="NUnit.Analyzers" Version="*" PrivateAssets="all" />
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="*" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>

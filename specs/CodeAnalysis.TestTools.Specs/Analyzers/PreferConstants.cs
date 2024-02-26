@@ -29,16 +29,15 @@ internal sealed class PreferConstants : DiagnosticAnalyzer
     private void AnalyzeNode(SyntaxNodeAnalysisContext context)
     {
         if (context.Node is LocalDeclarationStatementSyntax localDeclaration
-            && !localDeclaration.Modifiers.Any(SyntaxKind.ConstKeyword))
-        {
+            && !localDeclaration.Modifiers.Any(SyntaxKind.ConstKeyword)
             // Perform data flow analysis on the local declaration.
-            var dataFlowAnalysis = context.SemanticModel.AnalyzeDataFlow(localDeclaration);
-
+            && context.SemanticModel.AnalyzeDataFlow(localDeclaration) is { } dataFlowAnalysis)
+        {
             // Retrieve the local symbol for each variable in the local declaration
             // and ensure that it is not written outside of the data flow analysis region.
             var variable = localDeclaration.Declaration.Variables.Single();
-            var variableSymbol = context.SemanticModel.GetDeclaredSymbol(variable, context.CancellationToken);
-            if (!dataFlowAnalysis.WrittenOutside.Contains(variableSymbol))
+            if (context.SemanticModel.GetDeclaredSymbol(variable, context.CancellationToken) is { } variableSymbol
+                && !dataFlowAnalysis.WrittenOutside.Contains(variableSymbol))
             {
                 context.ReportDiagnostic(Diagnostic.Create(SupportedDiagnostics[0], context.Node.GetLocation(), localDeclaration.Declaration.Variables.First().Identifier.ValueText));
             }

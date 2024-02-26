@@ -5,22 +5,15 @@
 [ExcludeFromCodeCoverage]
 public class AnalyzerCrashed : InvalidOperationException
 {
-    /// <summary>Creates a new instance of the <see cref="AnalyzerCrashed"/> class.</summary>
+    /// <summary>Initializes a new instance of the <see cref="AnalyzerCrashed"/> class.</summary>
     public AnalyzerCrashed()
         : base(Messages.AnalyzerCrashed) { }
 
-    /// <summary>Creates a new instance of the <see cref="AnalyzerCrashed"/> class.</summary>
+    /// <summary>Initializes a new instance of the <see cref="AnalyzerCrashed"/> class.</summary>
     public AnalyzerCrashed(string message)
         : base(message) { }
 
-    /// <summary>Creates a new instance of the <see cref="AnalyzerCrashed"/> class.</summary>
+    /// <summary>Initializes a new instance of the <see cref="AnalyzerCrashed"/> class.</summary>
     public AnalyzerCrashed(string message, Exception innerException)
         : base(message, innerException) { }
-
-#if NET8_0_OR_GREATER
-#else
-    /// <summary>Creates a new instance of the <see cref="AnalyzerCrashed"/> class.</summary>
-    protected AnalyzerCrashed(SerializationInfo info, StreamingContext context)
-        : base(info, context) { }
-#endif
 }

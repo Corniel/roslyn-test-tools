@@ -6,11 +6,14 @@ namespace CodeAnalysis.TestTools.Contexts;
 /// <summary>
 /// Represents the context to verify <see cref="CodeFixProvider"/> behavior.
 /// </summary>
+/// <typeparam name="TContext">
+/// The type of the <see cref="AnalyzerVerifyContext{TContext}"/>.
+/// </typeparam>
 [Inheritable]
 public partial record CodeFixVerifierContext<TContext>
     where TContext : AnalyzerVerifyContext<TContext>
 {
-    /// <summary>Creates a new instance of the <see cref="CodeFixVerifierContext{TContext}"/> class.</summary>
+    /// <summary>Initializes a new instance of the <see cref="CodeFixVerifierContext{TContext}"/> class.</summary>
     public CodeFixVerifierContext(TContext analyzerContext, CodeFixProvider codeFix)
     {
         AnalyzerContext = Guard.NotNull(analyzerContext);

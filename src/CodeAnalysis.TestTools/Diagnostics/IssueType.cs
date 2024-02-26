@@ -10,7 +10,7 @@ public enum IssueType
     Error = 9,
 }
 
-/// <summary>Extensions on <see cref="IssueType"/></summary>
+/// <summary>Extensions on <see cref="IssueType"/>.</summary>
 public static class IssueTypeExtensions
 {
     /// <summary>Returns true if the issue type matches the diagnostic severity.</summary>

@@ -7,9 +7,9 @@ public class Regular_pattern_supports
     {
         var parsed = ExpectedIssue.Parse("some code // Noncompliant".Lines());
         parsed.Single().Should().Be(new ExpectedIssue(
-            diagnosticId: default,
+            diagnosticId: string.Empty,
             type: IssueType.Noncompliant,
-            message: default,
+            message: string.Empty,
             location: new IssueLocation(1)));
     }
 
@@ -18,7 +18,7 @@ public class Regular_pattern_supports
     {
         var parsed = ExpectedIssue.Parse("some code // Noncompliant {{Not what we want.}}".Lines());
         parsed.Single().Should().Be(new ExpectedIssue(
-            diagnosticId: default,
+            diagnosticId: string.Empty,
             type: IssueType.Noncompliant,
             message: "Not what we want.",
             location: new IssueLocation(1)));
@@ -32,7 +32,7 @@ public class Regular_pattern_supports
                 //   ^^^^
 ".Lines());
         parsed.Single().Should().Be(new ExpectedIssue(
-            diagnosticId: default,
+            diagnosticId: string.Empty,
             type: IssueType.Noncompliant,
             message: "Not what we want.",
             location: new IssueLocation(
@@ -77,7 +77,7 @@ public class Regular_pattern_supports
     {
         var parsed = ExpectedIssue.Parse(@"some code // Noncompliant@+12 {{Not what we want.}}".Lines());
         parsed.Single().Should().Be(new ExpectedIssue(
-            diagnosticId: default,
+            diagnosticId: string.Empty,
             type: IssueType.Noncompliant,
             message: "Not what we want.",
             location: new IssueLocation(lineNumber: 1 + 12)));
@@ -89,7 +89,7 @@ public class Regular_pattern_supports
         var parsed = ExpectedIssue.Parse(@"
                 some code // Noncompliant@-1 {{Not what we want.}}".Lines());
         parsed.Single().Should().Be(new ExpectedIssue(
-            diagnosticId: default,
+            diagnosticId: string.Empty,
             type: IssueType.Noncompliant,
             message: "Not what we want.",
             location: new IssueLocation(lineNumber: 2 - 1)));
@@ -100,9 +100,9 @@ public class Regular_pattern_supports
     {
         var parsed = ExpectedIssue.Parse("some code // Secondary".Lines());
         parsed.Single().Should().Be(new ExpectedIssue(
-            diagnosticId: default,
+            diagnosticId: string.Empty,
             type: IssueType.Noncompliant,
-            message: default,
+            message: string.Empty,
             location: new IssueLocation(1)));
     }
 
@@ -119,19 +119,19 @@ public class Regular_pattern_supports
             new[]
             {
                     new ExpectedIssue(
-                        diagnosticId: default,
+                        diagnosticId: string.Empty,
                         type: IssueType.Noncompliant,
                         message: "Make this method generic and replace the 'object' parameter with a type parameter.",
                         location: new IssueLocation(2, 20, 3)),
                     new ExpectedIssue(
-                        diagnosticId: default,
+                        diagnosticId: string.Empty,
                         type: IssueType.Noncompliant,
-                        message: default,
+                        message: string.Empty,
                         location: new IssueLocation(2, 35, 2)),
                     new ExpectedIssue(
-                        diagnosticId: default,
+                        diagnosticId: string.Empty,
                         type: IssueType.Noncompliant,
-                        message: default,
+                        message: string.Empty,
                         location: new IssueLocation(2, 50, 2)),
             });
 
@@ -164,9 +164,9 @@ public class Precise_pattern_supports
                 some code 
                 //   ^^^^".Lines());
         parsed.Single().Should().Be(new ExpectedIssue(
-            diagnosticId: default,
+            diagnosticId: string.Empty,
             type: IssueType.Noncompliant,
-            message: default,
+            message: string.Empty,
             location: new IssueLocation(
                 lineNumber: 2,
                 start: 21,
@@ -180,7 +180,7 @@ public class Precise_pattern_supports
                 some code 
                 //   ^^^^ {{Not what we want.}}".Lines());
         parsed.Single().Should().Be(new ExpectedIssue(
-            diagnosticId: default,
+            diagnosticId: string.Empty,
             type: IssueType.Noncompliant,
             message: "Not what we want.",
             location: new IssueLocation(
@@ -213,7 +213,7 @@ public class Precise_pattern_supports
                 some code 
                 //   ^^^^@+12 {{Not what we want.}}".Lines());
         parsed.Single().Should().Be(new ExpectedIssue(
-            diagnosticId: default,
+            diagnosticId: string.Empty,
             type: IssueType.Noncompliant,
             message: "Not what we want.",
             location: new IssueLocation(
@@ -229,7 +229,7 @@ public class Precise_pattern_supports
                 some code 
                 //   ^^^^@-1 {{Not what we want.}}".Lines());
         parsed.Single().Should().Be(new ExpectedIssue(
-            diagnosticId: default,
+            diagnosticId: string.Empty,
             type: IssueType.Noncompliant,
             message: "Not what we want.",
             location: new IssueLocation(
@@ -245,9 +245,9 @@ public class Precise_pattern_supports
                 some code
                 //   ^^^^ Secondary".Lines());
         parsed.Single().Should().Be(new ExpectedIssue(
-            diagnosticId: default,
+            diagnosticId: string.Empty,
             type: IssueType.Noncompliant,
-            message: default,
+            message: string.Empty,
             location: new IssueLocation(
                 lineNumber: 2,
                 start: 21,
@@ -277,12 +277,12 @@ public class Not_allowed
     [Test]
     public void location_specified_twice_on_line()
     {
-        Action parse = () => ExpectedIssue.Parse(@"namespace MyNameSpace
+        @"namespace MyNameSpace
 {
     class MyClass { } // Noncompliant
-//  ^^^^^ ^^^^^^^".Lines());
-
-        parse.Should().Throw<ParseError>()
+//  ^^^^^ ^^^^^^^"
+            .Invoking(code => ExpectedIssue.Parse(code.Lines()))
+            .Should().Throw<ParseError>()
             .WithMessage(
                 "Unexpected ^ at line 4 pos 11. Only one precise location can be specified per line.");
     }
@@ -290,9 +290,9 @@ public class Not_allowed
     [Test]
     public void remaining_open_curly_bracket()
     {
-        Action parse = () => ExpectedIssue.Parse("code // Noncompliant {".Lines());
-
-        parse.Should().Throw<ParseError>()
+        "code // Noncompliant {"
+            .Invoking(code => ExpectedIssue.Parse(code.Lines()))
+            .Should().Throw<ParseError>()
             .WithMessage(
                 "Unexpected { at line 1 pos 22. Either correctly use '{{message}}' or remove the curly brace.");
     }
@@ -300,10 +300,10 @@ public class Not_allowed
     [Test]
     public void remaining_close_curly_bracket()
     {
-        Action parse = () => ExpectedIssue.Parse("code // Noncompliant message}}".Lines());
-
-        parse.Should().Throw<ParseError>()
-          .WithMessage(
+        "code // Noncompliant message}}"
+            .Invoking(code => ExpectedIssue.Parse(code.Lines()))
+            .Should().Throw<ParseError>()
+            .WithMessage(
                 "Unexpected } at line 1 pos 29. Either correctly use '{{message}}' or remove the curly brace.");
     }
 }

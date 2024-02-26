@@ -3,6 +3,9 @@
 /// <summary>The <see cref="AnalyzerVerifyContext{TContext}"/>
 /// contains builder methods that allow extend the context using a fluent syntax.
 /// </summary>
+/// <typeparam name="TContext">
+/// The type of the <see cref="AnalyzerVerifyContext{TContext}"/>.
+/// </typeparam>
 public abstract partial record AnalyzerVerifyContext<TContext> : AnalyzerVerifyContext
     where TContext : AnalyzerVerifyContext<TContext>
 {
@@ -37,7 +40,7 @@ public abstract partial record AnalyzerVerifyContext<TContext> : AnalyzerVerifyC
     [Pure]
     public TContext AddSnippet(string code)
         => self with { Sources = Sources.Add(Code.Snippet(code, Language)) };
-    
+
     /// <summary>Adds a (code) source file.</summary>
     [Pure]
     public TContext AddSource(string path)
@@ -48,7 +51,7 @@ public abstract partial record AnalyzerVerifyContext<TContext> : AnalyzerVerifyC
     public TContext AddSources(params string[] paths)
         => self with
         {
-            Sources = Sources.AddRange(Guard.HasAny(paths).Select(path => Code.FromFile(new FileInfo(path))))
+            Sources = Sources.AddRange(Guard.HasAny(paths).Select(path => Code.FromFile(new FileInfo(path)))),
         };
 
     /// <summary>Adds a reference to the assembly of the <typeparamref name="TContainingType"/>.</summary>
@@ -61,7 +64,7 @@ public abstract partial record AnalyzerVerifyContext<TContext> : AnalyzerVerifyC
     public TContext AddReferences(params MetadataReference[] references)
         => self with
         {
-            References = References.AddRange(Guard.HasAny(references))
+            References = References.AddRange(Guard.HasAny(references)),
         };
 
     /// <summary>Adds NuGet packages.</summary>
@@ -69,23 +72,23 @@ public abstract partial record AnalyzerVerifyContext<TContext> : AnalyzerVerifyC
     public TContext AddPackages(params NuGetPackage[] packages)
         => self with
         {
-            References = References.AddRange(Guard.HasAny(packages).SelectMany(p => p))
+            References = References.AddRange(Guard.HasAny(packages).SelectMany(p => p)),
         };
-   
-    /// <summary>Defines the output kind. (Default <see cref="OutputKind.DynamicallyLinkedLibrary"/>)</summary>
+
+    /// <summary>Defines the output kind. (Default <see cref="OutputKind.DynamicallyLinkedLibrary"/>).</summary>
     [Pure]
     public TContext WithOutputKind(OutputKind outputKind)
-        => self with 
+        => self with
         {
-            OutputKind = Guard.DefinedEnum(outputKind) 
+            OutputKind = Guard.DefinedEnum(outputKind),
         };
 
     /// <summary>Sets if compiler warnings should be enabled or not (disabled by default).</summary>
     [Pure]
     public TContext WithCompilerWarnings(bool enable)
-        => self with 
+        => self with
         {
-            IgnoreCompilerWarnings = !enable 
+            IgnoreCompilerWarnings = !enable,
         };
 
     /// <summary>Sets the diagnostic ID's to ignore.</summary>
@@ -93,7 +96,7 @@ public abstract partial record AnalyzerVerifyContext<TContext> : AnalyzerVerifyC
     public TContext WithIgnoredDiagnostics(params string[] diagnosticIds)
         => self with
         {
-            IgnoredDiagnostics = DiagnosticIds.Empty.AddRange(diagnosticIds)
+            IgnoredDiagnostics = DiagnosticIds.Empty.AddRange(diagnosticIds),
         };
 
     /// <remarks>Syntactic sugar.</remarks>
@@ -104,7 +107,7 @@ public abstract partial record AnalyzerVerifyContext<TContext> : AnalyzerVerifyC
     /// * sources
     /// * meta-data references
     /// * parse options
-    /// * compiler options
+    /// * compiler options.
     /// </summary>
     [Pure]
     public sealed override Task<Compilation> GetCompilationAsync()
