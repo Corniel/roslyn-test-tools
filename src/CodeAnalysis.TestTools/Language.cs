@@ -1,6 +1,9 @@
-﻿namespace CodeAnalysis.TestTools;
+﻿using System.ComponentModel;
+
+namespace CodeAnalysis.TestTools;
 
 /// <summary>Represents a (code) language.</summary>
+[TypeConverter(typeof(Conversion.LanguageTypeConverter))]
 public readonly struct Language : IEquatable<Language>
 {
     /// <summary>None.</summary>
@@ -77,7 +80,7 @@ public readonly struct Language : IEquatable<Language>
         {
             "" or null => None,
             "CSHARP" or "CS" or "C#" or ".CS" => CSharp,
-            "VB" or "VBNET" or "VISUALBASIC" or ".VB" => VisualBasic,
+            "VB" or "VB.NET" or "VBNET" or "VISUALBASIC" or ".VB" => VisualBasic,
             "FSHARP" or "FS" or "F#" or ".FS" => FSharp,
             "XML" or "EXTENSIBLEMARKUPLANGUAGE" or ".XML" => XML,
             _ => throw new FormatException(Messages.Language_InvalidFormat),
