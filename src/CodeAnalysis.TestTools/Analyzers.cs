@@ -9,7 +9,7 @@ public sealed class Analyzers : GuardedCollection<DiagnosticAnalyzer, Analyzers>
     private Analyzers(Language language, DiagnosticAnalyzer[] analyzers) : base(analyzers) => Language = language;
 
     /// <summary>Initializes a new instance of the <see cref="Analyzers"/> class.</summary>
-    public Analyzers(Language language) : this(language, Array.Empty<DiagnosticAnalyzer>()) { }
+    public Analyzers(Language language) : this(language, []) { }
 
     /// <summary>The language that the analyzers support.</summary>
     public Language Language { get; }

@@ -1,36 +1,30 @@
-﻿using NuGet.Versioning;
-
-namespace CodeAnalysis.TestTools.References;
+﻿namespace CodeAnalysis.TestTools.References;
 
 public partial class NuGetPackage
 {
+    /// <summary>Resolves a package of choice.</summary>
     [Pure]
-    private static async Task<NuGetPackage> ResolveAsync(string packageId, string? version, string? runtime)
+    public static NuGetPackage Resolve(string packageId, string? version, string? runtime = null)
+        => Run.Sync(() => ResolveAsync(packageId, version, runtime));
+
+    /// <inheritdoc cref="Resolve(string, string?, string?)" />
+    [Pure]
+    public static async Task<NuGetPackage> ResolveAsync(string packageId, string? version, string? runtime)
     {
         if (packageId == Microsoft_Build_NoTargets.Id) return Microsoft_Build_NoTargets;
         else
         {
-            var version_ = string.IsNullOrEmpty(version) || version == Latest
-                ? await NuGetRepository.GetLatestVersionAsync(packageId)
-                : new NuGetVersion(version);
+            var package = new NuGetPackage(packageId, await GetVersionAsync(packageId, version), runtime);
 
-            var package = new NuGetPackage(packageId, version_, runtime);
-            if (!package.CacheDirectory.Exists) await NuGetRepository.DownloadAsync(package);
-
-            var dllsPerDirectory = package.CacheDirectory
-                .GetFiles("*.dll", SearchOption.AllDirectories)
-                .GroupBy(file => file.Directory?.Name.Split('+')[0])
-                .Select(group => (dir: Path.GetFileName(group.Key), dlls: group.AsEnumerable()))
-                .ToArray();
+            var folders = await ResolveFoldersAsync(packageId, version: version, runtime: runtime);
 
             foreach (var allowed in SortedAllowedDirectories)
             {
                 // dllsPerDirectory can contain the same <directory> from \lib\<directory> and \ref\<directory>. We don't care who wins.
-                if (dllsPerDirectory.Where(info => info.dir == allowed)
-                    .Select(x => x.dlls).FirstOrDefault() is { } paths)
+                if (folders.FirstOrDefault(info => info.Name == allowed) is { } folder)
                 {
                     package.Runtime ??= allowed;
-                    package.references.AddRange(paths.Select(path => MetadataReference.CreateFromFile(path.FullName)));
+                    package.references.AddRange(folder.Select(path => MetadataReference.CreateFromFile(path.FullName)));
                     return package;
                 }
             }
