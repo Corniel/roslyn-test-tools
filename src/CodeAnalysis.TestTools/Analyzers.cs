@@ -18,7 +18,7 @@ public sealed class Analyzers : GuardedCollection<DiagnosticAnalyzer, Analyzers>
     public IEnumerable<KeyValuePair<string, ReportDiagnostic>> DiagnosticsToReport
         => DiagnosticIds
         .Select(id => KeyValuePair.Create(id, ReportDiagnostic.Warn))
-        .Concat(new[] { KeyValuePair.Create(DiagnosticId.AD0001, ReportDiagnostic.Error) });
+        .Concat([KeyValuePair.Create(DiagnosticId.AD0001, ReportDiagnostic.Error)]);
 
     /// <summary>Gets all (supported) diagnostic ID's.</summary>
     public IReadOnlySet<string> DiagnosticIds
