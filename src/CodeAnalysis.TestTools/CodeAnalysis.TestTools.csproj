@@ -5,9 +5,9 @@
   <PropertyGroup>
     <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <Version>2.0.0</Version>
+    <Version>3.0.0</Version>
     <PackageReleaseNotes>
-To Be released
+v3.0.0
 - Logging expected issues to the console only in DEBUG mode.
 - Update dependency Buildalyzer 7.*. (breaking)
 v2.0.0
