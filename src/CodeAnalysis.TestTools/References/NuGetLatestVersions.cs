@@ -3,7 +3,6 @@
 namespace CodeAnalysis.TestTools.References;
 
 /// <summary>Contains NuGet packages and their latest versions.</summary>
-[Serializable]
 public sealed class NuGetLatestVersions : Dictionary<string, NuGetLatestVersionCheck>
 {
     /// <summary>Initializes a new instance of the <see cref="NuGetLatestVersions"/> class.</summary>
@@ -12,8 +11,8 @@ public sealed class NuGetLatestVersions : Dictionary<string, NuGetLatestVersionC
     /// <summary>Saves the latests versions to a file.</summary>
     public Task SaveAsync(FileInfo file)
     {
-        using var stream = new FileStream(file.FullName, FileMode.Create, FileAccess.Write);
-        return JsonSerializer.SerializeAsync(stream, this, new JsonSerializerOptions { WriteIndented = true });
+        using var stream = new FileStream(file.FullName, SaveOptions);
+        return JsonSerializer.SerializeAsync(stream, this, JsonOptions);
     }
 
     /// <summary>Saves the latests versions to a stream.</summary>
@@ -27,14 +26,35 @@ public sealed class NuGetLatestVersions : Dictionary<string, NuGetLatestVersionC
         Guard.NotNull(file);
         if (file.Exists)
         {
-            using var stream = new FileStream(file.FullName, FileMode.Open, FileAccess.Read);
-            return await LoadAsync(stream);
+            using var stream = new FileStream(file.FullName, LoadOptions);
+            try
+            {
+                return (await JsonSerializer.DeserializeAsync<NuGetLatestVersions>(stream)) ?? [];
+            }
+            catch (JsonException)
+            {
+                return [];
+            }
         }
-        else return new();
+        else return [];
     }
 
-    /// <summary>Loads the latests versions from a stream.</summary>
-    [Pure]
-    public static Task<NuGetLatestVersions> LoadAsync(Stream stream)
-        => JsonSerializer.DeserializeAsync<NuGetLatestVersions>(stream).AsTask()!;
+    private static readonly FileStreamOptions LoadOptions = new()
+    {
+        Access = FileAccess.Read,
+        Mode = FileMode.Open,
+        Options = FileOptions.Asynchronous,
+    };
+
+    private static readonly FileStreamOptions SaveOptions = new()
+    {
+        Access = FileAccess.Write,
+        Mode = FileMode.Create,
+        Options = FileOptions.Asynchronous,
+    };
+
+    private static readonly JsonSerializerOptions JsonOptions = new()
+    {
+        WriteIndented = true,
+    };
 }
