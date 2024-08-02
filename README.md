@@ -1,4 +1,12 @@
-﻿# Roslyn (Static) Code Analysis Test Tools
+﻿![Roslyn TestTools](design/package-icon.png)
+
+[![License: MIT](https://img.shields.io/badge/License-LGPL%20v3-blue.svg)](https://opensource.org/license/lgpl-3-0)
+
+| version                                                              | downloads                                                   | package                                                                         |
+|----------------------------------------------------------------------|-------------------------------------------------------------|---------------------------------------------------------------------------------|
+|![v](https://img.shields.io/nuget/v/CodeAnalysis.TestTools?color=18C) |![v](https://img.shields.io/nuget/dt/CodeAnalysis.TestTools) |[CodeAnalysis.TestTools](https://www.nuget.org/packages/CodeAnalysis.TestTools/) |
+
+# Roslyn (Static) Code Analysis Test Tools
 The package provides tooling to verify the behavior of [Diagnostic Analyzers](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.diagnostics.diagnosticanalyzer),
 and [Code Fix Providers](https://learn.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.codefixes.codefixprovider).
 It does this by providing a (test) context builder, and a mechanism to define

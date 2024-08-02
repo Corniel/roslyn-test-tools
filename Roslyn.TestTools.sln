@@ -34,6 +34,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "props", "props", "{8ACBEBEC
 		props\common.props = props\common.props
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "design", "design", "{EBB2ECB9-5B44-4061-A89B-BC0BB32597CF}"
+	ProjectSection(SolutionItems) = preProject
+		design\package-icon.png = design\package-icon.png
+		design\package-icon.psd = design\package-icon.psd
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +62,7 @@ Global
 		{5811F55D-6885-4288-8C7D-862CC2B43D7F} = {63109C67-1737-48B6-AF84-BCA0262A86F9}
 		{7C583E7B-BCA6-47E9-B89E-A546C94010A1} = {5811F55D-6885-4288-8C7D-862CC2B43D7F}
 		{8ACBEBEC-3FBE-49A6-833B-F34C22DF5CBD} = {63109C67-1737-48B6-AF84-BCA0262A86F9}
+		{EBB2ECB9-5B44-4061-A89B-BC0BB32597CF} = {63109C67-1737-48B6-AF84-BCA0262A86F9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {59DFE69B-0C3B-4ADA-AB6A-4C72A52D5C08}
