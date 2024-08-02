@@ -39,6 +39,7 @@
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/Corniel/roslyn-test-tools</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageValidationBaselineVersion>3.0.0</PackageValidationBaselineVersion>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/Corniel/roslyn-test-tools</RepositoryUrl>
     <DefineConstants>CONTRACTS_FULL</DefineConstants>
