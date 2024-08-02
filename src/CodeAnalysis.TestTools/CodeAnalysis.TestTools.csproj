@@ -1,49 +1,55 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <Import Project="..\..\props\common.props" />
-  
+
   <PropertyGroup>
     <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Version>3.0.0</Version>
     <PackageReleaseNotes>
-v3.0.0
-- Logging expected issues to the console only in DEBUG mode.
-- Update dependency Buildalyzer 7.*. (breaking)
-v2.0.0
-- Drop .NET 7.0 support. (breaking)
-- Update dependency Buildalyzer 6.*. (breaking)
-v1.3.0
-- Target .NET 8.0
-v1.2.0
-- Build with Buildalyzer.
-- Don't try to read the NuGet V3 url from a config file.
-v1.1.0
-- Support additional files for projects.
-v1.0.0
-- Support verifying against projects.
-v0.0.4
-- Support for verifying code fix providers. (#7)
-- Fix invalid cast for adding NuGet packages.
-v0.0.3.1
-- GuardedCollection AddRange failed to add items to the new collection. (#4)
+      v3.0.0
+      - Logging expected issues to the console only in DEBUG mode.
+      - Update dependency Buildalyzer 7.*. (breaking)
+      v2.0.0
+      - Drop .NET 7.0 support. (breaking)
+      - Update dependency Buildalyzer 6.*. (breaking)
+      v1.3.0
+      - Target .NET 8.0
+      v1.2.0
+      - Build with Buildalyzer.
+      - Don't try to read the NuGet V3 url from a config file.
+      v1.1.0
+      - Support additional files for projects.
+      v1.0.0
+      - Support verifying against projects.
+      v0.0.4
+      - Support for verifying code fix providers. (#7)
+      - Fix invalid cast for adding NuGet packages.
+      v0.0.3.1
+      - GuardedCollection AddRange failed to add items to the new collection. (#4)
     </PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Label="Package info">
-    <PackageId>CodeAnalysis.TestTools</PackageId>
+    <EnablePackageValidation>true</EnablePackageValidation>
     <IsPackable>true</IsPackable>
+    <PackageId>CodeAnalysis.TestTools</PackageId>
     <PackageIcon>package-icon.png</PackageIcon>
     <PackageIconUrl>https://github.com/Corniel/roslyn-test-tools/blob/master/design/package-icon.png</PackageIconUrl>
-    <PackageLicenseExpression>LGPL-3.0</PackageLicenseExpression>
+    <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/Corniel/roslyn-test-tools</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/Corniel/roslyn-test-tools</RepositoryUrl>
     <DefineConstants>CONTRACTS_FULL</DefineConstants>
   </PropertyGroup>
-  
-  <PropertyGroup Condition="'$(CompileConfig)' == 'RELEASE'">
+
+  <ItemGroup Label="Package files">
+    <None Include="../../design/package-icon.png" Pack="true" PackagePath="" />
+    <None Include="README.md" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <PropertyGroup Condition="'$(CompileConfig)' != 'DEBUG'">
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
