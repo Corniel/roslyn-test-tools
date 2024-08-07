@@ -5,10 +5,10 @@
   <PropertyGroup>
     <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <Version>3.0.0</Version>
+    <Version>3.0.1</Version>
     <PackageReleaseNotes>
 v3.0.1
-- 'no message provided' on Verify method (FIX). #10
+- 'no message provided' on Verify method (FIX). #21
 v3.0.0
 - Logging expected issues to the console only in DEBUG mode.
 - Update dependency Buildalyzer 7.*. (breaking)
