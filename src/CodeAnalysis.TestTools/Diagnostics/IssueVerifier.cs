@@ -45,6 +45,8 @@ public static class IssueVerifier
                 }
                 writer.WriteLine(issue.ReportInfo());
             }
+
+            writer.Flush();
         }
         return issues;
     }
