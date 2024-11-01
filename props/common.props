@@ -7,7 +7,7 @@
     <IsPublishable>false</IsPublishable>
     <NuGetAudit>true</NuGetAudit>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
-    <OutputType>library</OutputType>
+    <OutputType>Library</OutputType>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -28,6 +28,10 @@
     <Copyright>Copyright © Corniel Nobel 2013-current</Copyright>
   </PropertyGroup>
 
+  <ItemGroup Label="Analyzer configuration">
+    <GlobalConfigFiles Include="../../analyzers-config.ini" />
+  </ItemGroup>
+
   <ItemGroup Label="Analyzers">
     <PackageReference Include="AsyncFixer" Version="*" PrivateAssets="all" />
     <PackageReference Include="DotNetProjectFile.Analyzers" Version="*" PrivateAssets="all" />
@@ -38,6 +42,7 @@
 
   <ItemGroup Label="Additional files">
     <AdditionalFiles Include="*.csproj" Visible="false" />
+    <AdditionalFiles Include="../../analyzers-config.ini" Link="Properties/analyzers-config.ini" />
     <AdditionalFiles Include="../../props/common.props" Link="Properties/common.props" />
   </ItemGroup>
 
