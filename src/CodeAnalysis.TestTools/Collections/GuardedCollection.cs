@@ -11,15 +11,12 @@ namespace CodeAnalysis.TestTools.Collections;
 /// </typeparam>
 [DebuggerDisplay("Count = {Count}")]
 [DebuggerTypeProxy(typeof(CollectionDebugView))]
-public abstract class GuardedCollection<TElement, TCollection> : IReadOnlyCollection<TElement>
+public abstract class GuardedCollection<TElement, TCollection>(TElement[] items) : IReadOnlyCollection<TElement>
     where TElement : class
     where TCollection : GuardedCollection<TElement, TCollection>
 {
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    private readonly TElement[] Collection;
-
-    /// <summary>Initializes a new instance of the <see cref="GuardedCollection{TElement, TCollection}"/> class.</summary>
-    protected GuardedCollection(TElement[] items) => Collection = items;
+    private readonly TElement[] Collection = items;
 
     /// <inheritdoc />
     public int Count => Collection.Length;
