@@ -1,4 +1,4 @@
-﻿namespace CodeAnalysis.TestTools;
+namespace CodeAnalysis.TestTools;
 
 /// <summary>Helper class to create <see cref="AnalyzerVerifyContext"/>'s.</summary>
 public static class VerifyAnalyzer

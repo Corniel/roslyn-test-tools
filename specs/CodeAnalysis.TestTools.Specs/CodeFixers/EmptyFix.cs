@@ -1,4 +1,4 @@
-﻿using Microsoft.CodeAnalysis.CodeFixes;
+using Microsoft.CodeAnalysis.CodeFixes;
 using System.Diagnostics.Contracts;
 
 namespace Specs.CodeFixers;

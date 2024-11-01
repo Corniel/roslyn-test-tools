@@ -1,4 +1,4 @@
-﻿namespace CodeAnalysis.TestTools;
+namespace CodeAnalysis.TestTools;
 
 /// <summary>Thrown when the expected issue verification fails.</summary>
 [Serializable]

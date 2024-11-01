@@ -1,4 +1,4 @@
-﻿namespace CodeAnalysis.TestTools.Diagnostics;
+namespace CodeAnalysis.TestTools.Diagnostics;
 
 /// <summary>Collection of <see cref="ExpectedIssue"/>'s.</summary>
 /// <remarks>

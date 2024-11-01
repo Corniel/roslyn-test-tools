@@ -1,4 +1,4 @@
-﻿namespace CodeAnalysis.TestTools.Diagnostics;
+namespace CodeAnalysis.TestTools.Diagnostics;
 
 /// <summary>Represents a verification issue.</summary>
 public abstract record Issue : IComparable<Issue>

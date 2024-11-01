@@ -1,4 +1,4 @@
-﻿internal static class Noncompliant
+internal static class Noncompliant
 {
     public static int Unchanged()
     {

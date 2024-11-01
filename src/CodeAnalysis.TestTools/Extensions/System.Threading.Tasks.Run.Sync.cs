@@ -1,4 +1,4 @@
-﻿namespace System.Threading.Tasks;
+namespace System.Threading.Tasks;
 
 /// <summary>Runs aysnc code synchronously.</summary>
 /// <remarks>

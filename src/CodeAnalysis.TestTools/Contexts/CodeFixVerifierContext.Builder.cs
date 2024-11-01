@@ -1,4 +1,4 @@
-﻿namespace CodeAnalysis.TestTools.Contexts;
+namespace CodeAnalysis.TestTools.Contexts;
 
 public partial record CodeFixVerifierContext<TContext>
     where TContext : AnalyzerVerifyContext<TContext>

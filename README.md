@@ -1,4 +1,4 @@
-﻿![Roslyn TestTools](design/package-icon.png)
+![Roslyn TestTools](design/package-icon.png)
 
 [![License: MIT](https://img.shields.io/badge/License-LGPL%20v3-blue.svg)](https://opensource.org/license/lgpl-3-0)
 

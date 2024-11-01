@@ -1,4 +1,4 @@
-﻿namespace CodeAnalysis.TestTools.Diagnostics;
+namespace CodeAnalysis.TestTools.Diagnostics;
 
 /// <summary>Represents an expected verification issue.</summary>
 public sealed record ExpectedIssue : Issue

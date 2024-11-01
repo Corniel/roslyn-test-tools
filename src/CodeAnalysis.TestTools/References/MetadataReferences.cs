@@ -1,4 +1,4 @@
-﻿namespace CodeAnalysis.TestTools.References;
+namespace CodeAnalysis.TestTools.References;
 
 /// <summary>Represents a collection of <see cref="MetadataReference"/>'s.</summary>
 public sealed class MetadataReferences : GuardedCollection<MetadataReference, MetadataReferences>

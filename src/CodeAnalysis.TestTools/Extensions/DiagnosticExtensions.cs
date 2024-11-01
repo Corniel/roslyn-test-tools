@@ -1,4 +1,4 @@
-﻿namespace Microsoft.CodeAnalysis.Diagnostics;
+namespace Microsoft.CodeAnalysis.Diagnostics;
 
 /// <summary>Extensions on <see cref="Diagnostic"/>.</summary>
 public static class DiagnosticExtensions

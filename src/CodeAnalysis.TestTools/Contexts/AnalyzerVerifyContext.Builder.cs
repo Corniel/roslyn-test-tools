@@ -1,4 +1,4 @@
-﻿namespace CodeAnalysis.TestTools.Contexts;
+namespace CodeAnalysis.TestTools.Contexts;
 
 /// <summary>The <see cref="AnalyzerVerifyContext{TContext}"/>
 /// contains builder methods that allow extend the context using a fluent syntax.

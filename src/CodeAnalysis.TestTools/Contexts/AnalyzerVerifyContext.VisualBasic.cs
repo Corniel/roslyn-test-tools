@@ -1,4 +1,4 @@
-﻿using Microsoft.CodeAnalysis.VisualBasic;
+using Microsoft.CodeAnalysis.VisualBasic;
 
 namespace CodeAnalysis.TestTools.Contexts;
 

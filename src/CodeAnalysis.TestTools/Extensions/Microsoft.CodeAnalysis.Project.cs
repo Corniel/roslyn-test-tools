@@ -1,4 +1,4 @@
-﻿namespace Microsoft.CodeAnalysis;
+namespace Microsoft.CodeAnalysis;
 
 /// <summary>Extensions on <see cref="Project"/>.</summary>
 public static class ProjectExtensions

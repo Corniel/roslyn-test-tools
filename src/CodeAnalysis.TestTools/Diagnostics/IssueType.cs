@@ -1,4 +1,4 @@
-﻿namespace CodeAnalysis.TestTools.Diagnostics;
+namespace CodeAnalysis.TestTools.Diagnostics;
 
 /// <summary>The type of the issue.</summary>
 public enum IssueType

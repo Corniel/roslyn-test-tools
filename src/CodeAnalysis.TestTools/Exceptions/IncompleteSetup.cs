@@ -1,4 +1,4 @@
-﻿namespace CodeAnalysis.TestTools;
+namespace CodeAnalysis.TestTools;
 
 /// <summary>Throws when the setup is not completed yet.</summary>
 [Serializable]

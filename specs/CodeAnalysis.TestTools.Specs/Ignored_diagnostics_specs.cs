@@ -1,4 +1,4 @@
-﻿namespace Ignored_diagnostics_specs;
+namespace Ignored_diagnostics_specs;
 
 public class ForCS
 {

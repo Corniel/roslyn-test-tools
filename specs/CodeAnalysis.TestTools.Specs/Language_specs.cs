@@ -1,4 +1,4 @@
-﻿namespace Language_specs;
+namespace Language_specs;
 
 public class Parses
 {

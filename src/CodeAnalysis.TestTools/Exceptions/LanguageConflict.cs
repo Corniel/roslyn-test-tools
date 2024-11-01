@@ -1,4 +1,4 @@
-﻿namespace CodeAnalysis.TestTools;
+namespace CodeAnalysis.TestTools;
 
 /// <summary>Thrown when a language conflict occurs.</summary>
 [Serializable]

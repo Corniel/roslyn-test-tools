@@ -1,4 +1,4 @@
-﻿namespace CodeAnalysis.TestTools;
+namespace CodeAnalysis.TestTools;
 
 /// <summary>Represents a collection of sources (code).</summary>
 public sealed class Sources : GuardedCollection<Code, Sources>

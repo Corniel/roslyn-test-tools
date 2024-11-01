@@ -1,4 +1,4 @@
-﻿namespace CodeAnalysis.TestTools;
+namespace CodeAnalysis.TestTools;
 
 /// <summary>Contains a collection of <see cref="DiagnosticAnalyzer"/>'s
 /// all supporting the required language.

@@ -1,4 +1,4 @@
-﻿namespace Microsoft.CodeAnalysis;
+namespace Microsoft.CodeAnalysis;
 
 /// <summary>Extensions on <see cref="TextDocument"/>.</summary>
 public static class TextDocumentExtensions

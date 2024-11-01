@@ -1,4 +1,4 @@
-﻿namespace CodeAnalysis.TestTools.Diagnostics;
+namespace CodeAnalysis.TestTools.Diagnostics;
 
 /// <summary>Represents the line location of an <see cref="Issue"/>.</summary>
 public sealed record IssueLocation : IComparable<IssueLocation>

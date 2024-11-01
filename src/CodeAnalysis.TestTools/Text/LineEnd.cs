@@ -1,4 +1,4 @@
-﻿namespace CodeAnalysis.TestTools.Text;
+namespace CodeAnalysis.TestTools.Text;
 
 /// <summary>Line endings.</summary>
 public static class LineEnd
