@@ -10,7 +10,7 @@ namespace CodeAnalysis.TestTools.Diagnostics;
 internal sealed class ExpectedIssues : IReadOnlyCollection<ExpectedIssue>
 {
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    private readonly List<ExpectedIssue> issues = new();
+    private readonly List<ExpectedIssue> issues = [];
 
     /// <inheritdoc />
     public int Count => issues.Count;
