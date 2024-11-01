@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="..\..\props\common.props" />
+  <Import Project="../../props/common.props" />
   
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Sources\*.cs" />
-    <None Include="Sources\*.cs">
+    <Compile Remove="Sources/*.cs" />
+    <None Include="Sources/*.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -42,7 +42,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\CodeAnalysis.TestTools\CodeAnalysis.TestTools.csproj" />
+    <ProjectReference Include="../../src/CodeAnalysis.TestTools/CodeAnalysis.TestTools.csproj" />
   </ItemGroup>
 
   <ItemGroup>
