@@ -1,7 +1,6 @@
 namespace CodeAnalysis.TestTools;
 
 /// <summary>Thrown when a <see cref="DiagnosticAnalyzer"/> under test crashes.</summary>
-[Serializable]
 [ExcludeFromCodeCoverage]
 public class AnalyzerCrashed : InvalidOperationException
 {
