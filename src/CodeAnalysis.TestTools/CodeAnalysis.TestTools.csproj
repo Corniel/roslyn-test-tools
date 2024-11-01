@@ -3,18 +3,21 @@
   <Import Project="..\..\props\common.props" />
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
+    <TargetFramework>net8.0</TargetFramework>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Version>3.0.1</Version>
     <PackageReleaseNotes>
+      <![CDATA[
+ToBeReleased
+- Drop .NET 6.0. (BREAKING)
 v3.0.1
 - 'no message provided' on Verify method (FIX). #21
 v3.0.0
 - Logging expected issues to the console only in DEBUG mode.
-- Update dependency Buildalyzer 7.*. (breaking)
+- Update dependency Buildalyzer 7.*. (BREAKING)
 v2.0.0
 - Drop .NET 7.0 support. (breaking)
-- Update dependency Buildalyzer 6.*. (breaking)
+- Update dependency Buildalyzer 6.*. (BREAKING)
 v1.3.0
 - Target .NET 8.0
 v1.2.0
@@ -29,11 +32,13 @@ v0.0.4
 - Fix invalid cast for adding NuGet packages.
 v0.0.3.1
 - GuardedCollection AddRange failed to add items to the new collection. (#4)
+      ]]>
     </PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Label="Package info">
-    <EnablePackageValidation>true</EnablePackageValidation>
+    <EnablePackageValidation>false</EnablePackageValidation>
+    <PackageValidationBaselineVersion>4.0.0</PackageValidationBaselineVersion>
     <IsPackable>true</IsPackable>
     <PackageId>CodeAnalysis.TestTools</PackageId>
     <PackageIcon>package-icon.png</PackageIcon>
@@ -41,7 +46,6 @@ v0.0.3.1
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/Corniel/roslyn-test-tools</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageValidationBaselineVersion>3.0.0</PackageValidationBaselineVersion>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/Corniel/roslyn-test-tools</RepositoryUrl>
     <DefineConstants>CONTRACTS_FULL</DefineConstants>
