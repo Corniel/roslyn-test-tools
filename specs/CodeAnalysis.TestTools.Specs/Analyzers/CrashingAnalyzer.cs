@@ -8,10 +8,7 @@ namespace Specs.Analyzers;
 internal sealed class CrashingAnalyzer : DiagnosticAnalyzer
 {
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics
-        => new[]
-        {
-                new DiagnosticDescriptor(nameof(CrashingAnalyzer), "Crash!", "Specs", string.Empty, DiagnosticSeverity.Warning, true),
-        }.ToImmutableArray();
+        => [new DiagnosticDescriptor(nameof(CrashingAnalyzer), "Crash!", "Specs", string.Empty, DiagnosticSeverity.Warning, true)];
 
     public override void Initialize(AnalysisContext context)
     {

@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="..\..\props\common.props" />
+  <Import Project="../../props/common.props" />
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -10,6 +10,7 @@
       <![CDATA[
 ToBeReleased
 - Drop .NET 6.0. (BREAKING)
+- Removed [Serialize] attributes from exceptions.
 v3.0.1
 - 'no message provided' on Verify method (FIX). #21
 v3.0.0

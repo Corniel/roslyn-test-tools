@@ -36,7 +36,7 @@ public abstract record AnalyzerVerifyContext
     [Pure]
     [DebuggerStepThrough]
     public IEnumerable<Issue> ReportIssues()
-        => Run.Sync(() => ReportIssuesAsync());
+        => Run.Sync(ReportIssuesAsync);
 
     /// <summary>Reports (both expected, unexpected, and not reported) issues for the analyzer verify context.</summary>
     [Pure]

@@ -4,7 +4,7 @@ namespace CodeAnalysis.TestTools.References;
 public sealed class MetadataReferences : GuardedCollection<MetadataReference, MetadataReferences>
 {
     /// <summary>Gets an empty set of medata references.</summary>
-    public static readonly MetadataReferences Empty = new(Array.Empty<MetadataReference>());
+    public static readonly MetadataReferences Empty = new([]);
 
     /// <summary>Initializes a new instance of the <see cref="MetadataReferences"/> class.</summary>
     internal MetadataReferences(params MetadataReference[] references) : base(references) { }

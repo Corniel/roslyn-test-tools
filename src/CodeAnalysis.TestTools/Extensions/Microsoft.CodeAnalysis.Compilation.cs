@@ -11,7 +11,7 @@ public static class CompilationExtensions
         this Compilation compilation,
         Analyzers analyzers,
         CancellationToken cancellationToken = default)
-        => compilation.GetDiagnosticsAsync(analyzers, Array.Empty<AdditionalText>(), cancellationToken);
+        => compilation.GetDiagnosticsAsync(analyzers, [], cancellationToken);
 
     /// <summary>Gets the diagnostics for the specified analyzers.</summary>
     [Pure]
@@ -29,7 +29,7 @@ public static class CompilationExtensions
 
         var diagnostics = await compilation
             .WithOptions(options)
-            .WithAnalyzers(analyzers.ToImmutableArray(), analyzerOptions)
+            .WithAnalyzers([.. analyzers], analyzerOptions)
             .GetAllDiagnosticsAsync(cancellationToken);
 
         return cancellationToken.IsCancellationRequested

@@ -9,10 +9,7 @@ namespace Specs.Analyzers;
 internal sealed class VisualBasicOnly : DiagnosticAnalyzer
 {
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics
-        => new[]
-        {
-                new DiagnosticDescriptor(nameof(VisualBasicOnly), "VB.NET only", "Specs", string.Empty, DiagnosticSeverity.Warning, true),
-        }.ToImmutableArray();
+        => [new(nameof(VisualBasicOnly), "VB.NET only", "Specs", string.Empty, DiagnosticSeverity.Warning, true)];
 
     public override void Initialize(AnalysisContext context)
     {

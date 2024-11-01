@@ -14,10 +14,7 @@ internal sealed class PreferConstants : DiagnosticAnalyzer
     public const string DiagnosticId = nameof(PreferConstants);
 
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics
-        => new[]
-        {
-                new DiagnosticDescriptor(DiagnosticId, "Prefer constants", "'{0}' can be a constant.", string.Empty, DiagnosticSeverity.Warning, true),
-        }.ToImmutableArray();
+        => [new DiagnosticDescriptor(DiagnosticId, "Prefer constants", "'{0}' can be a constant.", string.Empty, DiagnosticSeverity.Warning, true)];
 
     public override void Initialize(AnalysisContext context)
     {

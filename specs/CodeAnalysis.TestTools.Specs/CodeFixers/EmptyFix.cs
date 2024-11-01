@@ -5,7 +5,7 @@ namespace Specs.CodeFixers;
 
 internal sealed class EmptyFix : CodeFixProvider
 {
-    public override ImmutableArray<string> FixableDiagnosticIds => Array.Empty<string>().ToImmutableArray();
+    public override ImmutableArray<string> FixableDiagnosticIds => [];
 
     public override Task RegisterCodeFixesAsync(CodeFixContext context) => Task.CompletedTask;
 

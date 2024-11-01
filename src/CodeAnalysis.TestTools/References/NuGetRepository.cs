@@ -16,13 +16,12 @@ internal static class NuGetRepository
         using var stream = new MemoryStream();
         await resource.CopyNupkgToStreamAsync(package.Id, package.Version, stream, new SourceCacheContext(), NullLogger.Instance, default);
         using var packageReader = new PackageArchiveReader(stream);
-        var dllFiles = packageReader.GetFiles().Where(IsDll).ToArray();
 
-        if (dllFiles.Any())
+        if (packageReader.GetFiles().Where(IsDll).ToArray() is { Length: > 0 } dlls)
         {
-            foreach (var dllFile in dllFiles)
+            foreach (var dll in dlls)
             {
-                packageReader.ExtractFile(dllFile, Path.Combine(package.CacheDirectory.FullName, dllFile), NullLogger.Instance);
+                packageReader.ExtractFile(dll, Path.Combine(package.CacheDirectory.FullName, dll), NullLogger.Instance);
             }
         }
         else throw package.IncompletSetup();
@@ -39,14 +38,14 @@ internal static class NuGetRepository
             && cached.Version is { Length: > 0 }
             && cached.Checked.AddDays(5) >= DateTime.UtcNow)
         {
-            return new NuGetVersion(cached.Version);
+            return new(cached.Version);
         }
         else
         {
             var repo = await Repo();
             var all = await repo.GetAllVersionsAsync(packageId, new SourceCacheContext(), NullLogger.Instance, default);
             var latest = all.OrderByDescending(v => v.Version).First(version => !version.IsPrerelease);
-            cache[packageId] = new NuGetLatestVersionCheck(latest.OriginalVersion, DateTime.UtcNow);
+            cache[packageId] = new() { Version = latest.OriginalVersion, Checked = DateTime.UtcNow };
 
             if (LatestVersionsFile.Directory is { Exists: false } directory)
             {
@@ -69,10 +68,7 @@ internal static class NuGetRepository
 
     [Pure]
     private static async Task<NuGetLatestVersions> GetLatestVersionsCacheAsync()
-    {
-        latestVersions ??= await NuGetLatestVersions.LoadAsync(LatestVersionsFile);
-        return latestVersions;
-    }
+        => latestVersions ??= await NuGetLatestVersions.LoadAsync(LatestVersionsFile);
 
     private static NuGetLatestVersions? latestVersions;
 }

@@ -6,10 +6,7 @@ namespace Specs.Analyzers;
 internal sealed class MultipleLanguages : DiagnosticAnalyzer
 {
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics
-        => new[]
-        {
-                new DiagnosticDescriptor(nameof(MultipleLanguages), "multple languages", "Specs", string.Empty, DiagnosticSeverity.Warning, true),
-        }.ToImmutableArray();
+        => [new DiagnosticDescriptor(nameof(MultipleLanguages), "multple languages", "Specs", string.Empty, DiagnosticSeverity.Warning, true)];
 
     public override void Initialize(AnalysisContext context)
     {

@@ -4,7 +4,7 @@ namespace CodeAnalysis.TestTools;
 public sealed class DiagnosticIds : GuardedCollection<string, DiagnosticIds>
 {
     /// <summary>Gets an empty set of diagnostic ID's.</summary>
-    public static readonly DiagnosticIds Empty = new(Array.Empty<string>());
+    public static readonly DiagnosticIds Empty = new([]);
 
     /// <summary>Initializes a new instance of the <see cref="DiagnosticIds"/> class.</summary>
     private DiagnosticIds(string[] items) : base(items) { }
@@ -12,7 +12,7 @@ public sealed class DiagnosticIds : GuardedCollection<string, DiagnosticIds>
     /// <inheritdoc />
     [Pure]
     protected override bool Equals(string item1, string item2)
-        => item1.ToUpperInvariant() == item2.ToUpperInvariant();
+        => item1.Equals(item2, StringComparison.InvariantCultureIgnoreCase);
 
     /// <inheritdoc />
     [Impure]
