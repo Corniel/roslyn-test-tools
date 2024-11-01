@@ -38,7 +38,7 @@ public partial record CodeFixVerifierContext<TContext>
     public Sources Sources { get; init; }
 
     /// <summary>Verifies the code fix provider iteratively.</summary>
-    public void Verify() => Run.Sync(() => VerifyAsync());
+    public void Verify() => Run.Sync(VerifyAsync);
 
     /// <summary>Verifies the code fix provider iteratively.</summary>
     public async Task VerifyAsync()
