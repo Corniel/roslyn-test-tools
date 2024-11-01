@@ -1,4 +1,4 @@
-﻿using Buildalyzer;
+using Buildalyzer;
 using Buildalyzer.Workspaces;
 
 namespace CodeAnalysis.TestTools;

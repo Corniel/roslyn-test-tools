@@ -1,4 +1,4 @@
-﻿namespace Microsoft.CodeAnalysis;
+namespace Microsoft.CodeAnalysis;
 
 /// <summary>Extensions on <see cref="Location"/>.</summary>
 public static class LocationExtensions

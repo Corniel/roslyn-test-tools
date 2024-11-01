@@ -1,4 +1,4 @@
-﻿# Roslyn Test Tools
+# Roslyn Test Tools
 The package provides tooling to verify the behavior of [Diagnostic Analyzers](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.diagnostics.diagnosticanalyzer),
 and [Code Fix Providers](https://learn.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.codefixes.codefixprovider).
 It does this by providing a (test) context builder, and a mechanism to define

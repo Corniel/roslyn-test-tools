@@ -1,4 +1,4 @@
-﻿using Microsoft.CodeAnalysis.CodeActions;
+using Microsoft.CodeAnalysis.CodeActions;
 using Microsoft.CodeAnalysis.CodeFixes;
 
 namespace CodeAnalysis.TestTools.Contexts;

@@ -1,4 +1,4 @@
-﻿namespace CodeAnalysis.TestTools.Diagnostics;
+namespace CodeAnalysis.TestTools.Diagnostics;
 
 /// <summary>Represents an unexpected verification issue.</summary>
 public sealed record UnexpectedIssue : Issue

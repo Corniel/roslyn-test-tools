@@ -1,4 +1,4 @@
-﻿namespace CodeAnalysis.TestTools.References;
+namespace CodeAnalysis.TestTools.References;
 
 /// <summary>A <see cref="MetadataReference"/> helper class.</summary>
 public static class Reference

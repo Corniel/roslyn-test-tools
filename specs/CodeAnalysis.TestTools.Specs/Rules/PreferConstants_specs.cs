@@ -1,4 +1,4 @@
-﻿using Specs.CodeFixers;
+using Specs.CodeFixers;
 
 namespace Specs.Rules.PreferConstants_specs;
 

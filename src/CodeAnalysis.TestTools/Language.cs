@@ -1,4 +1,4 @@
-﻿namespace CodeAnalysis.TestTools;
+namespace CodeAnalysis.TestTools;
 
 /// <summary>Represents a (code) language.</summary>
 public readonly struct Language : IEquatable<Language>

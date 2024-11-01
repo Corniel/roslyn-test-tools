@@ -1,4 +1,4 @@
-﻿namespace CodeAnalysis.TestTools.Text;
+namespace CodeAnalysis.TestTools.Text;
 
 /// <summary>Extensions on <see cref="Line"/>.</summary>
 public static class LineExtensions

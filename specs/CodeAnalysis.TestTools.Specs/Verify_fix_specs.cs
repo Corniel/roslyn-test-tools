@@ -1,4 +1,4 @@
-﻿using Specs.CodeFixers;
+using Specs.CodeFixers;
 
 namespace Verify_fix_specs;
 

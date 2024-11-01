@@ -1,4 +1,4 @@
-﻿namespace Expected_issues_parse_specs;
+namespace Expected_issues_parse_specs;
 
 public class Regular_pattern_supports
 {

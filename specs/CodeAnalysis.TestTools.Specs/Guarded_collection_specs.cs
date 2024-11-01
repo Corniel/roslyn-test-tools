@@ -1,4 +1,4 @@
-﻿namespace Guarded_collection_specs;
+namespace Guarded_collection_specs;
 
 public class Add
 {

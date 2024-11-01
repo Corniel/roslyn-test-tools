@@ -1,4 +1,4 @@
-﻿namespace CodeAnalysis.TestTools.Text;
+namespace CodeAnalysis.TestTools.Text;
 
 /// <summary>A lightweight representation of line number and text.</summary>
 [DebuggerDisplay("{LineNumber}: {Text}")]

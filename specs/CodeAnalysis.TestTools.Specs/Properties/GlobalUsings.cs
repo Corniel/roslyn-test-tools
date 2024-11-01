@@ -1,4 +1,4 @@
-﻿global using CodeAnalysis.TestTools;
+global using CodeAnalysis.TestTools;
 global using CodeAnalysis.TestTools.Contexts;
 global using CodeAnalysis.TestTools.Diagnostics;
 global using CodeAnalysis.TestTools.References;

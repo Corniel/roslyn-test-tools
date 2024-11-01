@@ -1,4 +1,4 @@
-﻿namespace CodeAnalysis.TestTools;
+namespace CodeAnalysis.TestTools;
 
 /// <summary>Helper class containing diagnostic id's.</summary>
 public static class DiagnosticId

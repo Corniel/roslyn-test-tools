@@ -1,4 +1,4 @@
-﻿namespace CodeAnalysis.TestTools.Contexts;
+namespace CodeAnalysis.TestTools.Contexts;
 
 /// <summary>
 /// Represents a project file based context to verify <see cref="DiagnosticAnalyzer"/> behavior.

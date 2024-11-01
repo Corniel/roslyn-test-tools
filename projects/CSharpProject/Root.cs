@@ -1,4 +1,4 @@
-﻿namespace CSharpProject;
+namespace CSharpProject;
 
 public sealed class Root
 {

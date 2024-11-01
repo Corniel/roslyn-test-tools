@@ -1,4 +1,4 @@
-﻿namespace CodeAnalysis.TestTools.Collections;
+namespace CodeAnalysis.TestTools.Collections;
 
 /// <summary>An implementation of an <see cref="ICollection{T}"/>,
 /// that has a built-in guard for adding elements.

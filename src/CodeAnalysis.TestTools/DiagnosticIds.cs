@@ -1,4 +1,4 @@
-﻿namespace CodeAnalysis.TestTools;
+namespace CodeAnalysis.TestTools;
 
 /// <summary>Contains a collection of diagnostic ID's.</summary>
 public sealed class DiagnosticIds : GuardedCollection<string, DiagnosticIds>
