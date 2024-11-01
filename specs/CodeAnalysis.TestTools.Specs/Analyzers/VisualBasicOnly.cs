@@ -1,5 +1,3 @@
-#pragma warning disable RS1036 // Specify analyzer banned API enforcement setting
-
 using Microsoft.CodeAnalysis.VisualBasic;
 
 namespace Specs.Analyzers;
