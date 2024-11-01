@@ -9,7 +9,7 @@ namespace Specs.CodeFixers;
 
 internal sealed class PreferConstantsFix : CodeFixProvider
 {
-    public override ImmutableArray<string> FixableDiagnosticIds { get; } = new []{ PreferConstants.DiagnosticId }.ToImmutableArray();
+    public override ImmutableArray<string> FixableDiagnosticIds { get; } = [PreferConstants.DiagnosticId];
 
     [Pure]
     public override FixAllProvider? GetFixAllProvider() => null;

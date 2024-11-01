@@ -15,7 +15,7 @@ public static class IssueComparer
     {
         var lookup = expected.ToHashSet();
         var updated = new List<Issue>();
-        ignoredDiagnostics ??= Array.Empty<string>();
+        ignoredDiagnostics ??= [];
 
         foreach (var diagnostic in actual.Where(diagnostic => !ignoredDiagnostics.Contains(diagnostic.Id)))
         {

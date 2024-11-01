@@ -8,10 +8,7 @@ namespace Specs.Analyzers;
 internal sealed class CSharpOnly : DiagnosticAnalyzer
 {
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics
-        => new[]
-        {
-                new DiagnosticDescriptor(nameof(CSharpOnly), "C# only", "Specs", string.Empty, DiagnosticSeverity.Warning, true),
-        }.ToImmutableArray();
+        =>[new(nameof(CSharpOnly), "C# only", "Specs", string.Empty, DiagnosticSeverity.Warning, true)];
 
     public override void Initialize(AnalysisContext context)
     {
