@@ -12,7 +12,7 @@ public sealed class DiagnosticIds : GuardedCollection<string, DiagnosticIds>
     /// <inheritdoc />
     [Pure]
     protected override bool Equals(string item1, string item2)
-        => item1.ToUpperInvariant() == item2.ToUpperInvariant();
+        => item1.Equals(item2, StringComparison.InvariantCultureIgnoreCase);
 
     /// <inheritdoc />
     [Impure]

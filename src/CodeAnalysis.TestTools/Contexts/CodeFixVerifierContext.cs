@@ -100,7 +100,7 @@ public partial record CodeFixVerifierContext<TContext>
     private bool IsFixable(Diagnostic diagnostic) => CodeFix.FixableDiagnosticIds.Contains(diagnostic.Id);
 
     [Pure]
-    private IReadOnlyCollection<CodeAction> GetCodeActions(Document document, Diagnostic diagnostic)
+    private List<CodeAction> GetCodeActions(Document document, Diagnostic diagnostic)
     {
         var actions = new List<CodeAction>();
         var context = new CodeFixContext(document, diagnostic, (action, _) => actions.Add(action), default);

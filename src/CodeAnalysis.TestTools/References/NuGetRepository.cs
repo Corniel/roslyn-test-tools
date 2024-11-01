@@ -16,13 +16,12 @@ internal static class NuGetRepository
         using var stream = new MemoryStream();
         await resource.CopyNupkgToStreamAsync(package.Id, package.Version, stream, new SourceCacheContext(), NullLogger.Instance, default);
         using var packageReader = new PackageArchiveReader(stream);
-        var dllFiles = packageReader.GetFiles().Where(IsDll).ToArray();
 
-        if (dllFiles.Any())
+        if (packageReader.GetFiles().Where(IsDll).ToArray() is { Length: > 0 } dlls)
         {
-            foreach (var dllFile in dllFiles)
+            foreach (var dll in dlls)
             {
-                packageReader.ExtractFile(dllFile, Path.Combine(package.CacheDirectory.FullName, dllFile), NullLogger.Instance);
+                packageReader.ExtractFile(dll, Path.Combine(package.CacheDirectory.FullName, dll), NullLogger.Instance);
             }
         }
         else throw package.IncompletSetup();
@@ -69,10 +68,7 @@ internal static class NuGetRepository
 
     [Pure]
     private static async Task<NuGetLatestVersions> GetLatestVersionsCacheAsync()
-    {
-        latestVersions ??= await NuGetLatestVersions.LoadAsync(LatestVersionsFile);
-        return latestVersions;
-    }
+        => latestVersions ??= await NuGetLatestVersions.LoadAsync(LatestVersionsFile);
 
     private static NuGetLatestVersions? latestVersions;
 }
