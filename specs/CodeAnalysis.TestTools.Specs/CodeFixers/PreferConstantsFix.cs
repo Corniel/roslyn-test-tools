@@ -9,7 +9,7 @@ namespace Specs.CodeFixers;
 
 internal sealed class PreferConstantsFix : CodeFixProvider
 {
-    public override ImmutableArray<string> FixableDiagnosticIds { get; } = new []{ PreferConstants.DiagnosticId }.ToImmutableArray();
+    public override ImmutableArray<string> FixableDiagnosticIds { get; } = [PreferConstants.DiagnosticId];
 
     [Pure]
     public override FixAllProvider? GetFixAllProvider() => null;
@@ -42,7 +42,7 @@ internal sealed class PreferConstantsFix : CodeFixProvider
 
         // Insert the const token into the modifiers list, creating a new modifiers list.
         var newModifiers = trimmedLocal.Modifiers.Insert(0, constToken);
-        
+
         // Produce the new local declaration.
         var newLocal = trimmedLocal
             .WithModifiers(newModifiers)

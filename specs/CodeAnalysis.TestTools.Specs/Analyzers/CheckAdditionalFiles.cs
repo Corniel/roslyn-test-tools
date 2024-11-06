@@ -1,5 +1,3 @@
-#pragma warning disable RS1036 // Specify analyzer banned API enforcement setting
-
 using System.IO;
 
 namespace Specs.Analyzers;
@@ -8,11 +6,7 @@ namespace Specs.Analyzers;
 internal sealed class CheckAdditionalFiles : DiagnosticAnalyzer
 {
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics
-        => new[]
-        {
-            new DiagnosticDescriptor(nameof(CheckAdditionalFiles), "Check additional files", "Contains {0}: '{1}'", string.Empty, DiagnosticSeverity.Warning, true),
-        }
-        .ToImmutableArray();
+        => [new(nameof(CheckAdditionalFiles), "Check additional files", "Contains {0}: '{1}'", string.Empty, DiagnosticSeverity.Warning, true)];
 
     public override void Initialize(AnalysisContext context)
     {

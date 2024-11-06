@@ -10,13 +10,10 @@
 namespace CodeAnalysis.TestTools.Collections;
 
 /// <summary>Allows the debugger to display collections.</summary>
-internal sealed class CollectionDebugView
+internal sealed class CollectionDebugView(IEnumerable enumeration)
 {
     /// <summary>A reference to the enumeration to display.</summary>
-    private readonly IEnumerable enumeration;
-
-    /// <summary>Initializes a new instance of the <see cref="CollectionDebugView"/> class..</summary>
-    public CollectionDebugView(IEnumerable enumeration) => this.enumeration = enumeration;
+    private readonly IEnumerable enumeration = enumeration;
 
     /// <summary>The array that is shown by the debugger.</summary>
     /// <remarks>

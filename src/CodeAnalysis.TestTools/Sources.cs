@@ -4,7 +4,7 @@ namespace CodeAnalysis.TestTools;
 public sealed class Sources : GuardedCollection<Code, Sources>
 {
     /// <summary>Initializes a new instance of the <see cref="Sources"/> class.</summary>
-    public Sources(Language language) : this(language, Array.Empty<Code>()) { }
+    public Sources(Language language) : this(language, []) { }
 
     /// <summary>Initializes a new instance of the <see cref="Sources"/> class.</summary>
     private Sources(Language language, Code[] code) : base(code) => Language = language;

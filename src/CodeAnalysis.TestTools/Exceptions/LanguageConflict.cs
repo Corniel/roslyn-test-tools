@@ -1,7 +1,6 @@
 namespace CodeAnalysis.TestTools;
 
 /// <summary>Thrown when a language conflict occurs.</summary>
-[Serializable]
 [ExcludeFromCodeCoverage]
 public class LanguageConflict : InvalidOperationException
 {

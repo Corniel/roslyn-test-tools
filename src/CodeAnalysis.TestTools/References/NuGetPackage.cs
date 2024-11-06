@@ -10,7 +10,7 @@ public sealed partial class NuGetPackage : IReadOnlyCollection<MetadataReference
     public const string Latest = nameof(Latest);
 
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    private readonly List<MetadataReference> references = new();
+    private readonly List<MetadataReference> references = [];
 
     /// <summary>Initializes a new instance of the <see cref="NuGetPackage"/> class.</summary>
     private NuGetPackage(string packageId, NuGetVersion version, string? runtime)

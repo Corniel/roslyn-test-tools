@@ -38,7 +38,7 @@ public partial record CodeFixVerifierContext<TContext>
     public Sources Sources { get; init; }
 
     /// <summary>Verifies the code fix provider iteratively.</summary>
-    public void Verify() => Run.Sync(() => VerifyAsync());
+    public void Verify() => Run.Sync(VerifyAsync);
 
     /// <summary>Verifies the code fix provider iteratively.</summary>
     public async Task VerifyAsync()
@@ -100,7 +100,7 @@ public partial record CodeFixVerifierContext<TContext>
     private bool IsFixable(Diagnostic diagnostic) => CodeFix.FixableDiagnosticIds.Contains(diagnostic.Id);
 
     [Pure]
-    private IReadOnlyCollection<CodeAction> GetCodeActions(Document document, Diagnostic diagnostic)
+    private List<CodeAction> GetCodeActions(Document document, Diagnostic diagnostic)
     {
         var actions = new List<CodeAction>();
         var context = new CodeFixContext(document, diagnostic, (action, _) => actions.Add(action), default);

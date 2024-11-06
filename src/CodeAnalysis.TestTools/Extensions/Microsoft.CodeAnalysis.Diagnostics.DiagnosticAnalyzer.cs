@@ -12,7 +12,7 @@ public static class DiagnosticAnalyzerExtensions
             .GetType()
             .GetCustomAttributes<DiagnosticAnalyzerAttribute>(inherit: true)
             .SelectMany(attr => attr.Languages)
-            .Select(lang => Language.Parse(lang))
+            .Select(Language.Parse)
             .Where(lang => lang != Language.None)
             .Distinct()
             .ToImmutableArray();

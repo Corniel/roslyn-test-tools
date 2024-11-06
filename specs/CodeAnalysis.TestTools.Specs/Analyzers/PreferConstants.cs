@@ -1,5 +1,3 @@
-#pragma warning disable RS1036 // Specify analyzer banned API enforcement setting
-
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
@@ -14,10 +12,7 @@ internal sealed class PreferConstants : DiagnosticAnalyzer
     public const string DiagnosticId = nameof(PreferConstants);
 
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics
-        => new[]
-        {
-                new DiagnosticDescriptor(DiagnosticId, "Prefer constants", "'{0}' can be a constant.", string.Empty, DiagnosticSeverity.Warning, true),
-        }.ToImmutableArray();
+        => [new DiagnosticDescriptor(DiagnosticId, "Prefer constants", "'{0}' can be a constant.", string.Empty, DiagnosticSeverity.Warning, true)];
 
     public override void Initialize(AnalysisContext context)
     {

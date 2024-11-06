@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <Project>
 
   <PropertyGroup>
@@ -8,7 +7,8 @@
     <IsPublishable>false</IsPublishable>
     <NuGetAudit>true</NuGetAudit>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
-    <OutputType>library</OutputType>
+    <OutputType>Library</OutputType>
+    <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -29,9 +29,13 @@
     <Copyright>Copyright © Corniel Nobel 2013-current</Copyright>
   </PropertyGroup>
 
+  <ItemGroup Label="Analyzer configuration">
+    <GlobalAnalyzerConfigFiles Include="../../analyzers-config.ini" />
+  </ItemGroup>
+
   <ItemGroup Label="Analyzers">
     <PackageReference Include="AsyncFixer" Version="*" PrivateAssets="all" />
-    <PackageReference Include="DotNetProjectFile.Analyzers" Version="*" PrivateAssets="all" Condition="'$(TargetFramework)'=='net8.0'" />
+    <PackageReference Include="DotNetProjectFile.Analyzers" Version="*" PrivateAssets="all" />
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="*" PrivateAssets="all" />
     <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="*-*" PrivateAssets="all" />
     <PackageReference Include="SonarAnalyzer.CSharp" Version="*" PrivateAssets="all" />
@@ -39,6 +43,7 @@
 
   <ItemGroup Label="Additional files">
     <AdditionalFiles Include="*.csproj" Visible="false" />
+    <AdditionalFiles Include="../../analyzers-config.ini" Link="Properties/analyzers-config.ini" />
     <AdditionalFiles Include="../../props/common.props" Link="Properties/common.props" />
   </ItemGroup>
 

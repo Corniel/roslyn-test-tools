@@ -9,14 +9,11 @@ public static class TextDocumentExtensions
         => new AdditionalTextDocument(document);
 
     /// <summary>Implements <see cref="AdditionalText"/> for <see cref="TextDocument"/>.</summary>
-    private sealed class AdditionalTextDocument : AdditionalText
+    /// <remarks>Initializes a new instance of the <see cref="AdditionalTextDocument"/> class.</remarks>
+    private sealed class AdditionalTextDocument(TextDocument document) : AdditionalText
     {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private readonly TextDocument Document;
-
-        /// <summary>Initializes a new instance of the <see cref="AdditionalTextDocument"/> class.</summary>
-        public AdditionalTextDocument(TextDocument document)
-            => Document = Guard.NotNull(document);
+        private readonly TextDocument Document = Guard.NotNull(document);
 
         /// <inheritdoc/>
         public override string Path => Document.FilePath!;

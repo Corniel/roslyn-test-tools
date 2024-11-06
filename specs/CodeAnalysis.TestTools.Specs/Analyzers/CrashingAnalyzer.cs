@@ -1,5 +1,3 @@
-#pragma warning disable RS1036 // Specify analyzer banned API enforcement setting
-
 using Microsoft.CodeAnalysis.CSharp;
 
 namespace Specs.Analyzers;
@@ -8,10 +6,7 @@ namespace Specs.Analyzers;
 internal sealed class CrashingAnalyzer : DiagnosticAnalyzer
 {
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics
-        => new[]
-        {
-                new DiagnosticDescriptor(nameof(CrashingAnalyzer), "Crash!", "Specs", string.Empty, DiagnosticSeverity.Warning, true),
-        }.ToImmutableArray();
+        => [new DiagnosticDescriptor(nameof(CrashingAnalyzer), "Crash!", "Specs", string.Empty, DiagnosticSeverity.Warning, true)];
 
     public override void Initialize(AnalysisContext context)
     {

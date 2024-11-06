@@ -1,7 +1,6 @@
 namespace CodeAnalysis.TestTools;
 
 /// <summary>Thrown when the expected issue verification fails.</summary>
-[Serializable]
 [ExcludeFromCodeCoverage]
 public class VerificationFailed : Exception
 {

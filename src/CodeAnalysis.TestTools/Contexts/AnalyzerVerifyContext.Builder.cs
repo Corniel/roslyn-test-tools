@@ -121,7 +121,7 @@ public abstract partial record AnalyzerVerifyContext<TContext> : AnalyzerVerifyC
 
     /// <inheritdoc />
     [Pure]
-    internal override IEnumerable<AdditionalText> GetAdditionalText() => Array.Empty<AdditionalText>();
+    internal override IEnumerable<AdditionalText> GetAdditionalText() => [];
 
     [Pure]
     internal virtual Project GetProject()
