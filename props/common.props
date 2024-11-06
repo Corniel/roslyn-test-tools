@@ -8,6 +8,7 @@
     <NuGetAudit>true</NuGetAudit>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <OutputType>Library</OutputType>
+    <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -29,7 +30,7 @@
   </PropertyGroup>
 
   <ItemGroup Label="Analyzer configuration">
-    <GlobalConfigFiles Include="../../analyzers-config.ini" />
+    <GlobalAnalyzerConfigFiles Include="../../analyzers-config.ini" />
   </ItemGroup>
 
   <ItemGroup Label="Analyzers">
