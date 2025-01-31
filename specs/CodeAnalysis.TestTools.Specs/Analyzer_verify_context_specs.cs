@@ -101,7 +101,7 @@ public class For_CS_Project
         .ForProject(CSProject)
         .Verify();
 
-    [Test, Ignore("FIX, important failure")]
+    [Test]
     public async Task passes_additional_files()
     {
         var diagnostics = await new CheckAdditionalFiles()
@@ -148,7 +148,7 @@ public class For_VB_Project
         .ForProject(VBProject)
         .Verify();
 
-    [Test, Ignore("FIX, important failure")]
+    [Test]
     public async Task passes_additional_files()
     {
         var diagnostics = await new CheckAdditionalFiles()
