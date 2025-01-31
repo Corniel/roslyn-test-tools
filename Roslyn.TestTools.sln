@@ -6,38 +6,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeAnalysis.TestTools", "s
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeAnalysis.TestTools.Specs", "specs\CodeAnalysis.TestTools.Specs\CodeAnalysis.TestTools.Specs.csproj", "{E1ED020E-C14E-4375-8190-A89131D37C2E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{63109C67-1737-48B6-AF84-BCA0262A86F9}"
-	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
-		.gitattributes = .gitattributes
-		.gitignore = .gitignore
-		analyzers-config.ini = analyzers-config.ini
-		LICENSE.md = LICENSE.md
-		README.md = README.md
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{5811F55D-6885-4288-8C7D-862CC2B43D7F}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{7C583E7B-BCA6-47E9-B89E-A546C94010A1}"
-	ProjectSection(SolutionItems) = preProject
-		.github\workflows\build-test.yaml = .github\workflows\build-test.yaml
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projects", "Projects", "{00B4E265-2A4D-4204-B879-E593ED212EED}"
 	ProjectSection(SolutionItems) = preProject
 		projects\CSharpProject\CSharpProject.csproj = projects\CSharpProject\CSharpProject.csproj
 		projects\VbProject\VbProject.vbproj = projects\VbProject\VbProject.vbproj
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "props", "props", "{8ACBEBEC-3FBE-49A6-833B-F34C22DF5CBD}"
-	ProjectSection(SolutionItems) = preProject
-		props\common.props = props\common.props
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "design", "design", "{EBB2ECB9-5B44-4061-A89B-BC0BB32597CF}"
-	ProjectSection(SolutionItems) = preProject
-		design\package-icon.png = design\package-icon.png
-		design\package-icon.psd = design\package-icon.psd
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = ".net", ".net.csproj", "{5C35718E-1221-4DCD-B15A-630AC8FF45B6}"
@@ -63,12 +35,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{5811F55D-6885-4288-8C7D-862CC2B43D7F} = {63109C67-1737-48B6-AF84-BCA0262A86F9}
-		{7C583E7B-BCA6-47E9-B89E-A546C94010A1} = {5811F55D-6885-4288-8C7D-862CC2B43D7F}
-		{8ACBEBEC-3FBE-49A6-833B-F34C22DF5CBD} = {63109C67-1737-48B6-AF84-BCA0262A86F9}
-		{EBB2ECB9-5B44-4061-A89B-BC0BB32597CF} = {63109C67-1737-48B6-AF84-BCA0262A86F9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {59DFE69B-0C3B-4ADA-AB6A-4C72A52D5C08}

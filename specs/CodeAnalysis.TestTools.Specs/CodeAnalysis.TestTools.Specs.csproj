@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <RootNamespace>Specs</RootNamespace>
     <IsTestProject>true</IsTestProject>
   </PropertyGroup>
@@ -14,33 +14,32 @@
   </ItemGroup>
 
   <ItemGroup Label="Newest versions of package dependecies">
-    <PackageReference Include="Buildalyzer" Version="7.0.2" />
-    <PackageReference Include="Buildalyzer.Workspaces" Version="7.0.2" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.11.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic.Workspaces" Version="4.11.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.11.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" Version="4.11.0" />
-    <PackageReference Include="NuGet.Common" Version="6.11.1" />
-    <PackageReference Include="NuGet.Frameworks" Version="6.11.1" />
-    <PackageReference Include="NuGet.Packaging" Version="6.11.1" />
-    <PackageReference Include="NuGet.Protocol" Version="6.11.1" />
+    <PackageReference Include="Buildalyzer" />
+    <PackageReference Include="Buildalyzer.Workspaces" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" />
+    <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic.Workspaces" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" />
+    <PackageReference Include="NuGet.Common" />
+    <PackageReference Include="NuGet.Frameworks" />
+    <PackageReference Include="NuGet.Packaging" />
+    <PackageReference Include="NuGet.Protocol" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentAssertions" Version="6.12.1" />
-    <PackageReference Include="NUnit" Version="4.2.2" />
+    <PackageReference Include="FluentAssertions" />
+    <PackageReference Include="NUnit" />
   </ItemGroup>
 
   <ItemGroup Label="Build tools">
-    <PackageReference Include="coverlet.collector" Version="*" PrivateAssets="all" />
-    <PackageReference Include="coverlet.msbuild" Version="*" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="*" PrivateAssets="all"/>
-    <PackageReference Include="NUnit3TestAdapter" Version="4.*" PrivateAssets="all" />
+    <PackageReference Include="coverlet.collector" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" PrivateAssets="all" />
+    <PackageReference Include="NUnit3TestAdapter" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup Label="Analyzers">
-    <PackageReference Include="FluentAssertions.Analyzers" Version="*" PrivateAssets="all" />
-    <PackageReference Include="NUnit.Analyzers" Version="*" PrivateAssets="all" />
+    <PackageReference Include="FluentAssertions.Analyzers" PrivateAssets="all" />
+    <PackageReference Include="NUnit.Analyzers" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>
