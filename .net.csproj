@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup Label="Directories">
+    <None Include="design/**" />
+    <None Include="projects/**/*.*proj" />
+    <None Include="projects/**/data.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DotNetProjectFile.Analyzers.Sdk" PrivateAssets="all" />
+  </ItemGroup>
+
+</Project>
