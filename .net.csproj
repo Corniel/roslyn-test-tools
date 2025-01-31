@@ -6,6 +6,8 @@
 
   <ItemGroup Label="Directories">
     <None Include="design/**" />
+    <None Include="projects/**/*.*proj" />
+    <None Include="projects/**/data.txt" />
   </ItemGroup>
 
   <ItemGroup>
