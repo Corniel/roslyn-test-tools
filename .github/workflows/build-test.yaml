@@ -14,6 +14,6 @@ jobs:
       with:
         dotnet-version: '9.x'
     - name: Build with dotnet
-      run: dotnet build --configuration Release
+      run: dotnet build roslyn-test-tools.sln --configuration Release
     - name: Run unit tests
-      run: dotnet test --no-build --configuration Release
+      run: dotnet test roslyn-test-tools.sln --no-build --configuration Release
