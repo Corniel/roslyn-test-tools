@@ -14,6 +14,7 @@
   <PropertyGroup>
     <Title>Roslyn Test Tools</Title>
     <Product>Roslyn static code analyzers test tools</Product>
+    <ProductName>Roslyn Test Tools</ProductName>
     <Description>
       Tooling to describe expected static code analyzer behavior in annotated code files.
     </Description>
