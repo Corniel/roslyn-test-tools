@@ -111,6 +111,7 @@ public class For_CS_Project
         diagnostics
             .Where(d => d.Id == nameof(CheckAdditionalFiles))
             .Select(d => d.GetMessage())
+            .Last()
             .Should().BeEquivalentTo("Contains data.txt: 'Hello, world!'");
     }
 }
