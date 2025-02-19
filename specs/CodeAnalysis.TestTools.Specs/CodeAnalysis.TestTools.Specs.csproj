@@ -20,10 +20,6 @@
     <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic.Workspaces" />
     <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" />
     <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" />
-    <PackageReference Include="NuGet.Common" />
-    <PackageReference Include="NuGet.Frameworks" />
-    <PackageReference Include="NuGet.Packaging" />
-    <PackageReference Include="NuGet.Protocol" />
   </ItemGroup>
 
   <ItemGroup>
