@@ -3,6 +3,7 @@
   <PropertyGroup>
     <RootNamespace>VbProject</RootNamespace>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,7 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Qowaiv" Version="7.1.3" />
+    <PackageReference Include="Microsoft.VisualBasic" />
+    <PackageReference Include="Qowaiv" />
   </ItemGroup>
 
   <PropertyGroup>

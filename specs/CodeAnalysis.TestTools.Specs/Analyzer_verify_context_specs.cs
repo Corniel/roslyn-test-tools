@@ -101,7 +101,7 @@ public class For_CS_Project
         .ForProject(CSProject)
         .Verify();
 
-    [Test, Ignore("FIX, important failure")]
+    [Test]
     public async Task passes_additional_files()
     {
         var diagnostics = await new CheckAdditionalFiles()
@@ -111,6 +111,7 @@ public class For_CS_Project
         diagnostics
             .Where(d => d.Id == nameof(CheckAdditionalFiles))
             .Select(d => d.GetMessage())
+            .Last()
             .Should().BeEquivalentTo("Contains data.txt: 'Hello, world!'");
     }
 }
@@ -148,7 +149,7 @@ public class For_VB_Project
         .ForProject(VBProject)
         .Verify();
 
-    [Test, Ignore("FIX, important failure")]
+    [Test]
     public async Task passes_additional_files()
     {
         var diagnostics = await new CheckAdditionalFiles()

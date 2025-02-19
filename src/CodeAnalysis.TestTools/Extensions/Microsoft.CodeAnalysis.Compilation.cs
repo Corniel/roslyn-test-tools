@@ -1,5 +1,3 @@
-using Microsoft.CodeAnalysis.Diagnostics;
-
 namespace Microsoft.CodeAnalysis;
 
 /// <summary>Extensions on <see cref="Compilation"/>.</summary>
