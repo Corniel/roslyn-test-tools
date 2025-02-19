@@ -66,8 +66,8 @@ v0.0.3.1
   </PropertyGroup>
 
   <ItemGroup>
-    <!--<PackageReference Include="Buildalyzer" />
-    <PackageReference Include="Buildalyzer.Workspaces" />-->
+    <PackageReference Include="Buildalyzer" />
+    <PackageReference Include="Buildalyzer.Workspaces" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" />
     <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic.Workspaces" />
     <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" />
@@ -83,12 +83,6 @@ v0.0.3.1
   <ItemGroup Label="Analyzers">
     <PackageReference Include="Qowaiv.Analyzers.CSharp" PrivateAssets="all" />
     <PackageReference Include="StyleCop.Analyzers" PrivateAssets="all" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\buildalyzer\src\Buildalyzer.Logger\Buildalyzer.Logger.csproj" />
-    <ProjectReference Include="..\..\..\buildalyzer\src\Buildalyzer.Workspaces\Buildalyzer.Workspaces.csproj" />
-    <ProjectReference Include="..\..\..\buildalyzer\src\Buildalyzer\Buildalyzer.csproj" />
   </ItemGroup>
 
   <ItemGroup>
