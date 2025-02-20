@@ -52,7 +52,7 @@ public sealed record IssueLocation : IComparable<IssueLocation>
     [Pure]
     public string ReportInfo()
         => IsPrecise()
-        ? $"@{LineNumber:00}[{Start,2}, {Start + SpanSize,2}]"
+        ? $"@{LineNumber:00}[{Start,2}, {Start!.Value + SpanSize!.Value,2}]"
         : $"@{LineNumber:00}[.., ..]";
 
     /// <summary>Return true if the location is defined precisely (with start and span size).</summary>

@@ -7,6 +7,7 @@
     <PackageReleaseNotes>
       <![CDATA[
 ToBeReleased
+- Verify takes the severity of the reported issue into account.
 - Add .NET 9.0.
 - Drop .NET 6.0. (BREAKING)
 - Removed [Serialize] attributes from exceptions.
