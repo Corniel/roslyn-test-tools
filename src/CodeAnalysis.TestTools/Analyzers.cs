@@ -15,10 +15,28 @@ public sealed class Analyzers : GuardedCollection<DiagnosticAnalyzer, Analyzers>
     public Language Language { get; }
 
     /// <summary>Gets the diagnostics to report.</summary>
-    public IEnumerable<KeyValuePair<string, ReportDiagnostic>> DiagnosticsToReport
-        => DiagnosticIds
-        .Select(id => KeyValuePair.Create(id, ReportDiagnostic.Warn))
-        .Concat([KeyValuePair.Create(DiagnosticId.AD0001, ReportDiagnostic.Error)]);
+    public IReadOnlyDictionary<string, ReportDiagnostic> DiagnosticsToReport
+    {
+        get
+        {
+            var reports = new Dictionary<string, ReportDiagnostic>();
+
+            foreach (var diagnostic in this.SelectMany(analyzer => analyzer.SupportedDiagnostics))
+            {
+                reports[diagnostic.Id] = diagnostic.DefaultSeverity switch
+                {
+                    DiagnosticSeverity.Hidden => ReportDiagnostic.Hidden,
+                    DiagnosticSeverity.Info => ReportDiagnostic.Info,
+                    DiagnosticSeverity.Error => ReportDiagnostic.Error,
+                    _ => ReportDiagnostic.Warn,
+                };
+            }
+
+            reports[DiagnosticId.AD0001] = ReportDiagnostic.Error;
+
+            return reports;
+        }
+    }
 
     /// <summary>Gets all (supported) diagnostic ID's.</summary>
     public IReadOnlySet<string> DiagnosticIds

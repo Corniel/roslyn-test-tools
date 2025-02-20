@@ -48,7 +48,7 @@ public static class CompilationExtensions
 
     [FluentSyntax]
     private static IReadOnlyCollection<Diagnostic> ThrowOnAnalyzerCrashed(this IReadOnlyCollection<Diagnostic> diagnostics)
-        => diagnostics.FirstOrDefault(d => d.IsAnalyzerCrashed()) is { } diagnostic
+        => diagnostics.FirstOrDefault(d => d.HasAnalyzerCrashed()) is { } diagnostic
             ? throw new AnalyzerCrashed(diagnostic.GetMessage())
             : diagnostics;
 
