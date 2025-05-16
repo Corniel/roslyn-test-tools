@@ -23,7 +23,7 @@ public static class CompilationExtensions
         Guard.HasAny(analyzers);
 
         var options = compilation.Options.WithSpecificDiagnosticOptions(analyzers.DiagnosticsToReport);
-        var analyzerOptions = new AnalyzerOptions(texts.ToImmutableArray(), new EmptyAnalyzerConfigOptionsProvider());
+        var analyzerOptions = new AnalyzerOptions([.. texts], new EmptyAnalyzerConfigOptionsProvider());
 
         var diagnostics = await compilation
             .WithOptions(options)
@@ -40,10 +40,9 @@ public static class CompilationExtensions
     public static IReadOnlyCollection<ExpectedIssue> GetExpectedIssues(this Compilation compilation)
     {
         Guard.NotNull(compilation);
-        return compilation.SyntaxTrees
+        return [.. compilation.SyntaxTrees
             .SelectMany(tree => ExpectedIssue.Parse(tree.GetText().Lines.Lines())
-                .Select(issue => issue.WithFilePath(tree.FilePath)))
-            .ToImmutableArray();
+                .Select(issue => issue.WithFilePath(tree.FilePath)))];
     }
 
     [FluentSyntax]

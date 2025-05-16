@@ -20,5 +20,5 @@ public sealed class MetadataReferences : GuardedCollection<MetadataReference, Me
 
     /// <inheritdoc />
     [Pure]
-    protected override MetadataReferences New(IEnumerable<MetadataReference> items) => new(items.ToArray());
+    protected override MetadataReferences New(IEnumerable<MetadataReference> items) => new([.. items]);
 }

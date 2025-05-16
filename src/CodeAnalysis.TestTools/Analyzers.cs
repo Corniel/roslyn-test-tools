@@ -61,5 +61,5 @@ public sealed class Analyzers : GuardedCollection<DiagnosticAnalyzer, Analyzers>
 
     /// <inheritdoc />
     [Pure]
-    protected override Analyzers New(IEnumerable<DiagnosticAnalyzer> items) => new(Language, items.ToArray());
+    protected override Analyzers New(IEnumerable<DiagnosticAnalyzer> items) => new(Language, [.. items]);
 }
