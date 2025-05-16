@@ -10,9 +10,9 @@
     <PackageVersion Include="Buildalyzer" Version="7.1.0" />
     <PackageVersion Include="Buildalyzer.Workspaces" Version="7.1.0" />
     <PackageVersion Include="coverlet.collector" Version="6.0.4" />
-    <PackageVersion Include="DotNetProjectFile.Analyzers" Version="1.5.9" />
-    <PackageVersion Include="DotNetProjectFile.Analyzers.Sdk" Version="1.5.9" />
-    <PackageVersion Include="FluentAssertions" Version="7.1.0" />
+    <PackageVersion Include="DotNetProjectFile.Analyzers" Version="1.5.12" />
+    <PackageVersion Include="DotNetProjectFile.Analyzers.Sdk" Version="1.5.12" />
+    <PackageVersion Include="FluentAssertions" Version="8.2.0" />
     <PackageVersion Include="FluentAssertions.Analyzers" Version="0.34.1" />
     <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="*" />
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.10.0" />
