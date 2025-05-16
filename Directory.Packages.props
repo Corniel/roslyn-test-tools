@@ -35,6 +35,7 @@
     <PackageVersion Include="Qowaiv.Analyzers.CSharp" Version="*" />
     <PackageVersion Include="SonarAnalyzer.CSharp" Version="*" />
     <PackageVersion Include="StyleCop.Analyzers" Version="*-*" />
+    <PackageVersion Include="System.Collections.Immutable" Version="9.0.5" />
     <PackageVersion Include="System.Text.Json" Version="9.0.5" />
   </ItemGroup>
 </Project>
