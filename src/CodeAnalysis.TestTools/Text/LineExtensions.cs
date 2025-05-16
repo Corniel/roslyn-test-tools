@@ -13,6 +13,6 @@ public static class LineExtensions
     [Pure]
     public static IEnumerable<Line> Lines(this string str)
         => Guard.NotNull(str)
-        .Split(new[] { LineEnd.Windows, LineEnd.Unix }, StringSplitOptions.None)
+        .Split([LineEnd.Windows, LineEnd.Unix], StringSplitOptions.None)
         .Select((line, index) => new Line(index + 1, line));
 }

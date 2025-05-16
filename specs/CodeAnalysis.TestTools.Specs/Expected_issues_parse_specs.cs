@@ -116,24 +116,23 @@ public class Regular_pattern_supports
 //                                                ^^ Secondary@-2".Lines());
 
         parsed.Should().BeEquivalentTo(
-            new[]
-            {
-                    new ExpectedIssue(
-                        diagnosticId: string.Empty,
-                        type: IssueType.Noncompliant,
-                        message: "Make this method generic and replace the 'object' parameter with a type parameter.",
-                        location: new IssueLocation(2, 20, 3)),
-                    new ExpectedIssue(
-                        diagnosticId: string.Empty,
-                        type: IssueType.Noncompliant,
-                        message: string.Empty,
-                        location: new IssueLocation(2, 35, 2)),
-                    new ExpectedIssue(
-                        diagnosticId: string.Empty,
-                        type: IssueType.Noncompliant,
-                        message: string.Empty,
-                        location: new IssueLocation(2, 50, 2)),
-            });
+            [
+                new ExpectedIssue(
+                    diagnosticId: string.Empty,
+                    type: IssueType.Noncompliant,
+                    message: "Make this method generic and replace the 'object' parameter with a type parameter.",
+                    location: new IssueLocation(2, 20, 3)),
+                new ExpectedIssue(
+                    diagnosticId: string.Empty,
+                    type: IssueType.Noncompliant,
+                    message: string.Empty,
+                    location: new IssueLocation(2, 35, 2)),
+                new ExpectedIssue(
+                    diagnosticId: string.Empty,
+                    type: IssueType.Noncompliant,
+                    message: string.Empty,
+                    location: new IssueLocation(2, 50, 2)),
+            ]);
 
     }
 

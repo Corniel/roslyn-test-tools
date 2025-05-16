@@ -9,7 +9,7 @@ public sealed class Code
     private Code(string filePath, string text)
     {
         FilePath = filePath;
-        Lines = text.Lines().ToArray();
+        Lines = [.. text.Lines()];
     }
 
     /// <summary>Gets the file name of the code.</summary>

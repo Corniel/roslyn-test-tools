@@ -20,7 +20,7 @@ public record VisualBasicAnalyzerVerifyContext : AnalyzerVerifyContext<VisualBas
     public override Language Language => Language.VisualBasic;
 
     /// <summary>Gets the global defined imports.</summary>
-    public IReadOnlyCollection<GlobalImport> GlobalImports { get; init; } = GlobalImport.Parse(
+    public IReadOnlyCollection<GlobalImport> GlobalImports { get; init; } = [.. GlobalImport.Parse(
         "Microsoft.VisualBasic",
         "System",
         "System.Collections",
@@ -28,7 +28,7 @@ public record VisualBasicAnalyzerVerifyContext : AnalyzerVerifyContext<VisualBas
         "System.Data",
         "System.Diagnostics",
         "System.Linq",
-        "System.Threading.Tasks").ToImmutableArray();
+        "System.Threading.Tasks")];
 
     /// <summary>Sets the global defined imports.</summary>
     [Pure]

@@ -26,5 +26,5 @@ public sealed class Sources : GuardedCollection<Code, Sources>
     /// <inheritdoc />
     [Pure]
     protected override Sources New(IEnumerable<Code> items)
-        => new(Language, Guard.NotNull(items).ToArray());
+        => new(Language, [.. Guard.NotNull(items)]);
 }
