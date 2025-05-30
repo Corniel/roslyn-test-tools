@@ -12,9 +12,9 @@ public partial class NuGetPackage
     /// <summary>Gets the (empty) Microsoft.Build.NoTargets package.</summary>
     public static readonly NuGetPackage Microsoft_Build_NoTargets = new("Microsoft.Build.NoTargets", new NuGetVersion("1.0"), null);
 
-    /// <summary>Gets the FluentAssertions package.</summary>
+    /// <summary>Gets the AwesomeAssertions package.</summary>
     [Pure]
-    public static NuGetPackage FluentAssertions(string version = Latest) => Resolve("FluentAssertions", version);
+    public static NuGetPackage AwesomeAssertions(string version = Latest) => Resolve("AwesomeAssertions", version);
 
     /// <summary>Gets the Microsoft.VisualBasic.</summary>
     [Pure]

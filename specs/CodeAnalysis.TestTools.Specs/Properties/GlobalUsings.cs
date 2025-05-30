@@ -3,7 +3,7 @@ global using CodeAnalysis.TestTools.Contexts;
 global using CodeAnalysis.TestTools.Diagnostics;
 global using CodeAnalysis.TestTools.References;
 global using CodeAnalysis.TestTools.Text;
-global using FluentAssertions;
+global using AwesomeAssertions;
 global using Microsoft.CodeAnalysis;
 global using Microsoft.CodeAnalysis.Diagnostics;
 global using NUnit.Framework;

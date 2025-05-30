@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/Projects/">
+    <File Path="projects/CSharpProject/CSharpProject.csproj" />
+    <File Path="projects/VbProject/VbProject.vbproj" />
+  </Folder>
+  <Project Path=".net.csproj" />
+  <Project Path="specs/CodeAnalysis.TestTools.Specs/CodeAnalysis.TestTools.Specs.csproj" />
+  <Project Path="src/CodeAnalysis.TestTools/CodeAnalysis.TestTools.csproj" />
+</Solution>
