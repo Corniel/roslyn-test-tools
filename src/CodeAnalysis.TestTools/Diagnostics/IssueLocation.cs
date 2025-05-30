@@ -64,13 +64,12 @@ public sealed record IssueLocation : IComparable<IssueLocation>
     /// <inheritdoc />
     [Pure]
     public int CompareTo(IssueLocation? other)
-    {
-        if (other is null) return 1;
-        else return string.CompareOrdinal(FilePath, other.FilePath).Compare()
+        => other is null
+        ? 1
+        : string.CompareOrdinal(FilePath, other.FilePath).Compare()
             ?? LineNumber.CompareTo(other.LineNumber).Compare()
             ?? Nullable.Compare(Start, other.Start).Compare()
             ?? Nullable.Compare(SpanSize, other.SpanSize);
-    }
 
     /// <inheritdoc />
     [Pure]

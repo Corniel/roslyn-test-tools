@@ -7,7 +7,10 @@ public partial class NuGetPackage
     [Pure]
     private static async Task<NuGetPackage> ResolveAsync(string packageId, string? version, string? runtime)
     {
-        if (packageId == Microsoft_Build_NoTargets.Id) return Microsoft_Build_NoTargets;
+        if (packageId == Microsoft_Build_NoTargets.Id)
+        {
+            return Microsoft_Build_NoTargets;
+        }
         else
         {
             var version_ = string.IsNullOrEmpty(version) || version == Latest
@@ -15,7 +18,11 @@ public partial class NuGetPackage
                 : new NuGetVersion(version);
 
             var package = new NuGetPackage(packageId, version_, runtime);
-            if (!package.CacheDirectory.Exists) await NuGetRepository.DownloadAsync(package);
+
+            if (!package.CacheDirectory.Exists)
+            {
+                await NuGetRepository.DownloadAsync(package);
+            }
 
             var dllsPerDirectory = package.CacheDirectory
                 .GetFiles("*.dll", SearchOption.AllDirectories)

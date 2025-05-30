@@ -50,21 +50,35 @@ internal static partial class ExpectedIssueParser
     {
         var offset = match.Index + match.Length;
         var remaining = line.Text[offset..];
+
         var index_open = remaining.IndexOf('{');
         var index_clos = remaining.IndexOf('}');
-        if (index_open > 0) throw ParseError.New(Messages.ParseError_RemainingCurlyBrace, '{', line.LineNumber, offset + index_open + 1);
-        else if (index_clos > 0) throw ParseError.New(Messages.ParseError_RemainingCurlyBrace, '}', line.LineNumber, offset + index_clos + 1);
-        else return match;
+
+        if (index_open > 0)
+        {
+            throw ParseError.New(Messages.ParseError_RemainingCurlyBrace, '{', line.LineNumber, offset + index_open + 1);
+        }
+        else if (index_clos > 0)
+        {
+            throw ParseError.New(Messages.ParseError_RemainingCurlyBrace, '}', line.LineNumber, offset + index_clos + 1);
+        }
+        else
+        {
+            return match;
+        }
     }
 
     [FluentSyntax]
     private static Match SinglePosition(this Match match, Line line)
     {
-        if (match.Groups["invalid"] is { Success: true } invalid)
+        if (match.Groups["invalid"] is not { Success: true } invalid)
+        {
+            return match;
+        }
+        else
         {
             int pos = invalid.Index + 1;
             throw ParseError.New(Messages.Parse_Error_RepeatingPreciseLocation, line.LineNumber, pos);
         }
-        else return match;
     }
 }

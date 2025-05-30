@@ -36,7 +36,10 @@ public sealed class NuGetLatestVersions : Dictionary<string, NuGetLatestVersionC
                 return [];
             }
         }
-        else return [];
+        else
+        {
+            return [];
+        }
     }
 
     private static readonly FileStreamOptions LoadOptions = new()

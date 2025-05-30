@@ -4,7 +4,6 @@ namespace CodeAnalysis.TestTools.Diagnostics;
 
 internal static class Pattern
 {
-#pragma warning disable SA1303 // Const field names should begin with upper-case letter
     private const string comment = @"(?<comment>//|'|<!--|/\*)";
     private const string position_precise = @"\s*(?<position>\^+)(\s+(?<invalid>\^+))*";
     private const string position_regular = @"(?<!\s*\^+\s)";
@@ -13,7 +12,6 @@ internal static class Pattern
     private const string start_length = @"(\s*\^(?<start>\d+)#(?<length>\d+))?";
     private const string diagnostic_id = @"(\s*\[(?<diagnosticId>.+)\])?";
     private const string message = @"(\s*\{\{(?<message>.+)\}\})?";
-#pragma warning restore SA1303 // Const field names should begin with upper-case letter
 
     public static readonly Regex Regular = Rx(comment, position_regular, issue_type, offset, start_length, diagnostic_id, message);
     public static readonly Regex Precise = Rx(@"^\s*", comment, position_precise, issue_type, "?", offset, diagnostic_id, message, @"\s*(-->|\*/)?$");
