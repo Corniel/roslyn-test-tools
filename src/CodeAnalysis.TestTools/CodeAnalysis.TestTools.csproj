@@ -12,13 +12,19 @@
   </PropertyGroup>
 
   <PropertyGroup Label="Package info">
-    <EnablePackageValidation>false</EnablePackageValidation>
-    <PackageValidationBaselineVersion>4.0.0</PackageValidationBaselineVersion>
+    <EnablePackageValidation>true</EnablePackageValidation>
+    <EnableStrictModeForBaselineValidation>true</EnableStrictModeForBaselineValidation>
+    <EnableStrictModeForCompatibleFrameworksInPackage>true</EnableStrictModeForCompatibleFrameworksInPackage>
+    <ApiCompatGenerateSuppressionFile>true</ApiCompatGenerateSuppressionFile>
+    <ApiCompatEnableRuleAttributesMustMatch>true</ApiCompatEnableRuleAttributesMustMatch>
+    <ApiCompatEnableRuleCannotChangeParameterName>true</ApiCompatEnableRuleCannotChangeParameterName>
+    <PackageValidationBaselineVersion>3.0.0</PackageValidationBaselineVersion>
     <PackageId>CodeAnalysis.TestTools</PackageId>
     <PackageIcon>package-icon.png</PackageIcon>
     <PackageIconUrl>https://github.com/Corniel/roslyn-test-tools/blob/master/design/package-icon.png</PackageIconUrl>
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/Corniel/roslyn-test-tools</PackageProjectUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/Corniel/roslyn-test-tools</RepositoryUrl>
@@ -53,7 +59,7 @@
 
   <ItemGroup Label="Analyzers">
     <PackageReference Include="Qowaiv.Analyzers.CSharp" PrivateAssets="all" />
-    <PackageReference Include="StyleCop.Analyzers" PrivateAssets="all" />
+    <PackageReference Include="StyleCop.Analyzers.Unstable" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>

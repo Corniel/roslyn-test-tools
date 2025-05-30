@@ -6,6 +6,7 @@
     <IsPackable>false</IsPackable>
     <IsPublishable>false</IsPublishable>
     <NuGetAudit>true</NuGetAudit>
+    <NuGetAuditMode>all</NuGetAuditMode>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <OutputType>Library</OutputType>
     <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>

@@ -16,6 +16,7 @@
   <ItemGroup Label="Newest versions of package dependecies">
     <PackageReference Include="Buildalyzer" />
     <PackageReference Include="Buildalyzer.Workspaces" />
+    <PackageReference Include="Microsoft.Build.Tasks.Core" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" />
     <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic.Workspaces" />
     <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" />
@@ -36,16 +37,11 @@
   <ItemGroup Label="Analyzers">
     <PackageReference Include="AwesomeAssertions.Analyzers" PrivateAssets="all" />
     <PackageReference Include="NUnit.Analyzers" PrivateAssets="all" />
+    <PackageReference Include="System.Formats.Asn1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="../../src/CodeAnalysis.TestTools/CodeAnalysis.TestTools.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="nuget.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>
