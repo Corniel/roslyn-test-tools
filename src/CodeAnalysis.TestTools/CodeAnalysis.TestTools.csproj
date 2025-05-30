@@ -72,8 +72,6 @@
   </ItemGroup>
 
   <PropertyGroup>
-    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Version>3.0.1</Version>
     <ToBeReleased>
       <![CDATA[
