@@ -54,6 +54,7 @@ dotnet_diagnostic.SA1208.severity     = none       # System using directives mus
 dotnet_diagnostic.SA1214.severity     = none       # Sort readonly fields before non-readonly fields.
 dotnet_diagnostic.SA1300.severity     = none       # Enum members should not start with lower-case character.
 dotnet_diagnostic.SA1302.severity     = none       # Interface names should start with an I.
+dotnet_diagnostic.SA1303.severity     = none       # Const field names should begin with upper-case letter.
 dotnet_diagnostic.SA1304.severity     = none       # None-private fields should begin with upper-case character.
 dotnet_diagnostic.SA1306.severity     = none       # Fields should begin with lower-case character.
 dotnet_diagnostic.SA1307.severity     = none       # Fields should begin with upper-case character.
@@ -78,15 +79,15 @@ dotnet_diagnostic.SA1633.severity     = none       # The file header is missing 
 dotnet_diagnostic.SA1636.severity     = none       # The file header should contain match copyright from settings.
 dotnet_diagnostic.SA1637.severity     = none       # The file header should contain file name.
 dotnet_diagnostic.SA1640.severity     = none       # The copyright tag should contain a non-empty company attribute.
+dotnet_diagnostic.SA1649.severity     = none       # File name should match first type name.
+dotnet_diagnostic.SA1502.severity     = none       # Element should not be on single line.
 
 dotnet_diagnostic.SA1401.severity     = suggestion # Fields should be private.
 dotnet_diagnostic.SA1402.severity     = suggestion # File may only contain one type.
 dotnet_diagnostic.SA1407.severity     = suggestion # Arithmetic expressions should declare precedence.
 dotnet_diagnostic.SA1501.severity     = suggestion # Statement should not be on single line.
-dotnet_diagnostic.SA1502.severity     = suggestion # Element should not be on single line.
 dotnet_diagnostic.SA1512.severity     = suggestion # Single-line comment should be followed by blank line.
 dotnet_diagnostic.SA1515.severity     = suggestion # Single-line comment should be preceded by blank line.
-dotnet_diagnostic.SA1649.severity     = suggestion # File name should match first type name.
 
 dotnet_diagnostic.SYSLIB1045.severity = warning # Use 'GeneratedRegexAttribute' to generate the regular expression implementation at compile-time
 

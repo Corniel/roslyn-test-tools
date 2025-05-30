@@ -3,10 +3,6 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 // </copyright>
 
-#pragma warning disable S2365
-// Properties should not make collection or array copies
-// Required for debugging purposes.
-
 namespace CodeAnalysis.TestTools.Collections;
 
 /// <summary>Allows the debugger to display collections.</summary>

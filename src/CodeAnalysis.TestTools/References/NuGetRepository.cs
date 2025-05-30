@@ -24,7 +24,10 @@ internal static class NuGetRepository
                 packageReader.ExtractFile(dll, Path.Combine(package.CacheDirectory.FullName, dll), NullLogger.Instance);
             }
         }
-        else throw package.IncompletSetup();
+        else
+        {
+            throw package.IncompletSetup();
+        }
 
         static bool IsDll(string file) => file.ToUpperInvariant().EndsWith(".DLL");
     }

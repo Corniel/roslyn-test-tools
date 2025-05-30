@@ -127,18 +127,16 @@ public abstract partial record AnalyzerVerifyContext<TContext> : AnalyzerVerifyC
     internal virtual Project GetProject()
     {
         if (!Sources.Any()) throw new IncompleteSetup(Messages.IncompleteSetup_NoSources);
-        else
-        {
-            using var workspace = new AdhocWorkspace();
-            var solution = workspace.CurrentSolution;
 
-            var project = solution
-                .AddProject(AssemblyName, AssemblyName, Language.Name)
-                .AddMetadataReferences(References)
-                .AddSources(Sources);
+        using var workspace = new AdhocWorkspace();
+        var solution = workspace.CurrentSolution;
 
-            return project.WithCompilationOptions(Update(project.CompilationOptions));
-        }
+        var project = solution
+            .AddProject(AssemblyName, AssemblyName, Language.Name)
+            .AddMetadataReferences(References)
+            .AddSources(Sources);
+
+        return project.WithCompilationOptions(Update(project.CompilationOptions));
     }
 
     [Pure]
