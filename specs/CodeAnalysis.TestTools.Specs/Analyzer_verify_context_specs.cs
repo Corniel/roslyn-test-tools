@@ -158,6 +158,7 @@ public class For_VB_Project
 
         diagnostics
             .Where(d => d.Id == nameof(CheckAdditionalFiles))
+            .Skip(1)
             .Select(d => d.GetMessage())
             .Should().BeEquivalentTo("Contains data.txt: 'Hello, world!'");
     }

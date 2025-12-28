@@ -1,7 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
+    <TargetFrameworks>net8.0;net10.0</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
@@ -43,6 +43,7 @@
   <ItemGroup>
     <PackageReference Include="Buildalyzer" />
     <PackageReference Include="Buildalyzer.Workspaces" />
+    <PackageReference Include="Microsoft.Build" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" />
     <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic.Workspaces" />
     <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" />
@@ -83,7 +84,7 @@
       <![CDATA[
 v4.0.0
 - Verify takes the severity of the reported issue into account.
-- Add .NET 9.0.
+- Add .NET 10.0.
 - Drop .NET 6.0. (BREAKING)
 - Removed [Serialize] attributes from exceptions.
 ]]>

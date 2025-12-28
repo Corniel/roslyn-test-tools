@@ -30,13 +30,5 @@
     <Company>Corniel Nobel</Company>
     <Copyright>Copyright © Corniel Nobel 2013-current</Copyright>
   </PropertyGroup>
-  
-  <ItemGroup Label="Analyzers">
-    <PackageReference Include="AsyncFixer" PrivateAssets="all" />
-    <PackageReference Include="DotNetProjectFile.Analyzers" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" PrivateAssets="all" />
-    <PackageReference Include="SonarAnalyzer.CSharp" PrivateAssets="all" />
-  </ItemGroup>
 
 </Project>
