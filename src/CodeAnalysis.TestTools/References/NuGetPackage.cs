@@ -27,7 +27,9 @@ public sealed partial class NuGetPackage : IReadOnlyCollection<MetadataReference
     public NuGetVersion Version { get; }
 
     /// <summary>Gets the runtime of the package.</summary>
+#pragma warning disable QW0011 // Define properties as immutables (delayed init due to perfermance reasons)
     public string? Runtime { get; private set; }
+#pragma warning restore QW0011 // Define properties as immutables
 
     /// <summary>Gets the amount of assemblies contained.</summary>
     public int Count => references.Count;
