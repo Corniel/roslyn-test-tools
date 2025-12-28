@@ -58,9 +58,13 @@
     <PackageReference Include="System.Text.Json" />
   </ItemGroup>
 
+  <ItemGroup Label="Build tools">
+    <PackageReference PrivateAssets="all" Include="DotNet.ReproducibleBuilds" />
+  </ItemGroup>
+
   <ItemGroup Label="Analyzers">
-    <PackageReference Include="Qowaiv.Analyzers.CSharp" PrivateAssets="all" />
-    <PackageReference Include="StyleCop.Analyzers.Unstable" PrivateAssets="all" />
+    <PackageReference PrivateAssets="all" Include="Qowaiv.Analyzers.CSharp"  />
+    <PackageReference PrivateAssets="all" Include="StyleCop.Analyzers.Unstable" />
   </ItemGroup>
 
   <ItemGroup>
