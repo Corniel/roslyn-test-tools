@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+    <TargetFrameworks>net8.0;net10.0</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
@@ -43,6 +43,7 @@
   <ItemGroup>
     <PackageReference Include="Buildalyzer" />
     <PackageReference Include="Buildalyzer.Workspaces" />
+    <PackageReference Include="Microsoft.Build" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" />
     <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic.Workspaces" />
     <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" />
@@ -57,9 +58,13 @@
     <PackageReference Include="System.Text.Json" />
   </ItemGroup>
 
+  <ItemGroup Label="Build tools">
+    <PackageReference PrivateAssets="all" Include="DotNet.ReproducibleBuilds" />
+  </ItemGroup>
+
   <ItemGroup Label="Analyzers">
-    <PackageReference Include="Qowaiv.Analyzers.CSharp" PrivateAssets="all" />
-    <PackageReference Include="StyleCop.Analyzers.Unstable" PrivateAssets="all" />
+    <PackageReference PrivateAssets="all" Include="Qowaiv.Analyzers.CSharp"  />
+    <PackageReference PrivateAssets="all" Include="StyleCop.Analyzers.Unstable" />
   </ItemGroup>
 
   <ItemGroup>
@@ -78,18 +83,20 @@
   </ItemGroup>
 
   <PropertyGroup>
-    <Version>3.0.1</Version>
+    <Version>4.0.0</Version>
     <ToBeReleased>
       <![CDATA[
-v4.0.0
-- Verify takes the severity of the reported issue into account.
-- Add .NET 9.0.
-- Drop .NET 6.0. (BREAKING)
-- Removed [Serialize] attributes from exceptions.
+v?
+-
 ]]>
     </ToBeReleased>
     <PackageReleaseNotes>
       <![CDATA[
+v4.0.0
+- Verify takes the severity of the reported issue into account.
+- Add .NET 10.0.
+- Drop .NET 6.0. (BREAKING)
+- Removed [Serialize] attributes from exceptions.
 v3.0.1
 - 'no message provided' on Verify method (FIX). #21
 v3.0.0

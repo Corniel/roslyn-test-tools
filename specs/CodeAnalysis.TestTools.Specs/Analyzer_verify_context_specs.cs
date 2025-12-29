@@ -158,6 +158,8 @@ public class For_VB_Project
 
         diagnostics
             .Where(d => d.Id == nameof(CheckAdditionalFiles))
+            // Skip project file included by .NET project file analyzers
+            .Skip(1)
             .Select(d => d.GetMessage())
             .Should().BeEquivalentTo("Contains data.txt: 'Hello, world!'");
     }
