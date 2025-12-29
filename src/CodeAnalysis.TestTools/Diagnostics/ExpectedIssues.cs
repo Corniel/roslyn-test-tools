@@ -30,10 +30,7 @@ internal sealed class ExpectedIssues : IReadOnlyCollection<ExpectedIssue>
     [FluentSyntax]
     public ExpectedIssues Merge(IEnumerable<ExpectedIssue> precises)
     {
-        foreach (var precise in precises.Where(p => !Merge(p)))
-        {
-            issues.Add(precise);
-        }
+        issues.AddRange(precises.Where(p => !Merge(p)));
         issues.Sort();
         return this;
     }
