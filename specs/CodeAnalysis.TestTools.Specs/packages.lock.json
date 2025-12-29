@@ -189,12 +189,6 @@
         "resolved": "10.17.0.131074",
         "contentHash": "N8agHzX1pK3Xv/fqMig/mHspPAmh/aKkGg7lUC1xfezAhFtPTuRqBjuyas622Tvy5jnsN5zCXJVclvNkfJJ4rQ=="
       },
-      "System.Formats.Asn1": {
-        "type": "Direct",
-        "requested": "[10.0.1, )",
-        "resolved": "10.0.1",
-        "contentHash": "Ohah7OUmHW3Pt9YPeYmduu52fQVw804KUiTt0rEuQKmkh72bZMIqGGmAIgEDZQZmajWnqu3h3urEttHsFEZ23w=="
-      },
       "Buildalyzer.Logger": {
         "type": "Transitive",
         "resolved": "8.0.0",
@@ -527,8 +521,7 @@
           "NuGet.Common": "[7.0.1, )",
           "NuGet.Frameworks": "[7.0.1, )",
           "NuGet.Packaging": "[7.0.1, )",
-          "NuGet.Protocol": "[7.0.1, )",
-          "Qowaiv.Analyzers.CSharp": "[2.0.7, )"
+          "NuGet.Protocol": "[7.0.1, )"
         }
       },
       "Microsoft.Build": {
@@ -586,12 +579,6 @@
         "dependencies": {
           "NuGet.Packaging": "7.0.1"
         }
-      },
-      "Qowaiv.Analyzers.CSharp": {
-        "type": "CentralTransitive",
-        "requested": "[2.0.7, )",
-        "resolved": "2.0.7",
-        "contentHash": "OgL/+oDq8By74jK8C2slWgQAZbD5mC16wIs+Oz2inD2lf7aAgOEfhguET+f0q1LFVfW0cPrDfa5lUAYSOkkhBg=="
       }
     }
   }

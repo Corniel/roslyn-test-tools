@@ -34,7 +34,6 @@
     <PackageVersion Include="Qowaiv.Analyzers.CSharp" Version="2.0.7" />
     <PackageVersion Include="StyleCop.Analyzers.Unstable" Version="1.2.0.556" />
     <PackageVersion Include="System.Collections.Immutable" Version="10.0.1" />
-    <PackageVersion Include="System.Formats.Asn1" Version="10.0.1" />
     <PackageVersion Include="System.Text.Json" Version="10.0.1" />
   </ItemGroup>
   <ItemGroup>
