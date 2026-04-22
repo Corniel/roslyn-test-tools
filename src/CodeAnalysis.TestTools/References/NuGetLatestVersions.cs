@@ -9,10 +9,10 @@ public sealed class NuGetLatestVersions : Dictionary<string, NuGetLatestVersionC
     public NuGetLatestVersions() { }
 
     /// <summary>Saves the latests versions to a file.</summary>
-    public Task SaveAsync(FileInfo file)
+    public async Task SaveAsync(FileInfo file)
     {
         using var stream = new FileStream(file.FullName, SaveOptions);
-        return JsonSerializer.SerializeAsync(stream, this, JsonOptions);
+        await JsonSerializer.SerializeAsync(stream, this, JsonOptions);
     }
 
     /// <summary>Saves the latests versions to a stream.</summary>

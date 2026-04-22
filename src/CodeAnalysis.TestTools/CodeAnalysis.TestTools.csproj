@@ -43,27 +43,29 @@
   <ItemGroup>
     <PackageReference Include="Buildalyzer" />
     <PackageReference Include="Buildalyzer.Workspaces" />
-    <PackageReference Include="Microsoft.Build" />
+    <PackageReference Include="Microsoft.Build" NoWarn="NU1701" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" />
     <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic.Workspaces" />
     <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" />
     <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" />
-    <PackageReference Include="Microsoft.Sbom.Targets" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.IO.Redist" NoWarn="NU1701" />
     <PackageReference Include="MsBuildPipeLogger.Logger" />
     <PackageReference Include="NuGet.Common" />
     <PackageReference Include="NuGet.Frameworks" />
     <PackageReference Include="NuGet.Packaging" />
     <PackageReference Include="NuGet.Protocol" />
     <PackageReference Include="System.Collections.Immutable" />
+    <PackageReference Include="System.Security.Cryptography.Xml" />
     <PackageReference Include="System.Text.Json" />
   </ItemGroup>
 
   <ItemGroup Label="Build tools">
     <PackageReference PrivateAssets="all" Include="DotNet.ReproducibleBuilds" />
+    <PackageReference PrivateAssets="all" Include="Microsoft.Sbom.Targets" />
   </ItemGroup>
 
   <ItemGroup Label="Analyzers">
-    <PackageReference PrivateAssets="all" Include="Qowaiv.Analyzers.CSharp"  />
+    <PackageReference PrivateAssets="all" Include="Qowaiv.Analyzers.CSharp" />
     <PackageReference PrivateAssets="all" Include="StyleCop.Analyzers.Unstable" />
   </ItemGroup>
 
@@ -83,7 +85,7 @@
   </ItemGroup>
 
   <PropertyGroup>
-    <Version>4.0.0</Version>
+    <Version>5.0.0</Version>
     <ToBeReleased>
       <![CDATA[
 v?
@@ -92,6 +94,8 @@ v?
     </ToBeReleased>
     <PackageReleaseNotes>
       <![CDATA[
+v5.0.0
+- Use Buildalyzer v9.0.0. (BREAKING)
 v4.0.0
 - Verify takes the severity of the reported issue into account.
 - Add .NET 10.0.
