@@ -7,7 +7,7 @@ public sealed class Sources : GuardedCollection<Code, Sources>
     public Sources(Language language) : this(language, []) { }
 
     /// <summary>Initializes a new instance of the <see cref="Sources"/> class.</summary>
-    private Sources(Language language, Code[] code) : base(code) => Language = language;
+    private Sources(Language language, ImmutableArray<Code> code) : base(code) => Language = language;
 
     /// <summary>Gets the language of the sources.</summary>
     public Language Language { get; }

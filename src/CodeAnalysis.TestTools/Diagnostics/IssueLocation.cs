@@ -1,6 +1,7 @@
 namespace CodeAnalysis.TestTools.Diagnostics;
 
 /// <summary>Represents the line location of an <see cref="Issue"/>.</summary>
+[SuppressMessage("Minor Code Smell", "S1210:\"Equals\" and the comparison operators should be overridden when implementing \"IComparable\"", Justification = "Only implemented to sort items.")]
 public sealed record IssueLocation : IComparable<IssueLocation>
 {
     /// <summary>A unknown/none-existing issue location (raised on assembly level).</summary>
