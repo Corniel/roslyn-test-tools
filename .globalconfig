@@ -63,7 +63,6 @@ dotnet_diagnostic.SA1309.severity     = none       # Fields should begin with un
 dotnet_diagnostic.SA1310.severity     = none       # Fields should not contain underscores.
 dotnet_diagnostic.SA1311.severity     = none       # Static read-only fields should begin with upper-case character.
 dotnet_diagnostic.SA1313.severity     = none       # Parameters should begin with lower-case letter. (Due to FP on _)
-dotnet_diagnostic.SA1402.severity     = none       # File may only contain a single type
 dotnet_diagnostic.SA1501.severity     = none       # Statement should not be on single line.
 dotnet_diagnostic.SA1503.severity     = none       # Braces should not be omitted.
 dotnet_diagnostic.SA1513.severity     = none       # Closing brace should be followed by an empty line.

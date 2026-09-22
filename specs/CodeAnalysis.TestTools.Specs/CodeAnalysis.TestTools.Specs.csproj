@@ -8,9 +8,7 @@
 
   <ItemGroup Label="Source snippets">
     <Compile Remove="Sources/*.cs" />
-    <None Include="Sources/*.cs">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="Sources/*.cs" CopyToOutputDirectory="Always" />
   </ItemGroup>
 
   <ItemGroup Label="Newest versions of package dependecies">
