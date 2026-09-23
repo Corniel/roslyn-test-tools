@@ -10,14 +10,14 @@ internal static class Run
     [Pure]
     public static TResult Sync<TResult>(Func<Task<TResult>> task)
         => Factory
-            .StartNew(task)
+            .StartNew(task, CancellationToken.None)
             .Unwrap()
             .GetAwaiter()
             .GetResult();
 
     public static void Sync(Func<Task> task)
         => Factory
-            .StartNew(task)
+            .StartNew(task, CancellationToken.None)
             .Unwrap()
             .GetAwaiter()
             .GetResult();

@@ -7,7 +7,7 @@ public sealed class DiagnosticIds : GuardedCollection<string, DiagnosticIds>
     public static readonly DiagnosticIds Empty = new([]);
 
     /// <summary>Initializes a new instance of the <see cref="DiagnosticIds"/> class.</summary>
-    private DiagnosticIds(string[] items) : base(items) { }
+    private DiagnosticIds(ImmutableArray<string> items) : base(items) { }
 
     /// <inheritdoc />
     [Pure]

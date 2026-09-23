@@ -7,7 +7,7 @@ public sealed class MetadataReferences : GuardedCollection<MetadataReference, Me
     public static readonly MetadataReferences Empty = [];
 
     /// <summary>Initializes a new instance of the <see cref="MetadataReferences"/> class.</summary>
-    internal MetadataReferences(params MetadataReference[] references) : base(references) { }
+    internal MetadataReferences(params ImmutableArray<MetadataReference> references) : base(references) { }
 
     /// <inheritdoc />
     [Pure]

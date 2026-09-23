@@ -11,12 +11,12 @@ namespace CodeAnalysis.TestTools.Collections;
 /// </typeparam>
 [DebuggerDisplay("Count = {Count}")]
 [DebuggerTypeProxy(typeof(CollectionDebugView))]
-public abstract class GuardedCollection<TElement, TCollection>(TElement[] items) : IReadOnlyCollection<TElement>
+public abstract class GuardedCollection<TElement, TCollection>(ImmutableArray<TElement> items) : IReadOnlyCollection<TElement>
     where TElement : class
     where TCollection : GuardedCollection<TElement, TCollection>
 {
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    private readonly TElement[] Collection = items;
+    private readonly ImmutableArray<TElement> Collection = items;
 
     /// <inheritdoc />
     public int Count => Collection.Length;
@@ -27,26 +27,21 @@ public abstract class GuardedCollection<TElement, TCollection>(TElement[] items)
 
     /// <summary>Adds an item to the collection.</summary>
     [Pure]
-    public TCollection Add(TElement item) => AddRange(Enumerable.Repeat(item, 1));
+    public TCollection Add(TElement item) => AddRange(item);
 
     /// <summary>Adds items to the collection.</summary>
     [Pure]
-    public TCollection AddRange(params TElement[] items)
-        => AddRange(Guard.NotNull(items).AsEnumerable());
-
-    /// <summary>Adds items to the collection.</summary>
-    [Pure]
-    public TCollection AddRange(IEnumerable<TElement> items)
+    public TCollection AddRange(params IEnumerable<TElement> items)
     {
         Guard.NotNull(items);
-        return New(Collection.Concat(items.Select(Guards)));
+        return New([..Collection, ..items.Select(Guards)]);
     }
 
     /// <summary>
     /// Determines if the collection contains the requested item or not.
     /// </summary>
     [Pure]
-    public bool Contains(TElement item) => Array.Exists(Collection, existing => Equals(item, existing));
+    public bool Contains(TElement item) => Collection.Contains(item);
 
     /// <summary>Returns true if the two items are equal.</summary>
     [Pure]

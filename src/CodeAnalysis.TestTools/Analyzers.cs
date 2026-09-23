@@ -6,7 +6,7 @@ namespace CodeAnalysis.TestTools;
 public sealed class Analyzers : GuardedCollection<DiagnosticAnalyzer, Analyzers>
 {
     /// <summary>Initializes a new instance of the <see cref="Analyzers"/> class.</summary>
-    private Analyzers(Language language, DiagnosticAnalyzer[] analyzers) : base(analyzers) => Language = language;
+    private Analyzers(Language language, ImmutableArray<DiagnosticAnalyzer> analyzers) : base(analyzers) => Language = language;
 
     /// <summary>Initializes a new instance of the <see cref="Analyzers"/> class.</summary>
     public Analyzers(Language language) : this(language, []) { }

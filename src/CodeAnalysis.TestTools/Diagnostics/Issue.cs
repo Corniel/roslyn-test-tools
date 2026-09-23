@@ -1,6 +1,7 @@
 namespace CodeAnalysis.TestTools.Diagnostics;
 
 /// <summary>Represents a verification issue.</summary>
+[SuppressMessage("Minor Code Smell", "S1210:\"Equals\" and the comparison operators should be overridden when implementing \"IComparable\"", Justification = "Only implemented to sort items.")]
 public abstract record Issue : IComparable<Issue>
 {
     /// <summary>Initializes a new instance of the <see cref="Issue"/> class.</summary>
