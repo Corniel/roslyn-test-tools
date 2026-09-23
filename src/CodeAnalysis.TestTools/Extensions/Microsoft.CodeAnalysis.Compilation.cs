@@ -3,46 +3,45 @@ namespace Microsoft.CodeAnalysis;
 /// <summary>Extensions on <see cref="Compilation"/>.</summary>
 public static class CompilationExtensions
 {
-    /// <summary>Gets the diagnostics for the specified analyzers.</summary>
-    [Pure]
-    public static Task<IReadOnlyCollection<Diagnostic>> GetDiagnosticsAsync(
-        this Compilation compilation,
-        Analyzers analyzers,
-        CancellationToken cancellationToken = default)
-        => compilation.GetDiagnosticsAsync(analyzers, [], cancellationToken);
-
-    /// <summary>Gets the diagnostics for the specified analyzers.</summary>
-    [Pure]
-    public static async Task<IReadOnlyCollection<Diagnostic>> GetDiagnosticsAsync(
-        this Compilation compilation,
-        Analyzers analyzers,
-        IEnumerable<AdditionalText> texts,
-        CancellationToken cancellationToken = default)
+    extension(Compilation compilation)
     {
-        Guard.NotNull(compilation);
-        Guard.HasAny(analyzers);
+        /// <summary>Gets the diagnostics for the specified analyzers.</summary>
+        [Pure]
+        public Task<IReadOnlyCollection<Diagnostic>> GetDiagnosticsAsync(
+            Analyzers analyzers,
+            CancellationToken cancellationToken = default)
+            => compilation.GetDiagnosticsAsync(analyzers, [], cancellationToken);
 
-        var options = compilation.Options.WithSpecificDiagnosticOptions(analyzers.DiagnosticsToReport);
-        var analyzerOptions = new AnalyzerOptions([.. texts], new EmptyAnalyzerConfigOptionsProvider());
+        /// <summary>Gets the diagnostics for the specified analyzers.</summary>
+        [Pure]
+        public async Task<IReadOnlyCollection<Diagnostic>> GetDiagnosticsAsync(
+            Analyzers analyzers,
+            IEnumerable<AdditionalText> texts,
+            CancellationToken cancellationToken = default)
+        {
+            Guard.HasAny(analyzers);
 
-        var diagnostics = await compilation
-            .WithOptions(options)
-            .WithAnalyzers([.. analyzers], analyzerOptions)
-            .GetAllDiagnosticsAsync(cancellationToken);
+            var options = compilation.Options.WithSpecificDiagnosticOptions(analyzers.DiagnosticsToReport);
+            var analyzerOptions = new AnalyzerOptions([.. texts], new EmptyAnalyzerConfigOptionsProvider());
 
-        return cancellationToken.IsCancellationRequested
-            ? diagnostics
-            : diagnostics.ThrowOnAnalyzerCrashed();
-    }
+            var diagnostics = await compilation
+                .WithOptions(options)
+                .WithAnalyzers([.. analyzers], analyzerOptions)
+                .GetAllDiagnosticsAsync(cancellationToken);
 
-    /// <summary>Gets the expected issues.</summary>
-    [Pure]
-    public static IReadOnlyCollection<ExpectedIssue> GetExpectedIssues(this Compilation compilation)
-    {
-        Guard.NotNull(compilation);
-        return [.. compilation.SyntaxTrees
-            .SelectMany(tree => ExpectedIssue.Parse(tree.GetText().Lines.Lines())
-                .Select(issue => issue.WithFilePath(tree.FilePath)))];
+            return cancellationToken.IsCancellationRequested
+                ? diagnostics
+                : diagnostics.ThrowOnAnalyzerCrashed();
+        }
+
+        /// <summary>Gets the expected issues.</summary>
+        [Pure]
+        public IReadOnlyCollection<ExpectedIssue> GetExpectedIssues() =>
+        [
+            .. compilation.SyntaxTrees
+                .SelectMany(tree => ExpectedIssue.Parse(tree.GetText().Lines.Lines())
+                .Select(issue => issue.WithFilePath(tree.FilePath)))
+        ];
     }
 
     [FluentSyntax]
