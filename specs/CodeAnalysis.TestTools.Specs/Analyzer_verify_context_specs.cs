@@ -111,7 +111,7 @@ public class For_CS_Project
         diagnostics
             .Where(d => d.Id == nameof(CheckAdditionalFiles))
             .Select(d => d.GetMessage())
-            .Last()
+            .Take(1)
             .Should().BeEquivalentTo("Contains data.txt: 'Hello, world!'");
     }
 }
@@ -158,9 +158,9 @@ public class For_VB_Project
 
         diagnostics
             .Where(d => d.Id == nameof(CheckAdditionalFiles))
-            // Skip project file included by .NET project file analyzers
-            .Skip(1)
             .Select(d => d.GetMessage())
+            // Skip project file included by .NET project file analyzers
+            .Take(1)
             .Should().BeEquivalentTo("Contains data.txt: 'Hello, world!'");
     }
 }
