@@ -33,26 +33,31 @@ public abstract partial record AnalyzerVerifyContext<TContext> : AnalyzerVerifyC
 
     /// <summary>Adds an (optional) extra analyzer.</summary>
     [Pure]
-    public TContext Add(DiagnosticAnalyzer analyzer)
-        => self with { Analyzers = Analyzers.Add(analyzer) };
+    public TContext Add(DiagnosticAnalyzer analyzer) => self with
+    {
+        Analyzers = Analyzers.Add(analyzer),
+    };
 
     /// <summary>Adds a (code) snippet.</summary>
     [Pure]
-    public TContext AddSnippet(string code)
-        => self with { Sources = Sources.Add(Code.Snippet(code, Language)) };
+    public TContext AddSnippet(string code) => self with
+    {
+        Sources = Sources.Add(Code.Snippet(code, Language)),
+    };
 
     /// <summary>Adds a (code) source file.</summary>
     [Pure]
-    public TContext AddSource(string path)
-        => self with { Sources = Sources.Add(Code.FromFile(new FileInfo(path))) };
+    public TContext AddSource(string path) => self with
+    {
+        Sources = Sources.Add(Code.FromFile(new FileInfo(path))),
+    };
 
     /// <summary>Adds a (code) source file.</summary>
     [Pure]
-    public TContext AddSources(params string[] paths)
-        => self with
-        {
-            Sources = Sources.AddRange(Guard.HasAny(paths).Select(path => Code.FromFile(new FileInfo(path)))),
-        };
+    public TContext AddSources(params string[] paths) => self with
+    {
+        Sources = Sources.AddRange(Guard.HasAny(paths).Select(path => Code.FromFile(new FileInfo(path)))),
+    };
 
     /// <summary>Adds a reference to the assembly of the <typeparamref name="TContainingType"/>.</summary>
     [Pure]
@@ -61,43 +66,52 @@ public abstract partial record AnalyzerVerifyContext<TContext> : AnalyzerVerifyC
 
     /// <summary>Adds references.</summary>
     [Pure]
-    public TContext AddReferences(params MetadataReference[] references)
-        => self with
-        {
-            References = References.AddRange(Guard.HasAny(references)),
-        };
+    public TContext AddReferences(params MetadataReference[] references) => self with
+    {
+        References = References.AddRange(Guard.HasAny(references)),
+    };
 
     /// <summary>Adds NuGet packages.</summary>
     [Pure]
-    public TContext AddPackages(params NuGetPackage[] packages)
-        => self with
-        {
-            References = References.AddRange(Guard.HasAny(packages).SelectMany(p => p)),
-        };
+    public TContext AddPackages(params NuGetPackage[] packages) => self with
+    {
+        References = References.AddRange(Guard.HasAny(packages).SelectMany(p => p)),
+    };
 
     /// <summary>Defines the output kind. (Default <see cref="OutputKind.DynamicallyLinkedLibrary"/>).</summary>
     [Pure]
-    public TContext WithOutputKind(OutputKind outputKind)
-        => self with
-        {
-            OutputKind = Guard.DefinedEnum(outputKind),
-        };
+    public TContext WithOutputKind(OutputKind outputKind) => self with
+    {
+        OutputKind = Guard.DefinedEnum(outputKind),
+    };
 
     /// <summary>Sets if compiler warnings should be enabled or not (disabled by default).</summary>
     [Pure]
-    public TContext WithCompilerWarnings(bool enable)
-        => self with
-        {
-            IgnoreCompilerWarnings = !enable,
-        };
+    public TContext WithCompilerWarnings(bool enable) => self with
+    {
+        IgnoreCompilerWarnings = !enable,
+    };
 
     /// <summary>Sets the diagnostic ID's to ignore.</summary>
     [Pure]
-    public TContext WithIgnoredDiagnostics(params string[] diagnosticIds)
-        => self with
-        {
-            IgnoredDiagnostics = DiagnosticIds.Empty.AddRange(diagnosticIds),
-        };
+    public TContext WithIgnoredDiagnostics(params string[] diagnosticIds) => self with
+    {
+        IgnoredDiagnostics = DiagnosticIds.Empty.AddRange(diagnosticIds),
+    };
+
+    /// <summary>Adds an MSBuild property exposed to the analyzers.</summary>
+    [Pure]
+    public TContext WithBuildProperty(string name, string value) => self with
+    {
+        MSBuildProperties = MSBuildProperties.SetItem(name, value),
+    };
+
+    /// <summary>Adds MSBuild properties exposed to the analyzers.</summary>
+    [Pure]
+    public TContext WithBuildProperties(params (string Name, string Value)[] properties) => self with
+    {
+        MSBuildProperties = MSBuildProperties.SetItems(properties.Select(p => new KeyValuePair<string, string>(p.Name, p.Value))),
+    };
 
     /// <remarks>Syntactic sugar.</remarks>
     private TContext self => (TContext)this;

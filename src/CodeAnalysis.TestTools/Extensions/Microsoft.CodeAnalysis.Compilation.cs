@@ -14,15 +14,22 @@ public static class CompilationExtensions
 
         /// <summary>Gets the diagnostics for the specified analyzers.</summary>
         [Pure]
-        public async Task<IReadOnlyCollection<Diagnostic>> GetDiagnosticsAsync(
+        public Task<IReadOnlyCollection<Diagnostic>> GetDiagnosticsAsync(
             Analyzers analyzers,
             IEnumerable<AdditionalText> texts,
+            CancellationToken cancellationToken = default)
+            => compilation.GetDiagnosticsAsync(analyzers, new AnalyzerOptions([.. texts], EmptyAnalyzerConfigOptionsProvider.Instance), cancellationToken);
+
+        /// <summary>Gets the diagnostics for the specified analyzers.</summary>
+        [Pure]
+        public async Task<IReadOnlyCollection<Diagnostic>> GetDiagnosticsAsync(
+            Analyzers analyzers,
+            AnalyzerOptions analyzerOptions,
             CancellationToken cancellationToken = default)
         {
             Guard.HasAny(analyzers);
 
             var options = compilation.Options.WithSpecificDiagnosticOptions(analyzers.DiagnosticsToReport);
-            var analyzerOptions = new AnalyzerOptions([.. texts], new EmptyAnalyzerConfigOptionsProvider());
 
             var diagnostics = await compilation
                 .WithOptions(options)
@@ -52,6 +59,8 @@ public static class CompilationExtensions
 
     private sealed class EmptyAnalyzerConfigOptionsProvider : AnalyzerConfigOptionsProvider
     {
+        public static readonly EmptyAnalyzerConfigOptionsProvider Instance = new();
+
         private static readonly NoAnalyzerConfigOptions None = new();
 
         public override AnalyzerConfigOptions GlobalOptions => None;

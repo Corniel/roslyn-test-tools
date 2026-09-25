@@ -29,6 +29,20 @@ public record ProjectAnalyzerVerifyContext : AnalyzerVerifyContext
     public ProjectAnalyzerVerifyContext Add(DiagnosticAnalyzer analyzer)
         => this with { Analyzers = Analyzers.Add(analyzer) };
 
+    /// <summary>Adds an MSBuild property exposed to the analyzers.</summary>
+    [Pure]
+    public ProjectAnalyzerVerifyContext WithBuildProperty(string name, string value) => this with
+    {
+        MSBuildProperties = MSBuildProperties.SetItem(name, value),
+    };
+
+    /// <summary>Adds MSBuild properties exposed to the analyzers.</summary>
+    [Pure]
+    public ProjectAnalyzerVerifyContext WithBuildProperties(params (string Name, string Value)[] properties) => this with
+    {
+        MSBuildProperties = MSBuildProperties.SetItems(properties.Select(p => new KeyValuePair<string, string>(p.Name, p.Value))),
+    };
+
     /// <inheritdoc cref="Project.AssemblyName" />
     protected override string AssemblyName => Project.AssemblyName;
 
