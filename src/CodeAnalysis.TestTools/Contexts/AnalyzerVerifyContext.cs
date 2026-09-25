@@ -23,6 +23,9 @@ public abstract record AnalyzerVerifyContext
     /// <summary>Gets if the compiler warnings should be ignored.</summary>
     public bool IgnoreCompilerWarnings { get; init; } = true;
 
+    /// <summary>Gets the compiler visible MSBuild properties.</summary>
+    public ImmutableDictionary<string, string> MSBuildProperties { get; init; } = [];
+
     /// <summary>Gets the compilation.</summary>
     [Pure]
     public abstract Task<Compilation> GetCompilationAsync();
@@ -30,7 +33,7 @@ public abstract record AnalyzerVerifyContext
     /// <summary>Gets the diagnostics.</summary>
     [Pure]
     public async Task<IReadOnlyCollection<Diagnostic>> GetDiagnosticsAsync()
-        => await (await GetCompilationAsync()).GetDiagnosticsAsync(Analyzers, GetAdditionalText());
+        => await (await GetCompilationAsync()).GetDiagnosticsAsync(Analyzers, GetAnalyzerOptions());
 
     /// <summary>Reports (both expected, unexpected, and not reported) issues for the analyzer verify context.</summary>
     [Pure]
@@ -43,7 +46,7 @@ public abstract record AnalyzerVerifyContext
     public async Task<IEnumerable<Issue>> ReportIssuesAsync()
     {
         var compilation = await GetCompilationAsync();
-        var diagnostics = await compilation.GetDiagnosticsAsync(Analyzers);
+        var diagnostics = await compilation.GetDiagnosticsAsync(Analyzers, GetAnalyzerOptions());
         var expected = compilation.GetExpectedIssues();
 
         return IgnoreCompilerWarnings
@@ -57,4 +60,9 @@ public abstract record AnalyzerVerifyContext
     /// <summary>Gets the additional texts.</summary>
     [Pure]
     internal abstract IEnumerable<AdditionalText> GetAdditionalText();
+
+    /// <summary>Gets the analyzer options (additional texts + MSBuild properties).</summary>
+    [Pure]
+    internal AnalyzerOptions GetAnalyzerOptions()
+        => new([.. GetAdditionalText()], new MSBuildConfigOptionsProvider(MSBuildProperties));
 }
