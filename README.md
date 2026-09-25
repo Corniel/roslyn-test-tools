@@ -139,6 +139,35 @@ where the assembly of `TContainingType` is added. Alternatively
 `.AddReferences(params MetadataReference[] references)` and
 `.AddPackages(params NuGetPackage[] packages)` can be used.
 
+#### Set Build properties
+To simulate the compiler-visible MSBuild properties (as passed during an actual
+build), `.WithBuildProperty(string name, string value)` can be used. The
+properties are exposed to the analyzers as global analyzer config options,
+prefixed with `build_property.`:
+
+``` C#
+[Test]
+public void Verify_MyAnalyzer()
+    => new MyAnalyzer()
+        .ForProject(new FileInfo("myproject.csproj"))
+        .WithBuildProperty("TargetFramework", "net10.0")
+        .Verify();
+```
+
+Multiple properties can be added at once using
+`.WithBuildProperties(params (string Name, string Value)[] properties)`.
+
+Inside the analyzer, the values can be read from the
+`AnalyzerConfigOptionsProvider.GlobalOptions` using the `build_property.` prefix:
+
+``` C#
+if (context.Options.AnalyzerConfigOptionsProvider.GlobalOptions
+    .TryGetValue("build_property.TargetFramework", out var value))
+{
+    // use value
+}
+```
+
 #### Set Output kind
 The output kind of the assembly built (default `OutputKind.DynamicallyLinkedLibrary`)
 can be changed using `.WithOutputKind(OutputKind outputKind)`.
